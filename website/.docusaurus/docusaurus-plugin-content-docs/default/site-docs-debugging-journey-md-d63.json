@@ -1,0 +1,26 @@
+{
+  "id": "debugging-journey",
+  "title": "🐛 The Debugging Journey",
+  "description": "Embracing Glorious Failures - How We Learned to Stop Worrying and Love Error Messages",
+  "source": "@site/docs/debugging-journey.md",
+  "sourceDirName": ".",
+  "slug": "/debugging-journey",
+  "permalink": "/changelogger/debugging-journey",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/changelogger/tree/main/docs/debugging-journey.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 20,
+  "frontMatter": {
+    "id": "debugging-journey",
+    "title": "🐛 The Debugging Journey",
+    "sidebar_position": 20,
+    "description": "Embracing Glorious Failures - How We Learned to Stop Worrying and Love Error Messages"
+  },
+  "sidebar": "courseSidebar",
+  "previous": {
+    "title": "Chapter 0: Containerization",
+    "permalink": "/changelogger/chapters/chapter-00-containerization"
+  }
+}

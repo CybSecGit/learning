@@ -1,0 +1,25 @@
+{
+  "id": "intro",
+  "title": "🕷️ Web Scraping Course",
+  "description": "From Zero to Hero (via Epic Failures)",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/changelogger/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/changelogger/tree/main/docs/intro.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "slug": "/",
+    "id": "intro",
+    "title": "🕷️ Web Scraping Course",
+    "description": "From Zero to Hero (via Epic Failures)"
+  },
+  "sidebar": "courseSidebar",
+  "next": {
+    "title": "Chapter 0: Containerization",
+    "permalink": "/changelogger/chapters/chapter-00-containerization"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "/changelogger/__docusaurus/debug-cba": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+    }
+  },
+  "/changelogger/__docusaurus/debug/config-92b": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+    }
+  },
+  "/changelogger/__docusaurus/debug/content-1a9": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+    },
+    "__props": "__props---changelogger-docusaurus-debug-contentceb-351"
+  },
+  "/changelogger/__docusaurus/debug/globalData-557": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+    }
+  },
+  "/changelogger/__docusaurus/debug/metadata-afb": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+    }
+  },
+  "/changelogger/__docusaurus/debug/registry-fa7": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+    }
+  },
+  "/changelogger/__docusaurus/debug/routes-0b5": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+    }
+  },
+  "/changelogger/-f62": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
+    "__context": {
+      "plugin": "plugin---changelogger-aba-24f"
+    }
+  },
+  "/changelogger/-6a4": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---changelogger-9-ce-0a7"
+  },
+  "/changelogger/-a36": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
+  },
+  "/changelogger/chapters/chapter-00-containerization-898": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---changelogger-chapters-chapter-00-containerizationbc-3-349"
+  },
+  "/changelogger/debugging-journey-286": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---changelogger-debugging-journeyd-63-cb8"
+  },
+  "/changelogger/-58b": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---changelogger-0-e-3-43d"
+  }
+}

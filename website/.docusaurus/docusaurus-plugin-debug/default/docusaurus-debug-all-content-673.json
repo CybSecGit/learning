@@ -1,0 +1,148 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/changelogger/",
+          "tagsPath": "/changelogger/tags",
+          "editUrl": "https://github.com/your-username/changelogger/tree/main/docs",
+          "editUrlLocalized": "https://github.com/your-username/changelogger/tree/main/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/mnt/c/Users/Brian/Documents/GitHub/my-stuff/changelogger/web-scraping-course/website/sidebars.js",
+          "contentPath": "/mnt/c/Users/Brian/Documents/GitHub/my-stuff/changelogger/web-scraping-course/website/docs",
+          "contentPathLocalized": "/mnt/c/Users/Brian/Documents/GitHub/my-stuff/changelogger/web-scraping-course/website/i18n/en/docusaurus-plugin-content-docs/current",
+          "docs": [
+            {
+              "id": "chapters/chapter-00-containerization",
+              "title": "Chapter 0: Containerization",
+              "description": "How to Ship Your Problems to Someone Else's Computer",
+              "source": "@site/docs/chapters/chapter-00-containerization.md",
+              "sourceDirName": "chapters",
+              "slug": "/chapters/chapter-00-containerization",
+              "permalink": "/changelogger/chapters/chapter-00-containerization",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/changelogger/tree/main/docs/chapters/chapter-00-containerization.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "id": "chapter-00-containerization",
+                "title": "Chapter 0: Containerization",
+                "sidebar_position": 1,
+                "description": "How to Ship Your Problems to Someone Else's Computer"
+              },
+              "sidebar": "courseSidebar",
+              "previous": {
+                "title": "🕷️ Web Scraping Course",
+                "permalink": "/changelogger/"
+              },
+              "next": {
+                "title": "🐛 The Debugging Journey",
+                "permalink": "/changelogger/debugging-journey"
+              }
+            },
+            {
+              "id": "debugging-journey",
+              "title": "🐛 The Debugging Journey",
+              "description": "Embracing Glorious Failures - How We Learned to Stop Worrying and Love Error Messages",
+              "source": "@site/docs/debugging-journey.md",
+              "sourceDirName": ".",
+              "slug": "/debugging-journey",
+              "permalink": "/changelogger/debugging-journey",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/changelogger/tree/main/docs/debugging-journey.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 20,
+              "frontMatter": {
+                "id": "debugging-journey",
+                "title": "🐛 The Debugging Journey",
+                "sidebar_position": 20,
+                "description": "Embracing Glorious Failures - How We Learned to Stop Worrying and Love Error Messages"
+              },
+              "sidebar": "courseSidebar",
+              "previous": {
+                "title": "Chapter 0: Containerization",
+                "permalink": "/changelogger/chapters/chapter-00-containerization"
+              }
+            },
+            {
+              "id": "intro",
+              "title": "🕷️ Web Scraping Course",
+              "description": "From Zero to Hero (via Epic Failures)",
+              "source": "@site/docs/intro.md",
+              "sourceDirName": ".",
+              "slug": "/",
+              "permalink": "/changelogger/",
+              "draft": false,
+              "unlisted": false,
+              "editUrl": "https://github.com/your-username/changelogger/tree/main/docs/intro.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "slug": "/",
+                "id": "intro",
+                "title": "🕷️ Web Scraping Course",
+                "description": "From Zero to Hero (via Epic Failures)"
+              },
+              "sidebar": "courseSidebar",
+              "next": {
+                "title": "Chapter 0: Containerization",
+                "permalink": "/changelogger/chapters/chapter-00-containerization"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "courseSidebar": [
+              {
+                "type": "doc",
+                "id": "intro"
+              },
+              {
+                "type": "category",
+                "label": "🚀 Getting Started",
+                "collapsed": false,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "chapters/chapter-00-containerization"
+                  }
+                ],
+                "collapsible": true
+              },
+              {
+                "type": "category",
+                "label": "🛠️ Hands-On",
+                "collapsed": false,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "debugging-journey"
+                  }
+                ],
+                "collapsible": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": null
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

@@ -1,0 +1,43 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/changelogger/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/changelogger/",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "chapters/chapter-00-containerization",
+              "path": "/changelogger/chapters/chapter-00-containerization",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "debugging-journey",
+              "path": "/changelogger/debugging-journey",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/changelogger/",
+              "sidebar": "courseSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "courseSidebar": {
+              "link": {
+                "path": "/changelogger/",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}
