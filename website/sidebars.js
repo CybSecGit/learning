@@ -34,6 +34,11 @@ const sidebars = {
         'chapters/chapter-07-database-architecture',
         'chapters/chapter-08-gui-implementation-patterns',
         'chapters/chapter-08.5-simple-vs-modern-web',
+        'chapters/chapter-09-privacy-first-llm-architecture',
+        'chapters/chapter-10-modern-dependency-management',
+        'chapters/chapter-11-pattern-based-ai-automation',
+        'chapters/chapter-12-model-context-protocol-mcp-architecture',
+        'chapters/chapter-13-docker-first-production-security',
       ],
     },
     {
