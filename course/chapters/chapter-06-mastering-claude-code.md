@@ -1780,6 +1780,17 @@ The future might include:
 
 > "The whole is greater than the sum of its parts" - Aristotle (definitely talking about multi-agent Claude Code)
 
+### 📚 Deep Dive: Advanced Orchestration
+
+For a comprehensive exploration of Claude Code orchestration, parallelism strategies, and GitHub Actions integration, see **[Chapter 9: Claude Code Orchestration and Advanced Parallelism](./chapter-09-claude-code-orchestration.md)**.
+
+This advanced chapter covers:
+- In-depth git worktree strategies for different use cases
+- Orchestration patterns for complex projects
+- GitHub Actions workflows for autonomous development
+- Real-world case studies and implementation examples
+- Future vision of self-evolving codebases
+
 ---
 
 ## Real-World Examples from Changelogger Development

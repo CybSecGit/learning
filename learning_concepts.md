@@ -9413,4 +9413,105 @@ window.matchMedia('(display-mode: standalone)') // PWA app mode
 
 ---
 
+## Claude Code Orchestration and Multi-Agent Development
+
+**The Simple Explanation**: Imagine having multiple senior developers working on your project simultaneously, each specializing in different areas (frontend, backend, testing, etc.), all perfectly coordinated. That's what Claude Code orchestration enables - running multiple AI agents in parallel to dramatically accelerate development.
+
+**Key Concepts**:
+
+### Git Worktrees
+Git worktrees are like having multiple copies of your repository, each on a different branch, all sharing the same git history. Think of it as having multiple desks where different developers can work without bumping into each other.
+
+```bash
+# Instead of constantly switching branches:
+git checkout feature-a  # Work stops on feature-b
+git checkout feature-b  # Work stops on feature-a
+
+# With worktrees, both can be active:
+git worktree add ../project-feature-a feature-a
+git worktree add ../project-feature-b feature-b
+# Now you have two separate directories, each on its own branch!
+```
+
+### Multi-Agent Patterns
+
+**1. Symphony Pattern**: Like an orchestra where different sections play together
+```bash
+# Frontend agent develops UI
+# Backend agent builds API  
+# Test agent writes tests
+# All working simultaneously on the same feature
+```
+
+**2. Pipeline Pattern**: Like an assembly line where each agent adds to the previous work
+```bash
+Requirements → Design → Implementation → Testing → Documentation
+```
+
+**3. Swarm Pattern**: Many small agents each handling specific micro-tasks
+```bash
+# 10 agents each refactoring one module
+# All complete in parallel, then integrate
+```
+
+**Real World Example**: 
+```yaml
+# GitHub Action that automatically implements features
+on:
+  issues:
+    types: [labeled with 'auto-implement']
+    
+jobs:
+  implement:
+    - Claude analyzes requirements
+    - Creates feature branch
+    - Implements code
+    - Writes tests
+    - Creates PR
+    # All automated!
+```
+
+**Why This Is Revolutionary**:
+- **Speed**: 5x-10x faster development through true parallelism
+- **Quality**: Each agent can specialize and excel in their domain
+- **Consistency**: Agents follow project patterns perfectly
+- **24/7 Development**: Agents can work continuously
+
+**Common Use Cases**:
+1. **Large Refactoring**: Multiple agents each handling different modules
+2. **Feature Development**: Frontend/backend/tests developed in parallel
+3. **Bug Fixing**: Swarm of agents each fixing specific issues
+4. **Documentation**: Dedicated agent keeping docs in sync with code
+
+**Getting Started**:
+```bash
+# Simple 2-agent setup
+cd my-project
+git worktree add ../my-project-frontend feature/frontend
+git worktree add ../my-project-backend feature/backend
+
+# Terminal 1
+cd ../my-project-frontend
+claude  # "I'm working on the frontend"
+
+# Terminal 2  
+cd ../my-project-backend
+claude  # "I'm working on the backend"
+```
+
+**Pro Tips**:
+- Start with 2-3 agents until you're comfortable
+- Define clear boundaries for each agent
+- Use an orchestrator agent to coordinate
+- Integrate frequently to avoid conflicts
+
+**Learn More**: See [Chapter 9: Claude Code Orchestration and Advanced Parallelism](course/chapters/chapter-09-claude-code-orchestration.md) for comprehensive coverage including:
+- Deep dive into git worktree strategies
+- Advanced orchestration patterns
+- GitHub Actions integration for autonomous development
+- Real-world case studies
+- Building self-evolving codebases
+
+---
+
 *"And thus ended our journey into the realm of Python and Frontend wisdom. May your bugs be few, your themes be beautiful, and your tests always pass\!"* 🐍✨🎨
