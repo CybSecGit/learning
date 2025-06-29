@@ -10,7 +10,7 @@ description: Embracing Glorious Failures - How We Learned to Stop Worrying and L
 
 <div className="debugging-journey">
 
-Welcome to the most honest part of our course - the messy, frustrating, but ultimately rewarding process of debugging. This isn't a chapter you'll find in most tutorials because they pretend everything works on the first try. Spoiler alert: it doesn't.
+Welcome to the most honest part of our laboratory - the messy, frustrating, but ultimately rewarding process of debugging. This isn't a chapter you'll find in most tutorials because they pretend everything works on the first try. Spoiler alert: it doesn't.
 
 ## Philosophy: Failures Are Features, Not Bugs
 
@@ -292,7 +292,7 @@ The biggest lesson from our debugging journey: **Failures are not setbacks—the
 
 ### Try This: Debugging Exercise
 
-1. Take any piece of code from our course
+1. Take any piece of code from our wiki
 2. Intentionally break it in a small way
 3. Follow our debugging process to fix it
 4. Document what you learned

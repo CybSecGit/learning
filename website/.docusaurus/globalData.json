@@ -1,28 +1,122 @@
 {
   "docusaurus-plugin-content-docs": {
     "default": {
-      "path": "/changelogger/",
+      "path": "/learning/",
       "versions": [
         {
           "name": "current",
           "label": "Next",
           "isLast": true,
-          "path": "/changelogger/",
+          "path": "/learning/",
           "mainDocId": "intro",
           "docs": [
             {
               "id": "chapters/chapter-00-containerization",
-              "path": "/changelogger/chapters/chapter-00-containerization",
+              "path": "/learning/chapters/chapter-00-containerization",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-01-setup",
+              "path": "/learning/chapters/chapter-01-setup",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-02-preview",
+              "path": "/learning/chapters/chapter-02-preview"
+            },
+            {
+              "id": "chapters/chapter-02-web-scraping",
+              "path": "/learning/chapters/chapter-02-web-scraping",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-03-failure-driven-development",
+              "path": "/learning/chapters/chapter-03-failure-driven-development",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-04-testing-like-you-mean-it",
+              "path": "/learning/chapters/chapter-04-testing-like-you-mean-it",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-05-user-agents-and-stealth",
+              "path": "/learning/chapters/chapter-05-user-agents-and-stealth",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-06-mastering-claude-code",
+              "path": "/learning/chapters/chapter-06-mastering-claude-code",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-06.5-claude-code-workshop",
+              "path": "/learning/chapters/chapter-06.5-claude-code-workshop",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-07-database-architecture",
+              "path": "/learning/chapters/chapter-07-database-architecture",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-08-gui-implementation-patterns",
+              "path": "/learning/chapters/chapter-08-gui-implementation-patterns",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/golang-concepts",
+              "path": "/learning/concepts/golang-concepts",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/python-concepts",
+              "path": "/learning/concepts/python-concepts",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/typescript-deno-concepts",
+              "path": "/learning/concepts/typescript-deno-concepts",
               "sidebar": "courseSidebar"
             },
             {
               "id": "debugging-journey",
-              "path": "/changelogger/debugging-journey",
+              "path": "/learning/debugging-journey",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "exercises/claude-code-exercises",
+              "path": "/learning/exercises/claude-code-exercises",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "exercises/debugging-exercise",
+              "path": "/learning/exercises/debugging-exercise",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "exercises/language-exercises",
+              "path": "/learning/exercises/language-exercises",
               "sidebar": "courseSidebar"
             },
             {
               "id": "intro",
-              "path": "/changelogger/",
+              "path": "/learning/",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "resources/contributing",
+              "path": "/learning/resources/contributing",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "resources/docker-quick-start",
+              "path": "/learning/resources/docker-quick-start",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "resources/security-note",
+              "path": "/learning/resources/security-note",
               "sidebar": "courseSidebar"
             }
           ],
@@ -30,8 +124,8 @@
           "sidebars": {
             "courseSidebar": {
               "link": {
-                "path": "/changelogger/",
-                "label": "intro"
+                "path": "/learning/",
+                "label": "🏠 Course Overview"
               }
             }
           }

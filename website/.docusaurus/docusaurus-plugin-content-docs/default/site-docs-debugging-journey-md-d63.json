@@ -5,10 +5,10 @@
   "source": "@site/docs/debugging-journey.md",
   "sourceDirName": ".",
   "slug": "/debugging-journey",
-  "permalink": "/changelogger/debugging-journey",
+  "permalink": "/learning/debugging-journey",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/changelogger/tree/main/docs/debugging-journey.md",
+  "editUrl": "https://github.com/cybsecgit/learning/tree/main/docs/debugging-journey.md",
   "tags": [],
   "version": "current",
   "sidebarPosition": 20,
@@ -20,7 +20,11 @@
   },
   "sidebar": "courseSidebar",
   "previous": {
-    "title": "Chapter 0: Containerization",
-    "permalink": "/changelogger/chapters/chapter-00-containerization"
+    "title": "🦕 TypeScript/Deno Concepts",
+    "permalink": "/learning/concepts/typescript-deno-concepts"
+  },
+  "next": {
+    "title": "Docker Quick Start",
+    "permalink": "/learning/resources/docker-quick-start"
   }
 }

@@ -1,70 +1,103 @@
 {
-  "/changelogger/__docusaurus/debug-cba": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
+  "/learning/-229": {
+    "__comp": "5e95c892",
     "__context": {
-      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
+      "plugin": "aba21aa0"
     }
   },
-  "/changelogger/__docusaurus/debug/config-92b": {
-    "__comp": "__comp---theme-debug-config-23-a-2ff",
-    "__context": {
-      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
-    }
+  "/learning/-d59": {
+    "__comp": "a7bd4aaa",
+    "__props": "61d951c9"
   },
-  "/changelogger/__docusaurus/debug/content-1a9": {
-    "__comp": "__comp---theme-debug-contentba-8-ce7",
-    "__context": {
-      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
-    },
-    "__props": "__props---changelogger-docusaurus-debug-contentceb-351"
+  "/learning/-b8b": {
+    "__comp": "a94703ab"
   },
-  "/changelogger/__docusaurus/debug/globalData-557": {
-    "__comp": "__comp---theme-debug-global-dataede-0fa",
-    "__context": {
-      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
-    }
+  "/learning/chapters/chapter-00-containerization-ec6": {
+    "__comp": "17896441",
+    "content": "bc379315"
   },
-  "/changelogger/__docusaurus/debug/metadata-afb": {
-    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
-    "__context": {
-      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
-    }
+  "/learning/chapters/chapter-01-setup-ea5": {
+    "__comp": "17896441",
+    "content": "c5064aa9"
   },
-  "/changelogger/__docusaurus/debug/registry-fa7": {
-    "__comp": "__comp---theme-debug-registry-679-501",
-    "__context": {
-      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
-    }
+  "/learning/chapters/chapter-02-preview-2cd": {
+    "__comp": "17896441",
+    "content": "df833ce3"
   },
-  "/changelogger/__docusaurus/debug/routes-0b5": {
-    "__comp": "__comp---theme-debug-routes-946-699",
-    "__context": {
-      "plugin": "plugin---changelogger-docusaurus-debugb-38-129"
-    }
+  "/learning/chapters/chapter-02-web-scraping-fb8": {
+    "__comp": "17896441",
+    "content": "9578f424"
   },
-  "/changelogger/-f62": {
-    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
-    "__context": {
-      "plugin": "plugin---changelogger-aba-24f"
-    }
+  "/learning/chapters/chapter-03-failure-driven-development-a25": {
+    "__comp": "17896441",
+    "content": "574efd74"
   },
-  "/changelogger/-6a4": {
-    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
-    "__props": "__props---changelogger-9-ce-0a7"
+  "/learning/chapters/chapter-04-testing-like-you-mean-it-e61": {
+    "__comp": "17896441",
+    "content": "c36f7b06"
   },
-  "/changelogger/-a36": {
-    "__comp": "__comp---theme-doc-roota-94-67a"
+  "/learning/chapters/chapter-05-user-agents-and-stealth-709": {
+    "__comp": "17896441",
+    "content": "2368feea"
   },
-  "/changelogger/chapters/chapter-00-containerization-898": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---changelogger-chapters-chapter-00-containerizationbc-3-349"
+  "/learning/chapters/chapter-06-mastering-claude-code-99d": {
+    "__comp": "17896441",
+    "content": "46586084"
   },
-  "/changelogger/debugging-journey-286": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---changelogger-debugging-journeyd-63-cb8"
+  "/learning/chapters/chapter-06.5-claude-code-workshop-532": {
+    "__comp": "17896441",
+    "content": "cc406811"
   },
-  "/changelogger/-58b": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---changelogger-0-e-3-43d"
+  "/learning/chapters/chapter-07-database-architecture-faf": {
+    "__comp": "17896441",
+    "content": "c23d1068"
+  },
+  "/learning/chapters/chapter-08-gui-implementation-patterns-ba8": {
+    "__comp": "17896441",
+    "content": "16030caa"
+  },
+  "/learning/concepts/golang-concepts-b7c": {
+    "__comp": "17896441",
+    "content": "070f4087"
+  },
+  "/learning/concepts/python-concepts-6ee": {
+    "__comp": "17896441",
+    "content": "f91e419c"
+  },
+  "/learning/concepts/typescript-deno-concepts-256": {
+    "__comp": "17896441",
+    "content": "f6e6b5ae"
+  },
+  "/learning/debugging-journey-94d": {
+    "__comp": "17896441",
+    "content": "d638cc49"
+  },
+  "/learning/exercises/claude-code-exercises-dd2": {
+    "__comp": "17896441",
+    "content": "fe4baf17"
+  },
+  "/learning/exercises/debugging-exercise-9c7": {
+    "__comp": "17896441",
+    "content": "dd67767f"
+  },
+  "/learning/exercises/language-exercises-939": {
+    "__comp": "17896441",
+    "content": "42f32e13"
+  },
+  "/learning/resources/contributing-df5": {
+    "__comp": "17896441",
+    "content": "d1e0df21"
+  },
+  "/learning/resources/docker-quick-start-8b1": {
+    "__comp": "17896441",
+    "content": "0057bd77"
+  },
+  "/learning/resources/security-note-7b8": {
+    "__comp": "17896441",
+    "content": "dbbc6be0"
+  },
+  "/learning/-b2d": {
+    "__comp": "17896441",
+    "content": "0e384e19"
   }
 }

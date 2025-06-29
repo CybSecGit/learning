@@ -8,7 +8,7 @@ sidebar_label: Security Note
 
 ## Important Security Considerations
 
-This course focuses on educational web scraping. When applying these techniques:
+This Development Skills Laboratory focuses on educational web scraping. When applying these techniques:
 
 1. **Always respect robots.txt**: Check and follow the website's robots.txt file
 2. **Rate limiting**: Implement delays between requests to avoid overwhelming servers

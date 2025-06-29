@@ -1,30 +1,24 @@
 {
   "id": "chapters/chapter-00-containerization",
   "title": "Chapter 0: Containerization",
-  "description": "How to Ship Your Problems to Someone Else's Computer",
+  "description": "Or: How to Ship Your Problems to Someone Else's Computer",
   "source": "@site/docs/chapters/chapter-00-containerization.md",
   "sourceDirName": "chapters",
   "slug": "/chapters/chapter-00-containerization",
-  "permalink": "/changelogger/chapters/chapter-00-containerization",
+  "permalink": "/learning/chapters/chapter-00-containerization",
   "draft": false,
   "unlisted": false,
-  "editUrl": "https://github.com/your-username/changelogger/tree/main/docs/chapters/chapter-00-containerization.md",
+  "editUrl": "https://github.com/cybsecgit/learning/tree/main/docs/chapters/chapter-00-containerization.md",
   "tags": [],
   "version": "current",
-  "sidebarPosition": 1,
-  "frontMatter": {
-    "id": "chapter-00-containerization",
-    "title": "Chapter 0: Containerization",
-    "sidebar_position": 1,
-    "description": "How to Ship Your Problems to Someone Else's Computer"
-  },
+  "frontMatter": {},
   "sidebar": "courseSidebar",
   "previous": {
-    "title": "🕷️ Web Scraping Course",
-    "permalink": "/changelogger/"
+    "title": "🏠 Course Overview",
+    "permalink": "/learning/"
   },
   "next": {
-    "title": "🐛 The Debugging Journey",
-    "permalink": "/changelogger/debugging-journey"
+    "title": "Chapter 1: Project Setup",
+    "permalink": "/learning/chapters/chapter-01-setup"
   }
 }

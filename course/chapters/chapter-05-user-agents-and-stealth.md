@@ -389,14 +389,14 @@ Remember: The goal isn't to be sneaky, it's to not accidentally trigger bot dete
 
 ## Next Chapter Preview
 
-In Chapter 6, we'll add HTML parsing with selectolax, where we'll discover:
-- CSS selectors that work in browsers but not in scrapers
-- The joy of malformed HTML
-- Character encoding adventures
-- Why websites hate you personally
-- The eternal question: "Where did my `<div>` go?"
+In Chapter 6: Mastering Claude Code, we'll explore:
+- How to turn Claude into your ultimate pair programming partner
+- Advanced prompting techniques for better code generation
+- Building entire features with AI assistance
+- Common pitfalls and how to avoid them
+- Real-world workflows that actually work
 
-Plus, we'll learn to test HTML parsing without wanting to throw our computers out the window!
+Plus, we'll learn how to leverage AI without losing our ability to debug and understand code!
 
 ---
 

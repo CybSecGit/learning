@@ -58,7 +58,7 @@ We are committed to providing a friendly, safe, and welcoming environment for al
 docker-compose up -d
 
 # Enter development environment
-docker-compose exec course bash
+docker-compose exec dev bash
 
 # Run tests
 make test

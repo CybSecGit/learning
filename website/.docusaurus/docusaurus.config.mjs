@@ -4,14 +4,14 @@
  * Modify the docusaurus.config.js file at your site's root instead.
  */
 export default {
-  "title": "Web Scraping Course: From Zero to Hero",
-  "tagline": "Learn modern web scraping through epic failures and systematic debugging",
+  "title": "Development Skills Laboratory",
+  "tagline": "Master software development through hands-on practice and systematic debugging",
   "favicon": "img/favicon.ico",
-  "url": "https://your-username.github.io",
-  "baseUrl": "/changelogger/",
-  "organizationName": "your-username",
-  "projectName": "changelogger",
-  "onBrokenLinks": "throw",
+  "url": "https://cybsecgit.github.io",
+  "baseUrl": "/learning/",
+  "organizationName": "cybsecgit",
+  "projectName": "learning",
+  "onBrokenLinks": "warn",
   "onBrokenMarkdownLinks": "warn",
   "i18n": {
     "defaultLocale": "en",
@@ -26,13 +26,13 @@ export default {
       "classic",
       {
         "docs": {
-          "sidebarPath": "/mnt/c/Users/Brian/Documents/GitHub/my-stuff/changelogger/web-scraping-course/website/sidebars.js",
-          "editUrl": "https://github.com/your-username/changelogger/tree/main/",
+          "sidebarPath": "/home/cybsec/code/learning/website/sidebars.js",
+          "editUrl": "https://github.com/cybsecgit/learning/tree/main/",
           "routeBasePath": "/"
         },
         "blog": false,
         "theme": {
-          "customCss": "/mnt/c/Users/Brian/Documents/GitHub/my-stuff/changelogger/web-scraping-course/website/src/css/custom.css"
+          "customCss": "/home/cybsec/code/learning/website/src/css/custom.css"
         }
       }
     ]
@@ -40,9 +40,9 @@ export default {
   "themeConfig": {
     "image": "img/social-card.jpg",
     "navbar": {
-      "title": "Web Scraping Course",
+      "title": "Skills Lab",
       "logo": {
-        "alt": "Web Scraping Course Logo",
+        "alt": "Development Skills Laboratory Logo",
         "src": "img/logo.svg",
         "width": 32,
         "height": 32
@@ -55,7 +55,7 @@ export default {
           "label": "📚 Course"
         },
         {
-          "href": "https://github.com/your-username/changelogger",
+          "href": "https://github.com/cybsecgit/learning",
           "label": "GitHub",
           "position": "right"
         }
@@ -92,16 +92,16 @@ export default {
           "items": [
             {
               "label": "GitHub Repository",
-              "href": "https://github.com/your-username/changelogger"
+              "href": "https://github.com/cybsecgit/learning"
             },
             {
               "label": "Issues & Questions",
-              "href": "https://github.com/your-username/changelogger/issues"
+              "href": "https://github.com/cybsecgit/learning/issues"
             }
           ]
         }
       ],
-      "copyright": "Copyright © 2025 Changelogger Project. Built with Docusaurus.<br/>\n        <em>\"The expert has failed more times than the beginner has even tried. Let's fail faster so we can succeed sooner.\"</em>"
+      "copyright": "Copyright © 2025 Built with Docusaurus.<br/>\n        <em>\"The expert has failed more times than the beginner has even tried. Let's fail faster so we can succeed sooner.\"</em>"
     },
     "prism": {
       "theme": {
