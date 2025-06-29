@@ -100,9 +100,9 @@ This course is designed for:
 - **Discussions**: Share your success stories and failures
 - **Pull Requests**: Contribute improvements to the course
 
-## 📖 Course Notation
+## 📖 Documentation Notation
 
-Throughout this course, you'll see these special callouts:
+Throughout this documentation, you'll see these special callouts:
 
 <div className="failure-story">
 
