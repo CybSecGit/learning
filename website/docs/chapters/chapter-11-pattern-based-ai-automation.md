@@ -1079,12 +1079,12 @@ class SecurePromptExecutor:
     def _contains_injection_patterns(self, text: str) -> bool:
         """Check for common injection patterns"""
         injection_patterns = [
-            r"ignore\s+previous\s+instructions",
-            r"disregard\s+the\s+above",
-            r"new\s+instructions:",
-            r"system\s*:",
-            r"assistant\s*:",
-            r"<\s*script\s*>",
+            r"ignore\\s+previous\\s+instructions",
+            r"disregard\\s+the\\s+above",
+            r"new\\s+instructions:",
+            r"system\\s*:",
+            r"assistant\\s*:",
+            r"<\\s*script\\s*>",
             r"javascript:",
             r"data:text/html"
         ]
