@@ -80,6 +80,16 @@
               "sidebar": "courseSidebar"
             },
             {
+              "id": "chapters/chapter-11-pattern-based-ai-automation",
+              "path": "/learning/chapters/chapter-11-pattern-based-ai-automation",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-12-model-context-protocol-mcp-architecture",
+              "path": "/learning/chapters/chapter-12-model-context-protocol-mcp-architecture",
+              "sidebar": "courseSidebar"
+            },
+            {
               "id": "chapters/chapter-13-docker-first-production-security",
               "path": "/learning/chapters/chapter-13-docker-first-production-security",
               "sidebar": "courseSidebar"

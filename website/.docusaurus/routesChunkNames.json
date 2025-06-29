@@ -1,15 +1,15 @@
 {
-  "/learning/-2e0": {
+  "/learning/-7c6": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/learning/-c5c": {
+  "/learning/-4c9": {
     "__comp": "a7bd4aaa",
     "__props": "61d951c9"
   },
-  "/learning/-169": {
+  "/learning/-56c": {
     "__comp": "a94703ab"
   },
   "/learning/chapters/chapter-00-containerization-ec6": {
@@ -67,6 +67,14 @@
   "/learning/chapters/chapter-10-modern-dependency-management-da7": {
     "__comp": "17896441",
     "content": "bc0e73f2"
+  },
+  "/learning/chapters/chapter-11-pattern-based-ai-automation-625": {
+    "__comp": "17896441",
+    "content": "bb1b57dc"
+  },
+  "/learning/chapters/chapter-12-model-context-protocol-mcp-architecture-488": {
+    "__comp": "17896441",
+    "content": "162a6493"
   },
   "/learning/chapters/chapter-13-docker-first-production-security-549": {
     "__comp": "17896441",

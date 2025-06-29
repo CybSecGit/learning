@@ -4,15 +4,15 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/learning/',
-    component: ComponentCreator('/learning/', '2e0'),
+    component: ComponentCreator('/learning/', '7c6'),
     routes: [
       {
         path: '/learning/',
-        component: ComponentCreator('/learning/', 'c5c'),
+        component: ComponentCreator('/learning/', '4c9'),
         routes: [
           {
             path: '/learning/',
-            component: ComponentCreator('/learning/', '169'),
+            component: ComponentCreator('/learning/', '56c'),
             routes: [
               {
                 path: '/learning/chapters/chapter-00-containerization',
@@ -94,6 +94,18 @@ export default [
               {
                 path: '/learning/chapters/chapter-10-modern-dependency-management',
                 component: ComponentCreator('/learning/chapters/chapter-10-modern-dependency-management', 'da7'),
+                exact: true,
+                sidebar: "courseSidebar"
+              },
+              {
+                path: '/learning/chapters/chapter-11-pattern-based-ai-automation',
+                component: ComponentCreator('/learning/chapters/chapter-11-pattern-based-ai-automation', '625'),
+                exact: true,
+                sidebar: "courseSidebar"
+              },
+              {
+                path: '/learning/chapters/chapter-12-model-context-protocol-mcp-architecture',
+                component: ComponentCreator('/learning/chapters/chapter-12-model-context-protocol-mcp-architecture', '488'),
                 exact: true,
                 sidebar: "courseSidebar"
               },
