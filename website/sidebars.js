@@ -33,6 +33,7 @@ const sidebars = {
         'chapters/chapter-06.5-claude-code-workshop',
         'chapters/chapter-07-database-architecture',
         'chapters/chapter-08-gui-implementation-patterns',
+        'chapters/chapter-08.5-simple-vs-modern-web',
       ],
     },
     {

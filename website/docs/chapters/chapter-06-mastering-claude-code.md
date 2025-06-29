@@ -564,6 +564,33 @@ When implementing new features, always ensure that you follow our coding standar
 - Override: Callbacks required for compatibility with old API
 ```
 
+### Complete CLAUDE.md Examples
+
+For comprehensive, language-specific CLAUDE.md examples with all referenced imports, see:
+
+- **[Python Project CLAUDE.md](claude-code-examples/python/CLAUDE.md)** - FastAPI/SQLAlchemy web application
+- **[Go Project CLAUDE.md](claude-code-examples/go/CLAUDE.md)** - Clean architecture microservice
+- **[TypeScript Project CLAUDE.md](claude-code-examples/typescript/CLAUDE.md)** - Next.js full-stack application
+
+Each example includes:
+- Complete project structure and conventions
+- Language-specific best practices
+- Testing and security guidelines
+- Performance requirements
+- Import references to shared standards
+
+### Referenced Import Files
+
+The CLAUDE.md examples reference these shared configuration files:
+
+- **[Style Guide](claude-code-examples/imports/style-guide.md)** - Code formatting and naming conventions
+- **[Git Workflow](claude-code-examples/imports/git-workflow.md)** - Branching and commit standards
+- **[Error Handling](claude-code-examples/imports/error-handling.md)** - Language-specific error patterns
+- **[Testing Conventions](claude-code-examples/imports/testing-conventions.md)** - Test structure and requirements
+- **[Security Guidelines](claude-code-examples/imports/security-guidelines.md)** - Security best practices
+- **[Development Config](claude-code-examples/imports/development-config.md)** - Local development setup
+- **[Production Config](claude-code-examples/imports/production-config.md)** - Production deployment standards
+
 ### Real-World CLAUDE.md Examples
 
 **1. Multi-Language Project:**
