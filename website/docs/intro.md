@@ -1,17 +1,17 @@
 ---
 slug: /
 id: intro
-title: 🕷️ Web Scraping Course
-description: From Zero to Hero (via Epic Failures)
+title: 🧪 Development Skills Laboratory
+description: Master software development through hands-on practice
 ---
 
-# 🕷️ Web Scraping Course: From Zero to Hero (via Epic Failures)
+# 🧪 Development Skills Laboratory
 
 <div className="hero hero--primary">
   <div className="container">
-    <h1 className="hero__title">Learn Modern Web Scraping</h1>
+    <h1 className="hero__title">Master Modern Software Development</h1>
     <p className="hero__subtitle">
-      Master web scraping through failure-driven development and systematic debugging
+      Build real-world projects through failure-driven development and systematic debugging
     </p>
   </div>
 </div>
@@ -24,10 +24,10 @@ This course embraces the **Failure-Driven Development** methodology. Instead of 
 
 ## 🚀 What You'll Learn
 
-- **Modern Web Scraping** with Python and ethical practices
+- **Modern Software Development** with Python, Go, and TypeScript
 - **Systematic Debugging** techniques for when things go wrong
 - **Testing Strategies** that actually work in production
-- **Stealth Techniques** for handling bot detection
+- **Real-World Projects** including web automation and API integration
 - **AI-Assisted Development** with Claude and other tools
 - **Production-Ready Code** with proper error handling
 
@@ -38,13 +38,13 @@ This course embraces the **Failure-Driven Development** methodology. Instead of 
 - [**Chapter 1: Setup**](chapters/chapter-01-setup) - Development environment
 
 ### 🎯 **Core Concepts**
-- [**Chapter 2: Web Scraping Preview**](chapters/chapter-02-preview) - Quick wins and motivation
-- [**Chapter 2: Web Scraping Deep Dive**](chapters/chapter-02-web-scraping) - The real fundamentals
+- [**Chapter 2: Quick Wins Preview**](chapters/chapter-02-preview) - Build something real fast
+- [**Chapter 2: HTTP & Web Automation**](chapters/chapter-02-web-scraping) - Understanding the web
 - [**Chapter 3: Failure-Driven Development**](chapters/chapter-03-failure-driven-development) - Our methodology
 
 ### 🔥 **Advanced Techniques**
 - [**Chapter 4: Testing Like You Mean It**](chapters/chapter-04-testing-like-you-mean-it) - Production testing
-- [**Chapter 5: User Agents and Stealth**](chapters/chapter-05-user-agents-and-stealth) - Avoiding detection
+- [**Chapter 5: Advanced HTTP Techniques**](chapters/chapter-05-user-agents-and-stealth) - Headers, agents, and more
 - [**Chapter 6: Mastering Claude Code**](chapters/chapter-06-mastering-claude-code) - AI pair programming
 
 ### 🛠️ **Hands-On Practice**
@@ -68,29 +68,26 @@ Ready to jump in? Here's how to get started:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/changelogger
-cd changelogger
+git clone https://github.com/cybsecgit/learning
+cd learning
 
-# Install dependencies with uv
-uv pip install -e .
-
-# Verify installation
-python -m changelogger --version
+# Set up your development environment
+# (Follow the setup instructions in Chapter 1)
 ```
 
 ## 🎓 Learning Approach
 
 This course is designed for:
 
-- **Beginners** who want to learn web scraping the right way
+- **Beginners** who want to learn software development the right way
 - **Intermediate developers** looking to improve their debugging skills
-- **Anyone** who wants to learn systematic problem-solving
+- **Anyone** who wants to master debugging and problem-solving
 
 ### 💡 Key Principles
 
 1. **Fail Fast, Learn Faster** - We'll break things intentionally to understand them better
-2. **Real-World Focus** - Every example comes from actual scraping challenges
-3. **Ethical First** - We always respect robots.txt and rate limits
+2. **Real-World Focus** - Every example comes from actual development challenges
+3. **Best Practices First** - We always follow industry standards and ethical guidelines
 4. **Test Everything** - If it's not tested, it's broken
 5. **Document Failures** - Every bug teaches us something valuable
 
@@ -128,10 +125,10 @@ Throughout this course, you'll see these special callouts:
 
 Choose your path:
 
-- **New to Web Scraping?** → Start with [Chapter 0: Containerization](chapters/chapter-00-containerization)
+- **New to Development?** → Start with [Chapter 0: Containerization](chapters/chapter-00-containerization)
 - **Want a Quick Win?** → Jump to [Chapter 2: Preview](chapters/chapter-02-preview)
 - **Experienced Developer?** → Skip to [Chapter 3: Failure-Driven Development](chapters/chapter-03-failure-driven-development)
 
 Remember: **The goal isn't to avoid failures—it's to fail fast, learn from them, and build better solutions.**
 
-Let's get scraping! 🕷️
+Let's start building! 🚀

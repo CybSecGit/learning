@@ -6,7 +6,7 @@ const darkCodeTheme = themes.dracula;
 const config = {
   title: 'Development Skills Laboratory',
   tagline: 'Master software development through hands-on practice and systematic debugging',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
   url: 'https://cybsecgit.github.io',
