@@ -1084,7 +1084,7 @@ class SecurePromptExecutor:
             r"new\\s+instructions:",
             r"system\\s*:",
             r"assistant\\s*:",
-            r"<\\s*script\\s*>",
+            r"&lt;\\s*script\\s*&gt;",
             r"javascript:",
             r"data:text/html"
         ]
