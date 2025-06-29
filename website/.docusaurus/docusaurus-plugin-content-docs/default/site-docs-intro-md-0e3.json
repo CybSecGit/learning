@@ -1,7 +1,7 @@
 {
   "id": "intro",
-  "title": "🕷️ Web Scraping Course",
-  "description": "From Zero to Hero (via Epic Failures)",
+  "title": "🧪 Development Skills Laboratory",
+  "description": "Master software development through hands-on practice",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/",
@@ -14,8 +14,8 @@
   "frontMatter": {
     "slug": "/",
     "id": "intro",
-    "title": "🕷️ Web Scraping Course",
-    "description": "From Zero to Hero (via Epic Failures)"
+    "title": "🧪 Development Skills Laboratory",
+    "description": "Master software development through hands-on practice"
   },
   "sidebar": "courseSidebar",
   "next": {

@@ -65,6 +65,66 @@
               "sidebar": "courseSidebar"
             },
             {
+              "id": "chapters/chapter-08.5-simple-vs-modern-web",
+              "path": "/learning/chapters/chapter-08.5-simple-vs-modern-web",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-09-privacy-first-llm-architecture",
+              "path": "/learning/chapters/chapter-09-privacy-first-llm-architecture",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-10-modern-dependency-management",
+              "path": "/learning/chapters/chapter-10-modern-dependency-management",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/chapter-13-docker-first-production-security",
+              "path": "/learning/chapters/chapter-13-docker-first-production-security",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "chapters/claude-code-examples/go/CLAUDE",
+              "path": "/learning/chapters/claude-code-examples/go/CLAUDE"
+            },
+            {
+              "id": "chapters/claude-code-examples/imports/development-config",
+              "path": "/learning/chapters/claude-code-examples/imports/development-config"
+            },
+            {
+              "id": "chapters/claude-code-examples/imports/error-handling",
+              "path": "/learning/chapters/claude-code-examples/imports/error-handling"
+            },
+            {
+              "id": "chapters/claude-code-examples/imports/git-workflow",
+              "path": "/learning/chapters/claude-code-examples/imports/git-workflow"
+            },
+            {
+              "id": "chapters/claude-code-examples/imports/production-config",
+              "path": "/learning/chapters/claude-code-examples/imports/production-config"
+            },
+            {
+              "id": "chapters/claude-code-examples/imports/security-guidelines",
+              "path": "/learning/chapters/claude-code-examples/imports/security-guidelines"
+            },
+            {
+              "id": "chapters/claude-code-examples/imports/style-guide",
+              "path": "/learning/chapters/claude-code-examples/imports/style-guide"
+            },
+            {
+              "id": "chapters/claude-code-examples/imports/testing-conventions",
+              "path": "/learning/chapters/claude-code-examples/imports/testing-conventions"
+            },
+            {
+              "id": "chapters/claude-code-examples/python/CLAUDE",
+              "path": "/learning/chapters/claude-code-examples/python/CLAUDE"
+            },
+            {
+              "id": "chapters/claude-code-examples/typescript/CLAUDE",
+              "path": "/learning/chapters/claude-code-examples/typescript/CLAUDE"
+            },
+            {
               "id": "concepts/golang-concepts",
               "path": "/learning/concepts/golang-concepts",
               "sidebar": "courseSidebar"

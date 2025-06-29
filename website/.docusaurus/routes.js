@@ -4,15 +4,15 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/learning/',
-    component: ComponentCreator('/learning/', '229'),
+    component: ComponentCreator('/learning/', '2e0'),
     routes: [
       {
         path: '/learning/',
-        component: ComponentCreator('/learning/', 'd59'),
+        component: ComponentCreator('/learning/', 'c5c'),
         routes: [
           {
             path: '/learning/',
-            component: ComponentCreator('/learning/', 'b8b'),
+            component: ComponentCreator('/learning/', '169'),
             routes: [
               {
                 path: '/learning/chapters/chapter-00-containerization',
@@ -78,6 +78,80 @@ export default [
                 component: ComponentCreator('/learning/chapters/chapter-08-gui-implementation-patterns', 'ba8'),
                 exact: true,
                 sidebar: "courseSidebar"
+              },
+              {
+                path: '/learning/chapters/chapter-08.5-simple-vs-modern-web',
+                component: ComponentCreator('/learning/chapters/chapter-08.5-simple-vs-modern-web', '4af'),
+                exact: true,
+                sidebar: "courseSidebar"
+              },
+              {
+                path: '/learning/chapters/chapter-09-privacy-first-llm-architecture',
+                component: ComponentCreator('/learning/chapters/chapter-09-privacy-first-llm-architecture', '3a9'),
+                exact: true,
+                sidebar: "courseSidebar"
+              },
+              {
+                path: '/learning/chapters/chapter-10-modern-dependency-management',
+                component: ComponentCreator('/learning/chapters/chapter-10-modern-dependency-management', 'da7'),
+                exact: true,
+                sidebar: "courseSidebar"
+              },
+              {
+                path: '/learning/chapters/chapter-13-docker-first-production-security',
+                component: ComponentCreator('/learning/chapters/chapter-13-docker-first-production-security', '549'),
+                exact: true,
+                sidebar: "courseSidebar"
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/go/CLAUDE',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/go/CLAUDE', '32d'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/imports/development-config',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/imports/development-config', '53a'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/imports/error-handling',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/imports/error-handling', 'eb9'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/imports/git-workflow',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/imports/git-workflow', '22b'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/imports/production-config',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/imports/production-config', '86c'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/imports/security-guidelines',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/imports/security-guidelines', '3dc'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/imports/style-guide',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/imports/style-guide', 'eb6'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/imports/testing-conventions',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/imports/testing-conventions', '1a7'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/python/CLAUDE',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/python/CLAUDE', 'c34'),
+                exact: true
+              },
+              {
+                path: '/learning/chapters/claude-code-examples/typescript/CLAUDE',
+                component: ComponentCreator('/learning/chapters/claude-code-examples/typescript/CLAUDE', '73f'),
+                exact: true
               },
               {
                 path: '/learning/concepts/golang-concepts',

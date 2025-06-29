@@ -6,7 +6,7 @@
 export default {
   "title": "Development Skills Laboratory",
   "tagline": "Master software development through hands-on practice and systematic debugging",
-  "favicon": "img/favicon.ico",
+  "favicon": "img/favicon.svg",
   "url": "https://cybsecgit.github.io",
   "baseUrl": "/learning/",
   "organizationName": "cybsecgit",
