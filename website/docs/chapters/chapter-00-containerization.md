@@ -1,14 +1,5 @@
----
-id: chapter-00-containerization
-title: "Chapter 0: Containerization"
-sidebar_position: 1
-description: How to Ship Your Problems to Someone Else's Computer
----
-
 # Chapter 0: Containerization
 ## *Or: How to Ship Your Problems to Someone Else's Computer*
-
-<div className="chapter-badge">Chapter 0</div>
 
 Welcome to Chapter 0, which exists because we learned the hard way that "it works on my machine" is not a sustainable business model.
 
@@ -51,8 +42,6 @@ For people who want to actually learn web scraping instead of package management
 
 ## Hands-On Lab: Docker Setup
 
-<div className="exercise-box">
-
 ### Step 1: Install Docker
 
 **Windows/macOS**: Download Docker Desktop from docker.com
@@ -66,8 +55,6 @@ docker-compose --version
 ```
 
 If these commands work, you're ready. If not, consult the Docker installation docs (and maybe a therapist).
-
-</div>
 
 ### Step 3: Clone and Run
 
@@ -176,8 +163,6 @@ docker-compose down -v && docker system prune
 
 ## Troubleshooting (The Short Version)
 
-<div className="failure-story">
-
 **Problem**: Container won't start
 **Solution**: `docker-compose down && docker-compose up --build`
 
@@ -189,8 +174,6 @@ docker-compose down -v && docker system prune
 
 **Problem**: Everything is broken
 **Solution**: `docker system prune` (the nuclear option)
-
-</div>
 
 ## What We've Accomplished
 
@@ -215,6 +198,24 @@ Choose your adventure:
 - Consistent environment for everyone
 - Learn containerization as a bonus skill
 
+**Recommendation**: If you're here to learn web scraping and AI integration, choose Path B. If you want to become a Python environment troubleshooting expert, choose Path A.
+
+## Next Chapter Preview
+
+Whether you chose traditional or containerized setup, Chapter 2 covers the same exciting content: **Modern Web Scraping with rnet**. The only difference is that containerized students won't be debugging SSL certificate issues.
+
 ---
 
-**Next:** Ready to start scraping? Continue to [Chapter 1: Setup](chapter-01-setup) or jump to [Chapter 2: Preview](chapter-02-preview) for a quick win!
+*"It works on my machine" - Famous last words of developers everywhere*
+
+*"It works in the container" - Famous first words of DevOps engineers*
+
+## Exercises
+
+1. **Container Verification**: Run `docker-compose exec changelogger python -c "import rnet; print('Containerized success!')"`
+
+2. **Volume Test**: Create a file inside the container, exit, restart the container, and verify the file still exists
+
+3. **Port Mapping**: Access the Jupyter Lab interface in your browser (hint: check the docker-compose.yml for the port)
+
+**Bonus Challenge**: Try to break the container environment, then fix it. This is excellent practice for real-world Docker usage where things inevitably go wrong.

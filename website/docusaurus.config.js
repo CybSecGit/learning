@@ -4,18 +4,18 @@ const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Web Scraping Course: From Zero to Hero',
-  tagline: 'Learn modern web scraping through epic failures and systematic debugging',
+  title: 'Development Skills Laboratory',
+  tagline: 'Master software development through hands-on practice and systematic debugging',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-username.github.io',
+  url: 'https://cybsecgit.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  baseUrl: '/changelogger/',
+  baseUrl: '/learning/',
 
   // GitHub pages deployment config
-  organizationName: 'your-username',
-  projectName: 'changelogger',
+  organizationName: 'cybsecgit',
+  projectName: 'learning',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -33,7 +33,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/your-username/changelogger/tree/main/',
+          editUrl: 'https://github.com/cybsecgit/learning/tree/main/',
           routeBasePath: '/', // Serve docs at site root
         },
         blog: false, // Disable blog
@@ -50,9 +50,9 @@ const config = {
       // Social card
       image: 'img/social-card.jpg',
       navbar: {
-        title: 'Web Scraping Course',
+        title: 'Skills Lab',
         logo: {
-          alt: 'Web Scraping Course Logo',
+          alt: 'Development Skills Laboratory Logo',
           src: 'img/logo.svg',
           width: 32,
           height: 32,
@@ -72,7 +72,7 @@ const config = {
           //   label: '📖 Reference',
           // },
           {
-            href: 'https://github.com/your-username/changelogger',
+            href: 'https://github.com/cybsecgit/learning',
             label: 'GitHub',
             position: 'right',
           },
@@ -126,16 +126,16 @@ const config = {
             items: [
               {
                 label: 'GitHub Repository',
-                href: 'https://github.com/your-username/changelogger',
+                href: 'https://github.com/cybsecgit/learning',
               },
               {
                 label: 'Issues & Questions',
-                href: 'https://github.com/your-username/changelogger/issues',
+                href: 'https://github.com/cybsecgit/learning/issues',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Changelogger Project. Built with Docusaurus.<br/>
+        copyright: `Copyright © ${new Date().getFullYear()} Built with Docusaurus.<br/>
         <em>"The expert has failed more times than the beginner has even tried. Let's fail faster so we can succeed sooner."</em>`,
       },
       prism: {

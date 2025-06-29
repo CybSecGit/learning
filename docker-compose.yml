@@ -1,0 +1,173 @@
+version: '3.8'
+
+services:
+  # Main course environment
+  course:
+    build: .
+    image: webscraping-course:latest
+    container_name: webscraping-course
+    volumes:
+      - ./course:/app/course
+      - ./workspace:/app/workspace
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+      - DATABASE_URL=postgresql://scraper:${POSTGRES_PASSWORD:-dev_password_not_for_prod}@postgres:5432/scraping_db
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "8888:8888"  # Jupyter
+      - "8000:8000"  # Web server
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - scraping-network
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+  # Jupyter notebook service
+  jupyter:
+    build: .
+    image: webscraping-course:latest
+    container_name: webscraping-jupyter
+    volumes:
+      - ./course:/app/course
+      - ./workspace:/app/workspace
+      - ./data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    ports:
+      - "8889:8888"
+    networks:
+      - scraping-network
+    command: jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:16-alpine
+    container_name: webscraping-postgres
+    environment:
+      - POSTGRES_USER=scraper
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-dev_password_not_for_prod}
+      - POSTGRES_DB=scraping_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./course/resources/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - scraping-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scraper"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for caching and job queues
+  redis:
+    image: redis:7-alpine
+    container_name: webscraping-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - scraping-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Selenium Grid Hub (optional)
+  selenium-hub:
+    image: selenium/hub:latest
+    container_name: webscraping-selenium-hub
+    ports:
+      - "4444:4444"
+    networks:
+      - scraping-network
+    profiles:
+      - selenium
+
+  # Chrome node for Selenium
+  chrome:
+    image: selenium/node-chrome:latest
+    container_name: webscraping-chrome
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    networks:
+      - scraping-network
+    profiles:
+      - selenium
+
+  # Firefox node for Selenium
+  firefox:
+    image: selenium/node-firefox:latest
+    container_name: webscraping-firefox
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    networks:
+      - scraping-network
+    profiles:
+      - selenium
+
+  # Documentation site
+  docs:
+    build: ./website
+    container_name: webscraping-docs
+    volumes:
+      - ./website:/app
+      - ./course:/app/course
+    ports:
+      - "3000:3000"
+    networks:
+      - scraping-network
+    profiles:
+      - docs
+    command: npm start
+
+volumes:
+  postgres-data:
+    driver: local
+
+networks:
+  scraping-network:
+    driver: bridge
+
+# Usage:
+# 
+# Start all core services:
+# docker-compose up -d
+#
+# Start with Selenium Grid:
+# docker-compose --profile selenium up -d
+#
+# Start with documentation:
+# docker-compose --profile docs up -d
+#
+# Enter course container:
+# docker-compose exec course bash
+#
+# Run Python in course container:
+# docker-compose exec course python
+#
+# Run specific exercise:
+# docker-compose exec course python course/exercises/debugging-exercise-01.py
+#
+# View logs:
+# docker-compose logs -f course
+#
+# Stop all services:
+# docker-compose down
+#
+# Remove all data:
+# docker-compose down -v
