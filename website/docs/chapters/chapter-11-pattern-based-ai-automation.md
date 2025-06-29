@@ -974,10 +974,10 @@ class PromptLibrary:
             You are a senior incident response analyst conducting post-incident analysis.
             
             INCIDENT DETAILS:
-            Type: {incident_type}
-            Timeline: {timeline}
-            Affected Systems: {affected_systems}
-            Impact: {impact}
+            Type: \{incident_type\}
+            Timeline: \{timeline\}
+            Affected Systems: \{affected_systems\}
+            Impact: \{impact\}
             
             EVIDENCE:
             \{evidence\}
