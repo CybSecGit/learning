@@ -309,7 +309,7 @@ security_analysis_chain = PatternChain("security_analysis")
 security_analysis_chain.add_pattern(
     AIPattern("extract_indicators", PatternType.EXTRACTION, """
     Extract all security indicators from the following log data:
-    {INPUT}
+    \{INPUT\}
     
     Focus on:
     - IP addresses and domains
@@ -322,7 +322,7 @@ security_analysis_chain.add_pattern(
 ).add_pattern(
     AIPattern("analyze_threat", PatternType.ANALYSIS, """
     Analyze the following security indicators for threat level:
-    {INPUT}
+    \{INPUT\}
     
     Provide:
     - Threat severity (1-10)
@@ -333,7 +333,7 @@ security_analysis_chain.add_pattern(
 ).add_pattern(
     AIPattern("create_incident_response", PatternType.CREATION, """
     Create an incident response plan based on this threat analysis:
-    {INPUT}
+    \{INPUT\}
     
     Include:
     - Immediate actions
@@ -413,7 +413,7 @@ class SecurityAutomationPipeline:
         return {
             "analyze_malware": AIPattern("analyze_malware", PatternType.ANALYSIS, """
             You are a malware analysis expert. Analyze the following file or behavior:
-            {INPUT}
+            \{INPUT\}
             
             ANALYSIS STEPS:
             1. Identify file type and basic properties
@@ -436,7 +436,7 @@ class SecurityAutomationPipeline:
             
             "analyze_network_logs": AIPattern("analyze_network_logs", PatternType.ANALYSIS, """
             You are a network security analyst. Analyze these network logs for suspicious activity:
-            {INPUT}
+            \{INPUT\}
             
             FOCUS AREAS:
             1. Unusual connection patterns
@@ -456,7 +456,7 @@ class SecurityAutomationPipeline:
             
             "create_threat_intel": AIPattern("create_threat_intel", PatternType.CREATION, """
             Create a threat intelligence report from the following analysis:
-            {INPUT}
+            \{INPUT\}
             
             REPORT STRUCTURE:
             1. Executive Summary
@@ -546,10 +546,10 @@ class SecurityAutomationPipeline:
         Based on this security analysis, generate specific response actions:
         
         ANALYSIS:
-        {analysis.findings}
+        \{analysis.findings\}
         
-        SEVERITY: {analysis.severity}/10
-        CONFIDENCE: {analysis.confidence}
+        SEVERITY: \{analysis.severity\}/10
+        CONFIDENCE: \{analysis.confidence\}
         
         Generate a prioritized list of response actions including:
         1. Immediate containment measures
@@ -623,76 +623,76 @@ class ChainOfThoughtOrchestrator:
             Let me think through this step by step:
             
             1. UNDERSTANDING: What exactly is being asked?
-            {problem_understanding}
+            \{problem_understanding\}
             
             2. BREAKDOWN: What are the key components?
-            {component_analysis}
+            \{component_analysis\}
             
             3. ANALYSIS: How do these components relate?
-            {relationship_analysis}
+            \{relationship_analysis\}
             
             4. SYNTHESIS: What conclusion can I draw?
-            {conclusion}
+            \{conclusion\}
             
             5. VALIDATION: Does this make sense?
-            {validation}
+            \{validation\}
             """,
             
             "creative": """
             Let me approach this creatively:
             
             1. EXPLORATION: What are all possible angles?
-            {angle_exploration}
+            \{angle_exploration\}
             
             2. IDEATION: What novel approaches could work?
-            {idea_generation}
+            \{idea_generation\}
             
             3. COMBINATION: How can I combine different ideas?
-            {idea_combination}
+            \{idea_combination\}
             
             4. REFINEMENT: How can I improve the best ideas?
-            {idea_refinement}
+            \{idea_refinement\}
             
             5. SELECTION: Which approach is most promising?
-            {final_selection}
+            \{final_selection\}
             """,
             
             "problem_solving": """
             Let me solve this systematically:
             
             1. PROBLEM DEFINITION: What exactly needs to be solved?
-            {problem_definition}
+            \{problem_definition\}
             
             2. CONSTRAINT IDENTIFICATION: What limitations exist?
-            {constraints}
+            \{constraints\}
             
             3. SOLUTION BRAINSTORMING: What are possible solutions?
-            {solutions}
+            \{solutions\}
             
             4. EVALUATION: What are the pros/cons of each?
-            {evaluation}
+            \{evaluation\}
             
             5. IMPLEMENTATION: How would the best solution work?
-            {implementation}
+            \{implementation\}
             """,
             
             "security_analysis": """
             Let me analyze this security issue methodically:
             
             1. THREAT IDENTIFICATION: What threats are present?
-            {threat_identification}
+            \{threat_identification\}
             
             2. ATTACK VECTOR ANALYSIS: How could attacks occur?
-            {attack_vectors}
+            \{attack_vectors\}
             
             3. IMPACT ASSESSMENT: What would be the consequences?
-            {impact_assessment}
+            \{impact_assessment\}
             
             4. MITIGATION STRATEGIES: How can we reduce risk?
-            {mitigations}
+            \{mitigations\}
             
             5. MONITORING APPROACH: How do we detect attempts?
-            {monitoring}
+            \{monitoring\}
             """
         }
     
@@ -732,9 +732,9 @@ class ChainOfThoughtOrchestrator:
         ORIGINAL PROBLEM: {problem}
         
         PREVIOUS THINKING:
-        {self._format_context(context)}
+        \{self._format_context(context)\}
         
-        CURRENT STEP: {step_prompt}
+        CURRENT STEP: \{step_prompt\}
         
         Think carefully and provide your reasoning for this step.
         """
@@ -752,7 +752,7 @@ class ChainOfThoughtOrchestrator:
         ORIGINAL PROBLEM: {thought_process.problem}
         
         THINKING PROCESS:
-        {thought_process.format_steps()}
+        \{thought_process.format_steps()\}
         
         Provide a clear, actionable final answer that incorporates all the reasoning above.
         """
@@ -897,8 +897,8 @@ class PromptLibrary:
             Language: {language}
             Context: {context}
             
-            ```{language}
-            {code}
+            ```\{language\}
+            \{code\}
             ```
             
             REVIEW FORMAT:
@@ -927,13 +927,13 @@ class PromptLibrary:
             You are a cybersecurity expert creating a threat model.
             
             SYSTEM DESCRIPTION:
-            {system_description}
+            \{system_description\}
             
             ARCHITECTURE:
-            {architecture}
+            \{architecture\}
             
             DATA FLOWS:
-            {data_flows}
+            \{data_flows\}
             
             THREAT MODELING METHODOLOGY: STRIDE
             
@@ -980,10 +980,10 @@ class PromptLibrary:
             Impact: {impact}
             
             EVIDENCE:
-            {evidence}
+            \{evidence\}
             
             RESPONSE ACTIONS TAKEN:
-            {response_actions}
+            \{response_actions\}
             
             ANALYSIS FRAMEWORK:
             1. Root cause analysis
@@ -1168,10 +1168,10 @@ class PatternBuilder:
 You are an expert {domain} analyst with deep knowledge of {domain} best practices and methodologies.
 
 ## GOAL
-{objective}
+\{objective\}
 
 ## INPUT REQUIREMENTS
-{inputs}
+\{inputs\}
 
 ## ANALYSIS STEPS
 1. Parse and understand the input data
@@ -1181,10 +1181,10 @@ You are an expert {domain} analyst with deep knowledge of {domain} best practice
 5. Provide actionable recommendations
 
 ## OUTPUT FORMAT
-{outputs}
+\{outputs\}
 
 ## EXAMPLES
-{examples}
+\{examples\}
 
 ## QUALITY CRITERIA
 - Analysis must be thorough and evidence-based

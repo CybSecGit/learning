@@ -160,7 +160,7 @@ async def code_review_prompt(file_path: str) -> str:
     - Logic errors
     
     Code:
-    {code}
+    \{code\}
     
     Be thorough but not pedantic. Focus on real issues, not nitpicks.
     """
@@ -375,7 +375,7 @@ class DevToolsMCPServer:
                 File: {file_path}
                 Code:
                 ```python
-                {code}
+                \{code\}
                 ```
                 
                 Provide specific, actionable feedback with examples.
@@ -392,9 +392,9 @@ class DevToolsMCPServer:
                 - Prevention strategies
                 - Related code that might have similar issues
                 
-                Error: {error_message}
+                Error: \{error_message\}
                 Stack Trace:
-                {stack_trace}
+                \{stack_trace\}
                 
                 Be thorough but practical in your analysis.
                 """
@@ -406,7 +406,7 @@ class DevToolsMCPServer:
                 Optimize this code for performance:
                 
                 ```python
-                {function_code}
+                \{function_code\}
                 ```
                 
                 Consider:
@@ -426,7 +426,7 @@ class DevToolsMCPServer:
                 Perform security audit on this code:
                 
                 ```python
-                {code_section}
+                \{code_section\}
                 ```
                 
                 Check for:
