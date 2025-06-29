@@ -38,7 +38,7 @@ That's it. No Python version debates, no virtual environment confusion, no "but 
 For masochists and people who enjoy troubleshooting dependency conflicts at 2 AM.
 
 ### Option 2: Containerized Setup (This Chapter)
-For people who want to actually learn web scraping instead of package management.
+For people who want to actually learn software development instead of package management.
 
 ## Hands-On Lab: Docker Setup
 

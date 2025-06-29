@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Thank you for your interest in contributing to the Web Scraping & Development Course!
+Thank you for your interest in contributing to the Development Skills Laboratory!
 
 ## Quick Links
 

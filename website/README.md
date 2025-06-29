@@ -1,6 +1,6 @@
-# Web Scraping Course Website
+# Development Skills Laboratory Website
 
-This is the documentation website for the Web Scraping Course: From Zero to Hero (via Epic Failures). Built with [Docusaurus](https://docusaurus.io/).
+This is the documentation website for the Development Skills Laboratory: From Zero to Hero (via Epic Failures). Built with [Docusaurus](https://docusaurus.io/).
 
 ## 🚀 Quick Start
 

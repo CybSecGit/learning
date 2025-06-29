@@ -1,7 +1,7 @@
-  # Web Scraping & Development Course
+  # Development Skills Laboratory
 
-  A comprehensive course on web scraping, testing, and modern development practices originally created as part of the
-  Changelogger project.
+  A comprehensive course on software development, testing, and modern engineering practices covering Python, Go, TypeScript,
+  and practical skills like web scraping. Originally created as part of the Changelogger project.
 
   ## Course Structure
 
@@ -26,7 +26,7 @@
 
   4. This course covers:
     - Containerization with Docker
-    - Web scraping fundamentals
+    - Web scraping techniques and ethics
     - Test-driven development
     - Database architecture
     - GUI implementation patterns

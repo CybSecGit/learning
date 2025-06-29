@@ -154,7 +154,7 @@ In this chapter, we've:
 
 ## Next Chapter Preview
 
-In Chapter 2, we'll dive into the thrilling world of web scraping with `rnet`. We'll learn how to make HTTP requests so convincing that websites will think we're just another human desperately refreshing their changelog page at 3 AM.
+In Chapter 2, we'll dive into the thrilling world of HTTP automation with `rnet`. We'll learn how to make HTTP requests so convincing that websites will think we're just another human desperately refreshing their changelog page at 3 AM.
 
 Spoiler alert: We'll discuss the art of not getting banned from websites, which is harder than it sounds in today's bot-detection arms race.
 
