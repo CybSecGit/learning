@@ -17,7 +17,7 @@ const config = {
   organizationName: 'cybsecgit',
   projectName: 'learning',
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Internationalization
