@@ -88,8 +88,23 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          id: 'learning-plans',
-          label: '🚀 Complete Learning Plans',
+          id: 'learning-plans-overview',
+          label: '📚 Overview',
+        },
+        {
+          type: 'doc',
+          id: 'plan-1-threat-intelligence',
+          label: '🕵️ Plan 1: Threat Intelligence',
+        },
+        {
+          type: 'doc',
+          id: 'plan-2-static-analysis',
+          label: '🔍 Plan 2: Static Analysis',
+        },
+        {
+          type: 'doc',
+          id: 'plan-3-api-security',
+          label: '🛡️ Plan 3: API Security',
         },
       ],
     },
