@@ -1,4 +1,4 @@
-# Chapter 6.5: Claude Code Mastery Workshop
+# Claude Code Mastery Workshop
 ## *Or: Hands-On Practice to Level Up Your AI Pair Programming*
 
 > "Tell me and I forget, teach me and I may remember, involve me and I learn." - Benjamin Franklin (who would have loved Claude Code)

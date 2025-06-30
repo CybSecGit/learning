@@ -1,4 +1,4 @@
-# Chapter 11: Pattern-Based AI Automation Workflows
+# Pattern-Based AI Automation Workflows
 ## *Or: How to Make AI Actually Useful Instead of Just Expensive (Revolutionary Concept)*
 
 > "Most people use AI like they use a Ferrari - to drive to the corner shop. We're here to teach you how to build a Formula 1 racing team." - Someone Who Actually Gets It

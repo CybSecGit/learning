@@ -1,4 +1,4 @@
-# Chapter 5: User Agents and the Art of Not Looking Like a Bot
+# User Agents and the Art of Not Looking Like a Bot
 ## *Or: How to Blend In Without Being Evil*
 
 > "The first rule of web scraping is: Don't look like you're web scraping."  

@@ -1,4 +1,4 @@
-# Chapter 2: Modern Web Scraping with rnet
+# Modern Web Scraping with rnet
 ## *The Art of Digital Camouflage and Polite Data Extraction*
 
 Web scraping in the 2020s is like being a spy in a world where everyone has motion detectors. The naive approach of "just grab the HTML" stopped working when websites started treating bots like uninvited party crashers. Modern scraping requires finesse, patience, and the right tools.

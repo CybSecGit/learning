@@ -1,4 +1,4 @@
-# Chapter 0: Containerization
+# Containerization
 ## *Or: How to Ship Your Problems to Someone Else's Computer*
 
 Welcome to the wonderful world of containerization, where "it works on my machine" becomes "it works on everyone's machine" through the power of shipping the entire machine. It's like solving world hunger by giving everyone their own farm.

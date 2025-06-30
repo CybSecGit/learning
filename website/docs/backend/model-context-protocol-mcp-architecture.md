@@ -1,4 +1,4 @@
-# Chapter 12: Model Context Protocol (MCP) Architecture
+# Model Context Protocol (MCP) Architecture
 ## *Or: How to Give AI Superpowers Without Breaking Everything (Revolutionary Idea)*
 
 > "MCP is like giving your AI assistant a Swiss Army knife, except instead of tiny scissors that break, you get actual useful capabilities that don't suck." - Someone Who Actually Uses MCP in Production

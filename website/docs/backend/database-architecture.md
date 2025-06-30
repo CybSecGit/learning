@@ -1,4 +1,4 @@
-# Chapter 7: Database Architecture & SQLAlchemy ORM
+# Database Architecture & SQLAlchemy ORM
 
 > "A database is the permanent memory of your application. Design it well, and your application can scale to millions of users. Design it poorly, and it will crash with a hundred."
 

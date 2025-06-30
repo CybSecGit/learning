@@ -1,4 +1,4 @@
-# Chapter 13: Docker-First Production Security
+# Docker-First Production Security
 ## *Or: How to Stop Your Containers from Becoming the Digital Equivalent of a House with No Locks*
 
 > "Using the default Docker setup in production is like leaving your front door open with a sign that says 'Rob me, I have good stuff inside.'" - Every Security Professional After Their First Container Breach

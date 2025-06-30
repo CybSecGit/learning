@@ -1,4 +1,4 @@
-# Chapter 9: Privacy-First LLM Architecture for Enterprise
+# Privacy-First LLM Architecture for Enterprise
 ## *Or: How to Deploy AI Without Your Data Becoming OpenAI's Next Training Lunch*
 
 > "Using ChatGPT for sensitive data is like hiring your ex as your therapist - technically possible, but you're gonna regret it when your secrets end up everywhere." - Every CISO Who Learned the Hard Way

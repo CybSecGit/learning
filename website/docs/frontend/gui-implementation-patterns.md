@@ -1,4 +1,4 @@
-# Chapter 8: Modern GUI Implementation Patterns
+# Modern GUI Implementation Patterns
 ## *From Backend Data to Beautiful, Responsive Web Apps*
 
 > "The best interface is the one that disappears - until your users need it, then it should be exactly where they expect it." - Modern UX Proverb

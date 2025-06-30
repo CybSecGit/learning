@@ -1,4 +1,4 @@
-# Chapter 8.5: The Simple vs Modern Web Dilemma
+# The Simple vs Modern Web Dilemma
 ## *Or: Why Your 2024 React App Feels Slower Than a 2004 PHP Site (And Your Users Are Plotting Your Demise)*
 
 > "We've successfully made the web slower with 100x faster hardware. We're basically the gym bros who get weaker despite having better equipment." - Every Honest Web Developer After Their Third Mental Breakdown

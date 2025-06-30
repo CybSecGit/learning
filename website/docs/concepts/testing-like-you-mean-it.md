@@ -1,4 +1,4 @@
-# Chapter 4: Testing Like You Mean It
+# Testing Like You Mean It
 ## *Or: How to Prove Your Code Works (To Yourself and Others)*
 
 > "Testing shows the presence, not the absence of bugs." - Edsger Dijkstra  

@@ -1,4 +1,4 @@
-# Chapter 1: Python Project Setup
+# Python Project Setup
 ## *The Art of Starting Right (Or at Least Not Wrong)*
 
 Setting up a Python project is like preparing for a dinner party—do it right, and everything flows smoothly. Do it wrong, and you're serving disaster with a side of regret.

@@ -1,4 +1,4 @@
-# Chapter 15: WebSockets - Real-Time Communication
+# WebSockets - Real-Time Communication
 ## *Or: How to Stop Polling Your Server Like a Clingy Ex*
 
 > "WebSockets are what happens when HTTP finally admits it's not suited for everything. It's like realizing your bicycle isn't great for cross-country trips." - Every Developer After Their First Real-Time Feature

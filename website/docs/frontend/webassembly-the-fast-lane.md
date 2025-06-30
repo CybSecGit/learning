@@ -1,4 +1,4 @@
-# Chapter 14: WebAssembly - The Fast Lane
+# WebAssembly - The Fast Lane
 ## *Or: How to Make JavaScript Developers Question Their Life Choices*
 
 > "WebAssembly is like having a sports car engine in a minivan. Sure, you could use it to drive to soccer practice, but why would you want to go that slowly?"
