@@ -36,30 +36,30 @@ This knowledge base embraces the **Failure-Driven Development** methodology. Ins
 ## 📚 Knowledge Base Structure
 
 ### 🎨 **Frontend Development**
-- [**WebAssembly - The Fast Lane**](frontend/chapter-14-webassembly-the-fast-lane) - High-performance web applications
-- [**WebSockets - Real-Time Communication**](frontend/chapter-15-websockets-realtime-communication) - Live data and chat systems
-- [**Simple vs Modern Web**](frontend/chapter-08.5-simple-vs-modern-web) - Performance and architecture decisions
-- [**GUI Implementation Patterns**](frontend/chapter-08-gui-implementation-patterns) - User interface design
+- [**WebAssembly - The Fast Lane**](frontend/webassembly-the-fast-lane) - High-performance web applications
+- [**WebSockets - Real-Time Communication**](frontend/websockets-realtime-communication) - Live data and chat systems
+- [**Simple vs Modern Web**](frontend/simple-vs-modern-web) - Performance and architecture decisions
+- [**GUI Implementation Patterns**](frontend/gui-implementation-patterns) - User interface design
 
 ### ⚙️ **Backend Development**
-- [**Modern Web Scraping**](backend/chapter-02-web-scraping) - HTTP automation and data extraction
-- [**Database Architecture**](backend/chapter-07-database-architecture) - Data modeling and persistence
-- [**Privacy-First LLM Architecture**](backend/chapter-09-privacy-first-llm-architecture) - AI integration patterns
-- [**Pattern-Based AI Automation**](backend/chapter-11-pattern-based-ai-automation) - Intelligent automation systems
-- [**Model Context Protocol (MCP)**](backend/chapter-12-model-context-protocol-mcp-architecture) - AI tool integration
+- [**Modern Web Scraping**](backend/modern-web-scraping) - HTTP automation and data extraction
+- [**Database Architecture**](backend/database-architecture) - Data modeling and persistence
+- [**Privacy-First LLM Architecture**](backend/privacy-first-llm-architecture) - AI integration patterns
+- [**Pattern-Based AI Automation**](backend/pattern-based-ai-automation) - Intelligent automation systems
+- [**Model Context Protocol (MCP)**](backend/model-context-protocol-mcp-architecture) - AI tool integration
 
 ### 🔒 **Security**
-- [**User Agents and Stealth**](security/chapter-05-user-agents-and-stealth) - Ethical web scraping techniques
-- [**Docker-First Production Security**](security/chapter-13-docker-first-production-security) - Secure deployment
+- [**User Agents and Stealth**](security/user-agents-and-stealth) - Ethical web scraping techniques
+- [**Docker-First Production Security**](security/docker-first-production-security) - Secure deployment
 
 ### 💡 **Core Concepts**
-- [**Containerization**](concepts/chapter-00-containerization) - Docker setup and isolation
-- [**Python Project Setup**](concepts/chapter-01-setup) - Modern development environment
-- [**Failure-Driven Development**](concepts/chapter-03-failure-driven-development) - Debugging methodology
-- [**Testing Like You Mean It**](concepts/chapter-04-testing-like-you-mean-it) - Production testing strategies
-- [**Mastering Claude Code**](concepts/chapter-06-mastering-claude-code) - AI pair programming
-- [**Claude Code Workshop**](concepts/chapter-06.5-claude-code-workshop) - Hands-on AI development
-- [**Modern Dependency Management**](concepts/chapter-10-modern-dependency-management) - Package management
+- [**Containerization**](concepts/containerization) - Docker setup and isolation
+- [**Python Project Setup**](concepts/python-project-setup) - Modern development environment
+- [**Failure-Driven Development**](concepts/failure-driven-development) - Debugging methodology
+- [**Testing Like You Mean It**](concepts/testing-like-you-mean-it) - Production testing strategies
+- [**Mastering Claude Code**](concepts/mastering-claude-code) - AI pair programming
+- [**Claude Code Workshop**](concepts/claude-code-workshop) - Hands-on AI development
+- [**Modern Dependency Management**](concepts/modern-dependency-management) - Package management
 
 ### 🛠️ **Practice Resources**
 - [**Debugging Journey**](debugging-journey) - Real debugging sessions
@@ -140,9 +140,9 @@ Throughout this documentation, you'll see these special callouts:
 
 Choose your path:
 
-- **New to Development?** → Start with [Containerization](concepts/chapter-00-containerization) (where we put bugs in boxes)
-- **Want to Build Something?** → Jump to [Modern Web Scraping](backend/chapter-02-web-scraping) (dopamine hit included)
-- **Experienced Developer?** → Skip to [Failure-Driven Development](concepts/chapter-03-failure-driven-development) (you know the pain)
+- **New to Development?** → Start with [Containerization](concepts/containerization) (where we put bugs in boxes)
+- **Want to Build Something?** → Jump to [Modern Web Scraping](backend/modern-web-scraping) (dopamine hit included)
+- **Experienced Developer?** → Skip to [Failure-Driven Development](concepts/failure-driven-development) (you know the pain)
 
 Remember: **The goal isn't to avoid failures—it's to fail fast, learn from them, and build better solutions.**
 
