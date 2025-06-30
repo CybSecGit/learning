@@ -35,27 +35,31 @@ This knowledge base embraces the **Failure-Driven Development** methodology. Ins
 
 ## 📚 Knowledge Base Structure
 
-### 🏗️ **Foundation Concepts**
-- [**Chapter 0: Containerization**](chapters/chapter-00-containerization) - Docker setup and isolation
-- [**Chapter 1: Python Project Setup**](chapters/chapter-01-setup) - Modern development environment
+### 🎨 **Frontend Development**
+- [**WebAssembly - The Fast Lane**](frontend/chapter-14-webassembly-the-fast-lane) - High-performance web applications
+- [**WebSockets - Real-Time Communication**](frontend/chapter-15-websockets-realtime-communication) - Live data and chat systems
+- [**Simple vs Modern Web**](frontend/chapter-08.5-simple-vs-modern-web) - Performance and architecture decisions
+- [**GUI Implementation Patterns**](frontend/chapter-08-gui-implementation-patterns) - User interface design
 
-### 🎯 **Core Development Skills**
-- [**Chapter 2: Modern Web Scraping**](chapters/chapter-02-web-scraping) - HTTP automation and data extraction
-- [**Chapter 3: Failure-Driven Development**](chapters/chapter-03-failure-driven-development) - Debugging methodology
-- [**Chapter 4: Testing Like You Mean It**](chapters/chapter-04-testing-like-you-mean-it) - Production testing strategies
+### ⚙️ **Backend Development**
+- [**Modern Web Scraping**](backend/chapter-02-web-scraping) - HTTP automation and data extraction
+- [**Database Architecture**](backend/chapter-07-database-architecture) - Data modeling and persistence
+- [**Privacy-First LLM Architecture**](backend/chapter-09-privacy-first-llm-architecture) - AI integration patterns
+- [**Pattern-Based AI Automation**](backend/chapter-11-pattern-based-ai-automation) - Intelligent automation systems
+- [**Model Context Protocol (MCP)**](backend/chapter-12-model-context-protocol-mcp-architecture) - AI tool integration
 
-### 🔥 **Advanced Techniques**
-- [**Chapter 5: User Agents and Stealth**](chapters/chapter-05-user-agents-and-stealth) - Ethical web scraping techniques
-- [**Chapter 6: Mastering Claude Code**](chapters/chapter-06-mastering-claude-code) - AI pair programming
-- [**Chapter 7: Database Architecture**](chapters/chapter-07-database-architecture) - Data modeling and persistence
+### 🔒 **Security**
+- [**User Agents and Stealth**](security/chapter-05-user-agents-and-stealth) - Ethical web scraping techniques
+- [**Docker-First Production Security**](security/chapter-13-docker-first-production-security) - Secure deployment
 
-### 🛠️ **Production Systems**
-- [**Chapter 8: GUI Implementation Patterns**](chapters/chapter-08-gui-implementation-patterns) - User interface design
-- [**Chapter 9: Privacy-First LLM Architecture**](chapters/chapter-09-privacy-first-llm-architecture) - AI integration patterns
-- [**Chapter 10: Modern Dependency Management**](chapters/chapter-10-modern-dependency-management) - Package management
-
-### 🚀 **Deployment and Operations**
-- [**Chapter 13: Docker-First Production Security**](chapters/chapter-13-docker-first-production-security) - Secure deployment
+### 💡 **Core Concepts**
+- [**Containerization**](concepts/chapter-00-containerization) - Docker setup and isolation
+- [**Python Project Setup**](concepts/chapter-01-setup) - Modern development environment
+- [**Failure-Driven Development**](concepts/chapter-03-failure-driven-development) - Debugging methodology
+- [**Testing Like You Mean It**](concepts/chapter-04-testing-like-you-mean-it) - Production testing strategies
+- [**Mastering Claude Code**](concepts/chapter-06-mastering-claude-code) - AI pair programming
+- [**Claude Code Workshop**](concepts/chapter-06.5-claude-code-workshop) - Hands-on AI development
+- [**Modern Dependency Management**](concepts/chapter-10-modern-dependency-management) - Package management
 
 ### 🛠️ **Practice Resources**
 - [**Debugging Journey**](debugging-journey) - Real debugging sessions
@@ -136,9 +140,9 @@ Throughout this documentation, you'll see these special callouts:
 
 Choose your path:
 
-- **New to Development?** → Start with [Chapter 0: Containerization](chapters/chapter-00-containerization) (where we put bugs in boxes)
-- **Want to Build Something?** → Jump to [Chapter 2: Modern Web Scraping](chapters/chapter-02-web-scraping) (dopamine hit included)
-- **Experienced Developer?** → Skip to [Chapter 3: Failure-Driven Development](chapters/chapter-03-failure-driven-development) (you know the pain)
+- **New to Development?** → Start with [Containerization](concepts/chapter-00-containerization) (where we put bugs in boxes)
+- **Want to Build Something?** → Jump to [Modern Web Scraping](backend/chapter-02-web-scraping) (dopamine hit included)
+- **Experienced Developer?** → Skip to [Failure-Driven Development](concepts/chapter-03-failure-driven-development) (you know the pain)
 
 Remember: **The goal isn't to avoid failures—it's to fail fast, learn from them, and build better solutions.**
 
