@@ -1,559 +1,677 @@
 # Chapter 2: Modern Web Scraping with rnet
-## *The Art of Polite Digital Conversation*
+## *The Art of Digital Camouflage and Polite Data Extraction*
 
-Welcome to the heart of our project - building a web scraper that doesn't get you banned from the internet. We'll use Test-Driven Development (TDD) because writing tests first prevents us from building broken scrapers (and there are enough of those already).
+Web scraping in the 2020s is like being a spy in a world where everyone has motion detectors. The naive approach of "just grab the HTML" stopped working when websites started treating bots like uninvited party crashers. Modern scraping requires finesse, patience, and the right tools.
 
-## Learning Objectives
+## The Evolution of Web Scraping
 
-By the end of this chapter, you'll be able to:
-- Build an async web scraper using `rnet` for browser impersonation
-- Implement proper rate limiting and error handling
-- Write comprehensive tests for async code
-- Handle real-world HTTP quirks gracefully
-- Scrape websites without being rude about it
+### The Stone Age (Pre-2010)
+```python
+import urllib2
+html = urllib2.urlopen("http://example.com").read()
+# Worked great until it didn't
+```
 
-## The Problem with Traditional Web Scraping
-
-Most scraping tutorials teach you this:
-
+### The Bronze Age (2010-2020)
 ```python
 import requests
-response = requests.get("https://example.com")
-print(response.text)
+response = requests.get("https://example.com", headers={'User-Agent': 'Mozilla/5.0'})
+# Better, but still obviously a bot
 ```
 
-This approach has problems:
-- 🚫 **Easily detected**: Screams "I'm a bot!"
-- 🐌 **Slow**: One request at a time
-- 💥 **Fragile**: No retry logic
-- 😈 **Rude**: No rate limiting
-
-## Our Modern Approach
-
-We're building something better:
-
+### The Modern Era (2020+)
 ```python
-import asyncio
 import rnet
-from tenacity import retry
-
-# Modern, polite, and fast
 client = rnet.Client(impersonate=rnet.Impersonate.Chrome131)
-response = await client.get(url, headers=realistic_headers)
+# TLS fingerprinting, HTTP/2, the works
 ```
 
-### Why This Stack?
+## Why Traditional Scraping Fails
 
-- **`rnet`**: Advanced HTTP client with browser impersonation
-- **`asyncio`**: Concurrent requests (politely)
-- **`tenacity`**: Smart retry logic
-- **TLS fingerprinting**: Looks like real Chrome
+Modern websites employ increasingly sophisticated bot detection:
 
-## TDD Process: Red, Green, Refactor (With Real Debugging)
+1. **TLS Fingerprinting**: Your SSL handshake reveals you're not a browser
+2. **HTTP/2 Implementation Details**: Browsers have specific HTTP/2 behaviors
+3. **JavaScript Challenges**: "Prove you're human by solving this puzzle"
+4. **Behavioral Analysis**: "Real users don't request 1000 pages in 10 seconds"
+5. **IP Reputation**: "This datacenter IP is definitely not grandma checking recipes"
 
-We'll follow the classic TDD cycle, but we'll embrace the debugging journey:
-1. **Red**: Write a failing test (expect import errors!)
-2. **Debug**: Figure out why it's failing (hint: modules don't exist yet)
-3. **Green**: Write minimal code to pass (more errors incoming!)
-4. **Debug**: Fix the real-world API issues we encounter
-5. **Refactor**: Improve the code based on what we learned
+## Enter rnet: Browser Impersonation Done Right
 
-**Important**: In this chapter, we'll show you *all* the errors we encountered, not just the final working code. Debugging is a skill, and you learn it by practicing.
+rnet is a Rust-based HTTP client that impersonates browsers at the protocol level. It's like wearing a perfect disguise instead of a fake mustache.
 
-### Step 1: Define Our API (Red Phase) - The First Glorious Failure
-
-First, let's design what we want our scraper to do:
+### The Impersonation Stack
 
 ```python
-# tests/test_scraper.py
-@pytest.mark.asyncio
-async def test_fetch_url_success(scraper):
-    url = "https://example.com/changelog"
-    result = await scraper.fetch_url(url)
+# Traditional approach (obvious fake mustache)
+headers = {'User-Agent': 'Mozilla/5.0...'}
 
-    assert result.is_success()
-    assert result.status_code == 200
-    assert result.content is not None
-```
-
-**Let's run this test and watch it fail spectacularly:**
-
-```bash
-$ python -m pytest tests/test_scraper.py -v
-```
-
-**Error #1: The Import Error**
-```
-ImportError while importing test module 'tests/test_scraper.py'.
-ModuleNotFoundError: No module named 'src.changelogger.scraper'
-```
-
-**🎉 Congratulations!** You've encountered your first TDD error. This is exactly what we want - the test is telling us what we need to build.
-
-**What this teaches us:**
-- Tests drive the design (we're defining the API before implementation)
-- Import errors are common in TDD (modules don't exist yet)
-- Python's module system requires proper package structure
-
-### Step 2: Basic Implementation (Green Phase) - More Educational Failures
-
-Now we write the minimal code to make our tests pass:
-
-```python
-# src/changelogger/scraper.py - First attempt
-import asyncio
-import rnet
-
-class BasicScraper:
-    async def fetch_url(self, url: str):
-        # Let's try the obvious approach
-        async with rnet.AsyncClient() as client:
-            response = await client.get(url)
-            return response  # This will break too!
-```
-
-**Let's run the test again:**
-
-```bash
-$ python -m pytest tests/test_scraper.py -v
-```
-
-**Error #2: The Missing Pytest Plugin**
-```
-async def functions are not natively supported.
-You need to install a suitable plugin for your async framework, for example:
-  - anyio
-  - pytest-asyncio
-```
-
-**What this teaches us:**
-- Async testing requires special tools
-- Pytest doesn't handle async natively
-- Tool compatibility matters
-
-**Fix:** `pip install pytest-asyncio`
-
-**Error #3: The API Discovery**
-```
-AttributeError: <module 'rnet'> does not have the attribute 'AsyncClient'
-```
-
-**This is where the real learning happens!** Let's explore the rnet API:
-
-```python
-# Debugging session - always explore unknown APIs
-import rnet
-print(dir(rnet))
-# ['Client', 'BlockingClient', 'Response', ...]
-# No AsyncClient! It's just 'Client'
-```
-
-**What this teaches us:**
-- Documentation can be wrong or incomplete
-- Always explore APIs with `dir()` and `help()`
-- Library interfaces may differ from expectations
-
-```python
-# src/changelogger/scraper.py
-@dataclass
-class ScrapingConfig:
-    user_agent: str = "Changelogger/1.0 (Educational Project)"
-    request_delay: float = 2.0  # Be polite
-    max_concurrent_requests: int = 5
-    respect_robots_txt: bool = True
-    timeout: int = 30
-
-@dataclass
-class ScrapingResult:
-    url: str
-    status_code: int
-    content: str
-    headers: Dict[str, str]
-    fetch_time: float = 0.0
-    error: Optional[str] = None
-
-    def is_success(self) -> bool:
-        return 200 <= self.status_code < 300 and self.error is None
-
-class BasicScraper:
-    async def fetch_url(self, url: str) -> ScrapingResult:
-        # Implementation here...
-```
-
-### Step 3: The StatusCode Mystery - When Types Attack
-
-After fixing the import and API issues, we get our first integration test running, only to encounter:
-
-**Error #4: The StatusCode Comparison**
-```
-TypeError: '<=' not supported between instances of 'int' and 'builtins.StatusCode'
-```
-
-**The debugging process:**
-```python
-# Let's investigate what we're dealing with
-print(f"Status type: {type(response.status_code)}")
-print(f"Status value: {response.status_code}")
-print(f"Available methods: {[m for m in dir(response.status_code) if not m.startswith('_')]}")
-# Found: ['as_int', 'is_client_error', 'is_success', ...]
-```
-
-**What this teaches us:**
-- Libraries often use custom types instead of primitives
-- Type conversion may be required
-- Object methods reveal intended usage patterns
-
-**The fix:** Use `response.status_code.as_int()` instead of assuming it's an integer.
-
-### Step 4: The Header Encoding Adventure
-
-**Error #5: The Dictionary Conversion Chaos**
-```
-ValueError: dictionary update sequence element #0 has length 32; 2 is required
-```
-
-**The investigation:**
-```python
-# Let's see what headers actually look like
-for k, v in response.headers.items():
-    print(f"Key: {k} (type: {type(k)})")
-    print(f"Value: {v} (type: {type(v)})")
-# Everything is bytes!
-```
-
-**What this teaches us:**
-- HTTP is a bytes protocol, not strings
-- Network libraries preserve this reality
-- Conversion is often needed at boundaries
-
-### Step 5: The Async Text Trap
-
-**Error #6: The Method vs Property Confusion**
-```
-TypeError: 'builtin_function_or_method' object is not subscriptable
-```
-
-**The realization:**
-```python
-print(f"Text type: {type(response.text)}")
-# <class 'builtin_function_or_method'>
-# It's a method, not a property!
-```
-
-**And then:**
-```python
-content = response.text()  # Still fails...
-# TypeError: object Future can't be used in 'await' expression
-content = await response.text()  # Finally works!
-```
-
-**What this teaches us:**
-- API design varies between libraries
-- Some operations are async (and that's often good)
-- Always check if methods need to be awaited
-
-## The rnet API: Browser Impersonation Done Right (After All That Debugging!)
-
-### Creating a Client
-
-```python
+# rnet approach (complete identity theft)
 client = rnet.Client(
-    impersonate=rnet.Impersonate.Chrome131,  # Latest Chrome
+    impersonate=rnet.Impersonate.Chrome131,
     timeout=30
 )
 ```
 
-### Making Requests
+rnet handles:
+- **TLS Fingerprint**: Matches exact Chrome implementation
+- **HTTP/2 Settings**: Frame priorities, window sizes, etc.
+- **Header Order**: Chrome sends headers in specific order
+- **Cipher Suites**: Exact match to browser preferences
+
+## Understanding the rnet API Through Trial and Error
+
+Let's explore rnet's API the way developers actually learn—by making mistakes and fixing them.
+
+### Discovery Phase: What Does rnet Actually Have?
 
 ```python
-response = await client.get(url, headers=headers)
+import rnet
 
-# Extract data
-status = response.status_code.as_int()  # StatusCode → int
-content = await response.text()         # Async method
-headers = {                             # Convert HeaderMap
+# First instinct: Look for AsyncClient (spoiler: it doesn't exist)
+print(dir(rnet))
+# Output: ['Client', 'BlockingClient', 'Impersonate', 'Response', ...]
+
+# Lesson learned: Always explore the API
+help(rnet.Client)
+```
+
+### The Status Code Surprise
+
+```python
+# What you expect:
+if response.status_code == 200:
+    print("Success!")
+
+# What actually happens:
+# TypeError: unsupported operand type(s) for ==: 'StatusCode' and 'int'
+
+# The investigation:
+print(type(response.status_code))  # <class 'rnet.StatusCode'>
+print(dir(response.status_code))   # ['as_int', 'is_success', ...]
+
+# The solution:
+if response.status_code.as_int() == 200:
+    print("Success!")
+# Or better:
+if response.status_code.is_success():
+    print("Success!")
+```
+
+### The Async Text Method
+
+```python
+# Natural assumption:
+content = response.text  # Nope, it's a method
+
+# Second attempt:
+content = response.text()  # Still nope, it's async
+
+# Final form:
+content = await response.text()  # Victory!
+```
+
+### Headers: The Bytes vs Strings Saga
+
+```python
+# Headers come as bytes because HTTP is a binary protocol
+for key, value in response.headers.items():
+    print(f"{key}: {value}")
+    # Output: b'content-type': b'text/html'
+
+# Converting to a civilized dictionary:
+headers = {
     k.decode() if isinstance(k, bytes) else k:
     v.decode() if isinstance(v, bytes) else v
     for k, v in response.headers.items()
 }
 ```
 
-### Key rnet Features
+## Building a Polite Web Scraper
 
-1. **Browser Impersonation**: Perfect TLS and HTTP fingerprints
-2. **HTTP/2 Support**: Modern protocol support
-3. **Async by Default**: Built for concurrency
-4. **Header Management**: Realistic browser headers
+### Core Design Principles
 
-## Rate Limiting: Being a Good Internet Citizen
+1. **Rate Limiting**: Don't be that person who rings the doorbell 100 times
+2. **Concurrent Limits**: Multiple polite requests, not a DDoS attack
+3. **Error Handling**: Networks fail, servers hiccup, life goes on
+4. **Respect robots.txt**: It's not legally binding, but it's polite
 
-### The Problem
+### The Configuration Object
 
-Without rate limiting:
 ```python
-# DON'T DO THIS
-for url in urls:
-    response = await client.get(url)  # Hammers the server
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class ScraperConfig:
+    """Configuration for polite web scraping."""
+    user_agent: str = "PoliteBot/1.0 (https://example.com/bot-info)"
+    request_delay: float = 1.0  # Seconds between requests
+    max_concurrent: int = 3     # Parallel requests limit
+    timeout: int = 30           # Request timeout
+    retry_count: int = 3        # Retry failed requests
+    respect_robots: bool = True # Follow robots.txt
 ```
 
-### Our Solution
+### The Result Object
 
 ```python
-async def _apply_rate_limit(self):
-    current_time = time.time()
-    time_since_last = current_time - self._last_request_time
-
-    if time_since_last < self.config.request_delay:
-        sleep_time = self.config.request_delay - time_since_last
-        await asyncio.sleep(sleep_time)
-
-    self._last_request_time = time.time()
+@dataclass
+class ScrapeResult:
+    """Result of a scraping attempt."""
+    url: str
+    status_code: int
+    content: str
+    headers: dict
+    response_time: float
+    error: Optional[str] = None
+    
+    def is_success(self) -> bool:
+        """Check if the scrape was successful."""
+        return 200 <= self.status_code < 300 and self.error is None
 ```
 
-This ensures we never make requests faster than our configured delay.
-
-## Concurrent Processing with Limits
-
-### The Challenge
-
-We want speed, but not rudeness:
+### Rate Limiting Implementation
 
 ```python
-async def fetch_multiple_urls(self, urls: List[str]) -> List[ScrapingResult]:
-    # Limit concurrent requests
-    semaphore = asyncio.Semaphore(self.config.max_concurrent_requests)
+import asyncio
+import time
 
-    async def fetch_with_semaphore(url: str) -> ScrapingResult:
+class PoliteScraper:
+    def __init__(self, config: ScraperConfig):
+        self.config = config
+        self._last_request_time = 0
+        self._request_lock = asyncio.Lock()
+    
+    async def _enforce_rate_limit(self):
+        """Ensure we don't exceed rate limits."""
+        async with self._request_lock:
+            elapsed = time.time() - self._last_request_time
+            if elapsed < self.config.request_delay:
+                await asyncio.sleep(self.config.request_delay - elapsed)
+            self._last_request_time = time.time()
+```
+
+### Concurrent Request Management
+
+```python
+async def fetch_multiple(self, urls: list[str]) -> list[ScrapeResult]:
+    """Fetch multiple URLs concurrently with limits."""
+    semaphore = asyncio.Semaphore(self.config.max_concurrent)
+    
+    async def fetch_with_limit(url: str) -> ScrapeResult:
         async with semaphore:
-            return await self.fetch_url(url)
-
-    # Execute all requests concurrently but limited
-    tasks = [fetch_with_semaphore(url) for url in urls]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
-
-    return results
+            await self._enforce_rate_limit()
+            return await self.fetch_one(url)
+    
+    tasks = [fetch_with_limit(url) for url in urls]
+    return await asyncio.gather(*tasks, return_exceptions=True)
 ```
 
-### Why This Works
-
-- **Semaphore**: Limits concurrent connections
-- **Rate limiting**: Controls request frequency
-- **Error handling**: Graceful failure management
-
-## Error Handling: When Things Go Wrong
-
-### Network Errors
+### The Complete Scraper
 
 ```python
-try:
-    response = await client.get(url, headers=headers)
-    # ... process response
-except asyncio.TimeoutError:
-    return ScrapingResult(
-        url=url,
-        status_code=0,
-        content="",
-        error=f"Timeout after {self.config.timeout}s"
-    )
-except Exception as e:
-    return ScrapingResult(
-        url=url,
-        status_code=0,
-        content="",
-        error=str(e)
-    )
+import asyncio
+import time
+from typing import Optional
+import rnet
+
+class ModernScraper:
+    def __init__(self, config: ScraperConfig):
+        self.config = config
+        self.client = rnet.Client(
+            impersonate=rnet.Impersonate.Chrome131,
+            timeout=config.timeout
+        )
+        self._last_request_time = 0
+        self._request_lock = asyncio.Lock()
+    
+    async def fetch(self, url: str) -> ScrapeResult:
+        """Fetch a single URL politely."""
+        start_time = time.time()
+        
+        try:
+            # Rate limiting
+            await self._enforce_rate_limit()
+            
+            # Make the request
+            response = await self.client.get(url, headers={
+                'User-Agent': self.config.user_agent,
+                'Accept': 'text/html,application/xhtml+xml',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'DNT': '1',
+                'Connection': 'keep-alive',
+                'Upgrade-Insecure-Requests': '1'
+            })
+            
+            # Extract response data
+            status = response.status_code.as_int()
+            content = await response.text()
+            headers = self._convert_headers(response.headers)
+            
+            return ScrapeResult(
+                url=url,
+                status_code=status,
+                content=content,
+                headers=headers,
+                response_time=time.time() - start_time
+            )
+            
+        except asyncio.TimeoutError:
+            return ScrapeResult(
+                url=url,
+                status_code=0,
+                content="",
+                headers={},
+                response_time=time.time() - start_time,
+                error=f"Timeout after {self.config.timeout}s"
+            )
+        except Exception as e:
+            return ScrapeResult(
+                url=url,
+                status_code=0,
+                content="",
+                headers={},
+                response_time=time.time() - start_time,
+                error=str(e)
+            )
+    
+    def _convert_headers(self, headers) -> dict:
+        """Convert rnet headers to dictionary."""
+        return {
+            k.decode() if isinstance(k, bytes) else str(k):
+            v.decode() if isinstance(v, bytes) else str(v)
+            for k, v in headers.items()
+        }
 ```
 
-### HTTP Errors
+## Testing Async Scrapers
+
+Testing async code requires special considerations. Here's how to do it right:
+
+### Basic Async Test Setup
 
 ```python
-if response.status_code.as_int() >= 400:
-    # Still return a result, let caller decide what to do
-    return ScrapingResult(
-        url=url,
-        status_code=response.status_code.as_int(),
-        content="",
-        error=f"HTTP {response.status_code.as_int()}"
-    )
-```
+import pytest
+import asyncio
+from unittest.mock import AsyncMock, Mock, patch
 
-## Testing Async Code
-
-### Mock Setup
-
-```python
-@pytest.fixture
-def mock_response(self):
-    response = AsyncMock()
-
-    # Mock status_code
-    status_mock = Mock()
-    status_mock.as_int.return_value = 200
-    response.status_code = status_mock
-
-    # Mock async text() method
-    response.text.return_value = "<html>content</html>"
-
-    # Mock headers
-    headers_mock = Mock()
-    headers_mock.items.return_value = [(b"content-type", b"text/html")]
-    response.headers = headers_mock
-
-    return response
-```
-
-### Async Test Patterns
-
-```python
 @pytest.mark.asyncio
-async def test_concurrent_requests(scraper, mock_response):
-    urls = ["http://example.com/1", "http://example.com/2"]
-
-    with patch('src.changelogger.scraper.rnet.Client') as mock_client:
-        mock_client.return_value.get.return_value = mock_response
-
-        results = await scraper.fetch_multiple_urls(urls)
-
-        assert len(results) == 2
-        assert all(r.is_success() for r in results)
-```
-
-## Hands-On Lab: Building the Scraper
-
-### Lab Exercise 1: Write Your First Test
-
-Create a test for basic URL fetching:
-
-```python
-@pytest.mark.asyncio
-async def test_my_scraper():
-    config = ScrapingConfig(request_delay=0.1)  # Fast for tests
-    scraper = BasicScraper(config)
-
+async def test_basic_fetch():
+    """Test basic URL fetching."""
+    config = ScraperConfig(request_delay=0.1)  # Fast for tests
+    scraper = ModernScraper(config)
+    
     # Mock the rnet client
-    with patch('src.changelogger.scraper.rnet.Client') as mock_client:
-        # Your mock setup here
-
-        result = await scraper.fetch_url("https://example.com")
-
-        # Your assertions here
+    with patch.object(scraper, 'client') as mock_client:
+        # Create mock response
+        mock_response = AsyncMock()
+        mock_response.status_code.as_int.return_value = 200
+        mock_response.text.return_value = "<html>Test</html>"
+        mock_response.headers.items.return_value = [
+            (b'content-type', b'text/html')
+        ]
+        
+        mock_client.get.return_value = mock_response
+        
+        # Test the fetch
+        result = await scraper.fetch("https://example.com")
+        
+        assert result.is_success()
+        assert result.status_code == 200
+        assert "<html>Test</html>" in result.content
 ```
 
-### Lab Exercise 2: Run the Demo
-
-```bash
-python demo_scraper.py
-```
-
-Watch the scraper in action! Notice:
-- Rate limiting in action (1-second delays)
-- Concurrent requests (3 URLs fetched simultaneously)
-- Error handling (404 and invalid domain)
-- Browser-like headers
-
-### Lab Exercise 3: Integration Testing
+### Testing Rate Limiting
 
 ```python
 @pytest.mark.asyncio
-async def test_real_website():
-    scraper = BasicScraper(ScrapingConfig())
-    result = await scraper.fetch_url("https://httpbin.org/get")
-
-    assert result.is_success()
-    assert "httpbin" in result.content
+async def test_rate_limiting():
+    """Ensure rate limiting works."""
+    config = ScraperConfig(request_delay=0.5)
+    scraper = ModernScraper(config)
+    
+    with patch.object(scraper, 'client') as mock_client:
+        mock_client.get.return_value = create_mock_response()
+        
+        # Time two sequential requests
+        start = time.time()
+        await scraper.fetch("https://example.com/1")
+        await scraper.fetch("https://example.com/2")
+        elapsed = time.time() - start
+        
+        # Should take at least 0.5 seconds
+        assert elapsed >= 0.5
 ```
 
-## Real-World Considerations
-
-### Robots.txt Respect
+### Testing Concurrent Limits
 
 ```python
-# Future enhancement
-async def check_robots_txt(self, url: str) -> bool:
-    # Parse robots.txt and check if we're allowed
-    # Return True if allowed, False otherwise
+@pytest.mark.asyncio
+async def test_concurrent_limits():
+    """Test concurrent request limiting."""
+    config = ScraperConfig(
+        request_delay=0.1,
+        max_concurrent=2
+    )
+    scraper = ModernScraper(config)
+    
+    urls = [f"https://example.com/{i}" for i in range(5)]
+    
+    # Track concurrent requests
+    concurrent_count = 0
+    max_concurrent = 0
+    
+    async def mock_get(*args, **kwargs):
+        nonlocal concurrent_count, max_concurrent
+        concurrent_count += 1
+        max_concurrent = max(max_concurrent, concurrent_count)
+        await asyncio.sleep(0.2)  # Simulate network delay
+        concurrent_count -= 1
+        return create_mock_response()
+    
+    with patch.object(scraper.client, 'get', side_effect=mock_get):
+        await scraper.fetch_multiple(urls)
+        
+    # Should never exceed configured limit
+    assert max_concurrent <= 2
 ```
 
-### User-Agent Rotation
+## Real-World Scraping Patterns
+
+### Handling JavaScript-Heavy Sites
+
+While rnet excels at protocol-level impersonation, some sites require JavaScript execution:
 
 ```python
-user_agents = [
-    "Changelogger/1.0 (Educational Project)",
-    "Changelogger/1.0 (Research Tool)",
-    "Changelogger/1.0 (Monitoring Service)"
-]
+# For JS-heavy sites, consider:
+# 1. Find the API endpoints (often easier to scrape)
+# 2. Use Playwright/Selenium for full browser automation
+# 3. Look for static data in <script> tags
+
+# Example: Finding JSON data in script tags
+import json
+import re
+
+def extract_json_from_script(html: str, pattern: str) -> dict:
+    """Extract JSON data from script tags."""
+    match = re.search(pattern, html, re.DOTALL)
+    if match:
+        return json.loads(match.group(1))
+    return {}
 ```
 
 ### Session Management
 
 ```python
-# rnet handles this automatically with connection pooling
-client = rnet.Client(impersonate=rnet.Impersonate.Chrome131)
-# Reuse this client for multiple requests
+class SessionScraper(ModernScraper):
+    """Scraper with session management."""
+    
+    async def login(self, username: str, password: str) -> bool:
+        """Perform login and store session."""
+        response = await self.fetch("https://example.com/login", data={
+            'username': username,
+            'password': password
+        })
+        
+        # Session cookies are automatically stored by rnet
+        return response.is_success()
+    
+    async def fetch_authenticated(self, url: str) -> ScrapeResult:
+        """Fetch URL using stored session."""
+        # rnet maintains cookies automatically
+        return await self.fetch(url)
 ```
 
-## Performance Analysis
+### Retry Logic with Exponential Backoff
 
-Our demo showed:
-- **Single request**: ~1 second (including rate limiting)
-- **3 concurrent requests**: ~1.1 seconds total (not 3 seconds!)
-- **Browser impersonation**: Perfect Chrome fingerprint
-- **Error handling**: Graceful failure for invalid domains
+```python
+from tenacity import retry, stop_after_attempt, wait_exponential
 
-## What We've Accomplished (Through Glorious Failure!)
+class ResilientScraper(ModernScraper):
+    """Scraper with automatic retry logic."""
+    
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=4, max=10)
+    )
+    async def fetch_with_retry(self, url: str) -> ScrapeResult:
+        """Fetch with automatic retry on failure."""
+        result = await self.fetch(url)
+        
+        # Retry on server errors
+        if 500 <= result.status_code < 600:
+            raise Exception(f"Server error: {result.status_code}")
+            
+        return result
+```
 
-- ✅ **Built a modern async scraper** with browser impersonation (after fixing 6 API issues)
-- ✅ **Implemented rate limiting** for ethical scraping
-- ✅ **Added concurrent processing** with limits
-- ✅ **Wrote comprehensive tests** using TDD (and learned to debug async tests)
-- ✅ **Handled real-world HTTP quirks** gracefully (bytes vs strings, custom types)
-- ✅ **Created a reusable scraping framework**
-- ✅ **Developed debugging skills** by embracing errors as learning opportunities
+## Performance Optimization
 
-### The Real Learning: What Those Errors Taught Us
+### Connection Pooling
 
-Each "failure" was actually a success in disguise:
+```python
+# rnet handles connection pooling automatically
+# Reuse the same client instance for multiple requests
+scraper = ModernScraper(config)
 
-1. **Import Error** → Learned about Python package structure
-2. **Async Test Error** → Discovered pytest-asyncio requirements
-3. **API Error** → Learned to explore unknown libraries with `dir()`
-4. **StatusCode Error** → Understood custom types vs primitives
-5. **Header Error** → Learned about bytes in network protocols
-6. **Text Method Error** → Mastered async method calls
+# Good: Reuses connections
+for url in urls:
+    await scraper.fetch(url)
 
-**This is how real development works!** Every expert has made these exact errors. The difference is they've learned to debug efficiently and stay curious instead of frustrated.
+# Bad: Creates new connections each time
+for url in urls:
+    scraper = ModernScraper(config)  # Don't do this
+    await scraper.fetch(url)
+```
 
-## Key Takeaways
+### Memory Management for Large Scrapes
 
-1. **TDD works for async code** - write tests first, implement second
-2. **rnet provides excellent browser impersonation** - looks like real Chrome
-3. **Rate limiting is essential** - be polite to servers
-4. **Concurrent processing with limits** - fast but respectful
-5. **Error handling matters** - networks are unreliable
-6. **Testing async code requires proper mocking** - simulate network responses
+```python
+async def scrape_large_dataset(urls: list[str], batch_size: int = 100):
+    """Scrape large datasets in batches to manage memory."""
+    scraper = ModernScraper(ScraperConfig())
+    
+    for i in range(0, len(urls), batch_size):
+        batch = urls[i:i + batch_size]
+        results = await scraper.fetch_multiple(batch)
+        
+        # Process and save results immediately
+        for result in results:
+            if result.is_success():
+                # Save to database/file
+                await save_result(result)
+        
+        # Results go out of scope, memory is freed
+```
 
-## Next Chapter Preview
+## Ethical Scraping Guidelines
 
-In Chapter 3, we'll take our scraped HTML and parse it into structured data using `selectolax`. We'll learn how to:
-- Extract specific elements from HTML
-- Handle different changelog formats
-- Deal with malformed HTML gracefully
-- Build flexible parsers for various websites
+### The Golden Rules
 
-The scraper gets us the raw HTML, but parsing is where the magic happens!
+1. **Check robots.txt**: Respect the site's scraping preferences
+2. **Identify yourself**: Use a descriptive User-Agent with contact info
+3. **Rate limit**: No site appreciates being hammered
+4. **Cache responses**: Don't re-scrape unchanged data
+5. **Handle errors gracefully**: Don't retry failed requests endlessly
+
+### Implementing robots.txt Checking
+
+```python
+from urllib.robotparser import RobotFileParser
+
+class EthicalScraper(ModernScraper):
+    def __init__(self, config: ScraperConfig):
+        super().__init__(config)
+        self._robots_cache = {}
+    
+    async def can_fetch(self, url: str) -> bool:
+        """Check if URL can be fetched according to robots.txt."""
+        if not self.config.respect_robots:
+            return True
+            
+        from urllib.parse import urlparse
+        parsed = urlparse(url)
+        robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
+        
+        if robots_url not in self._robots_cache:
+            # Fetch and parse robots.txt
+            rp = RobotFileParser()
+            rp.set_url(robots_url)
+            
+            result = await self.fetch(robots_url)
+            if result.is_success():
+                rp.parse(result.content.splitlines())
+            
+            self._robots_cache[robots_url] = rp
+        
+        return self._robots_cache[robots_url].can_fetch(
+            self.config.user_agent, url
+        )
+```
+
+## Common Pitfalls and Solutions
+
+### The Cloudflare Wall
+**Problem**: "Checking your browser" infinite loop  
+**Solution**: Use undetected-chromedriver or Playwright with stealth plugin
+
+### The Rate Limit Ban
+**Problem**: 429 Too Many Requests after 10 requests  
+**Solution**: Exponential backoff, respect Retry-After headers
+
+### The Honeypot Trap
+**Problem**: Hidden links that only bots would follow  
+**Solution**: Parse visibility, don't follow display:none links
+
+### The Session Timeout
+**Problem**: Login expires mid-scrape  
+**Solution**: Implement session refresh logic, monitor auth status
+
+## Advanced Techniques
+
+### Distributed Scraping
+
+```python
+# Using Redis for distributed rate limiting
+import redis
+import asyncio
+
+class DistributedScraper(ModernScraper):
+    def __init__(self, config: ScraperConfig, redis_url: str):
+        super().__init__(config)
+        self.redis = redis.from_url(redis_url)
+    
+    async def _enforce_rate_limit(self):
+        """Distributed rate limiting using Redis."""
+        key = f"scraper:last_request:{self.config.user_agent}"
+        
+        while True:
+            last_request = self.redis.get(key)
+            now = time.time()
+            
+            if not last_request:
+                self.redis.setex(key, 60, str(now))
+                break
+                
+            elapsed = now - float(last_request)
+            if elapsed >= self.config.request_delay:
+                self.redis.setex(key, 60, str(now))
+                break
+                
+            await asyncio.sleep(self.config.request_delay - elapsed)
+```
+
+### Proxy Rotation
+
+```python
+class ProxyScraper(ModernScraper):
+    def __init__(self, config: ScraperConfig, proxies: list[str]):
+        super().__init__(config)
+        self.proxies = proxies
+        self._proxy_index = 0
+    
+    async def fetch(self, url: str) -> ScrapeResult:
+        """Fetch using rotating proxies."""
+        proxy = self.proxies[self._proxy_index]
+        self._proxy_index = (self._proxy_index + 1) % len(self.proxies)
+        
+        # Note: rnet proxy support varies by version
+        # This is pseudocode for the concept
+        client = rnet.Client(
+            impersonate=rnet.Impersonate.Chrome131,
+            proxy=proxy
+        )
+        
+        # ... rest of fetch logic
+```
+
+## Debugging Real Scraping Issues
+
+### The Request Inspector
+
+```python
+class DebugScraper(ModernScraper):
+    async def fetch(self, url: str) -> ScrapeResult:
+        """Fetch with detailed debugging."""
+        print(f"🔍 Fetching: {url}")
+        print(f"⏱️  Rate limit delay: {self.config.request_delay}s")
+        
+        result = await super().fetch(url)
+        
+        print(f"📊 Status: {result.status_code}")
+        print(f"⏱️  Response time: {result.response_time:.2f}s")
+        print(f"📦 Content length: {len(result.content)}")
+        
+        if result.error:
+            print(f"❌ Error: {result.error}")
+        else:
+            print(f"✅ Success!")
+            
+        return result
+```
+
+### Response Analysis
+
+```python
+def analyze_response(result: ScrapeResult):
+    """Analyze scraping response for issues."""
+    indicators = {
+        'cloudflare': 'Checking your browser',
+        'rate_limit': '429 Too Many Requests',
+        'bot_detection': 'detected unusual activity',
+        'captcha': 'Please complete the security check',
+        'login_required': 'Please sign in',
+        'geo_blocked': 'not available in your country'
+    }
+    
+    for key, indicator in indicators.items():
+        if indicator.lower() in result.content.lower():
+            print(f"⚠️  Detected: {key}")
+            return key
+            
+    return None
+```
+
+## Conclusion
+
+Modern web scraping is an arms race between scrapers and anti-bot systems. The key to success is not trying to break down the door, but rather knocking politely and looking like you belong. rnet provides the perfect disguise, but it's up to you to act the part.
+
+Remember: With great scraping power comes great responsibility. The sites you scrape are someone's servers, bandwidth, and money. Scrape responsibly, cache aggressively, and always ask yourself: "Would I be okay if someone scraped my site like this?"
 
 ---
 
-*"The best way to make a fast scraper is to not get blocked in the first place."* - Ancient scraping wisdom
+*"The best scraper is indistinguishable from a regular user."* - Ancient web scraping proverb (coined last Tuesday)
 
-## Exercises
+## Practical Exercises
 
-1. **Add User-Agent Rotation**: Modify the scraper to rotate between different User-Agent strings
+1. **Build a Polite Scraper**: Create a scraper that respects robots.txt, implements exponential backoff on errors, and identifies itself properly. Test it on your own website first.
 
-2. **Implement Retry Logic**: Add `@retry` decorators using `tenacity` for network failures
+2. **Performance Challenge**: Scrape 1000 URLs while maintaining a 1-second rate limit. Optimize to complete in under 6 minutes (hint: concurrency is your friend).
 
-3. **Memory Usage**: Test the scraper with 100 URLs and monitor memory consumption
+3. **Detection Evasion**: Set up a test site with basic bot detection (User-Agent checking, rate limiting). Build a scraper that bypasses it ethically.
 
-4. **Custom Headers**: Add support for custom headers per URL
+4. **Memory Profiler**: Create a scraper that processes 10,000 URLs without exceeding 100MB of memory usage. Use generators and streaming where possible.
 
-**Bonus Challenge**: Create a "politeness score" that adjusts rate limiting based on server response times. Fast servers get faster requests, slow servers get extra delays.
+5. **The Ultimate Test**: Build a scraper for a site you actually need data from. Handle all edge cases, errors, and implement proper monitoring. Deploy it to production (with the site owner's permission).

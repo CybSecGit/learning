@@ -25,13 +25,13 @@ Let's have a little chat about why your brilliant idea to "just use ChatGPT for 
 
 **What Your Developers Are Doing:**
 ```typescript
-// Actual code found in production (names changed to protect the guilty)
+// Problematic code found in production environments
 const analysis = await openai.chat.completions.create({
   messages: [
     {
       role: "user", 
-      content: `Analyze this customer data: ${JSON.stringify(customerPII)}`
-      // Yes, they're literally sending SSNs to OpenAI
+      content: `Analyze this sensitive data: ${JSON.stringify(sensitiveData)}`
+      // This sends private information to external services
     }
   ]
 });
@@ -39,15 +39,15 @@ const analysis = await openai.chat.completions.create({
 
 **What Your Legal Team Thinks About This:**
 - Immediate GDPR violation: €20M fine
-- SOC2 compliance? Gone faster than free pizza at a developer conference
+- SOC2 compliance? Gone faster than free pizza at a tech conference
 - Customer trust? About as solid as a chocolate teapot
 
 **What Actually Happens to Your Data:**
-1. Sent to OpenAI servers (probably in the US)
+1. Sent to external AI service servers
 2. Processed by their models
 3. Potentially used for training (despite what their ToS says)
 4. Cached in their systems indefinitely
-5. Your competitors can probably prompt-engineer it back out
+5. Competitors might be able to extract similar patterns
 
 It's like photocopying your diary and leaving copies at every coffee shop in Silicon Valley.
 

@@ -426,7 +426,7 @@ claude --allow-tools=Read,Write,Edit,Bash,Glob,Grep
 "Add error handling"
 
 # ✅ Context + Command
-"The current OpenAI client doesn't handle rate limits properly. Add error handling that catches rate limit exceptions and implements exponential backoff like we do in the scraping code"
+"The current API client doesn't handle rate limits properly. Add error handling that catches rate limit exceptions and implements exponential backoff"
 ```
 
 ### 2. Leveraging Claude's Strengths
@@ -450,16 +450,16 @@ claude --allow-tools=Read,Write,Edit,Bash,Glob,Grep
 **Session Preparation:**
 ```bash
 # Start sessions with clear objectives
-"Today we're implementing OpenAI client integration. Key requirements: cost protection, rate limiting, error handling"
+"Today we're implementing API client integration. Key requirements: authentication, rate limiting, error handling"
 
 # Reference relevant context
-"Use the patterns from src/changelogger/core.py and follow our CLAUDE.md guidelines"
+"Use the patterns from src/core.py and follow our CLAUDE.md guidelines"
 ```
 
 **Progress Tracking:**
 ```bash
 # Regular check-ins
-"What's the current status of our LLM integration?"
+"What's the current status of our API integration?"
 "What are the next steps to complete this feature?"
 "Are we following our testing and documentation standards?"
 ```
@@ -470,7 +470,7 @@ claude --allow-tools=Read,Write,Edit,Bash,Glob,Grep
 ```bash
 # Claude runs quality checks automatically
 "Before we commit, run the linting and type checking"
-"Make sure all tests pass and coverage is above 80%"
+"Make sure all tests pass and coverage meets requirements"
 "Update any documentation that references the changed code"
 ```
 

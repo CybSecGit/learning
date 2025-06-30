@@ -26,9 +26,9 @@ A well-designed database ensures your scraping operation can:
 - **Maintain data integrity**: Prevent corruption and ensure consistency
 - **Support analytics**: Track trends and generate insights over time
 
-## Real-World Example: Changelogger Database Design
+## Real-World Example: Web Scraping Database Design
 
-Let's walk through the database architecture we built for Changelogger, a tool that monitors software changelogs.
+Let's walk through a database architecture for a web scraping application that monitors websites and tracks changes.
 
 ### Core Entities and Relationships
 
@@ -40,13 +40,13 @@ class User(Base):
     # OAuth-based identification (GitHub, Google, etc.)
     id = Column(String(255), primary_key=True)  # "github|12345"
     email = Column(String(255), unique=True, nullable=False, index=True)
-    github_username = Column(String(255), unique=True, nullable=True, index=True)
+    username = Column(String(255), unique=True, nullable=True, index=True)
     
     # User preferences stored as JSON for flexibility
     preferences = Column(JSON, default=dict)
     
     # Relationships
-    tools = relationship("Tool", back_populates="owner", cascade="all, delete-orphan")
+    monitored_sites = relationship("MonitoredSite", back_populates="owner", cascade="all, delete-orphan")
 ```
 
 **Key Design Decisions:**
@@ -55,19 +55,19 @@ class User(Base):
 - **JSON Preferences**: Flexible storage for user settings
 - **Cascade Deletes**: When user is deleted, their tools are too
 
-### Tool Monitoring Model
+### Site Monitoring Model
 
 ```python
-class Tool(Base):
-    __tablename__ = "tools"
+class MonitoredSite(Base):
+    __tablename__ = "monitored_sites"
     
     # Unique identifier
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     
-    # Tool identification
+    # Site identification
     name = Column(String(255), nullable=False, index=True)
     url = Column(Text, nullable=False)
-    github_repo = Column(String(255), nullable=True, index=True)  # "facebook/react"
+    site_type = Column(String(255), nullable=True, index=True)  # "blog", "docs", "news"
     
     # Monitoring configuration
     is_active = Column(Boolean, default=True, nullable=False)
@@ -75,52 +75,52 @@ class Tool(Base):
     
     # Ownership
     owner_id = Column(String(255), ForeignKey("users.id"), nullable=False)
-    owner = relationship("User", back_populates="tools")
+    owner = relationship("User", back_populates="monitored_sites")
     
     # Soft delete support
     deleted_at = Column(DateTime(timezone=True), nullable=True)
     
     # Relationships
-    updates = relationship("Update", back_populates="tool", cascade="all, delete-orphan")
+    content_updates = relationship("ContentUpdate", back_populates="site", cascade="all, delete-orphan")
 ```
 
 **Why This Design Works:**
-- **Soft Deletes**: Keep audit trails when tools are "deleted"
-- **Flexible Categories**: Tools can be categorized multiple ways
-- **Configurable Monitoring**: Different frequencies per tool
-- **GitHub Integration**: Optional repository linking
+- **Soft Deletes**: Keep audit trails when sites are "deleted"
+- **Flexible Categories**: Sites can be categorized multiple ways
+- **Configurable Monitoring**: Different frequencies per site
+- **Type Classification**: Optional site type classification
 
-### Update Tracking Model
+### Content Update Tracking Model
 
 ```python
-class Update(Base):
-    __tablename__ = "updates"
+class ContentUpdate(Base):
+    __tablename__ = "content_updates"
     
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    tool_id = Column(String(36), ForeignKey("tools.id"), nullable=False)
+    site_id = Column(String(36), ForeignKey("monitored_sites.id"), nullable=False)
     
-    # Version information
-    version = Column(String(255), nullable=False)
-    release_date = Column(DateTime(timezone=True), nullable=False)
+    # Content information
+    title = Column(String(500), nullable=True)
+    detected_at = Column(DateTime(timezone=True), nullable=False)
     
-    # Impact assessment
-    impact_level = Column(String(20), nullable=False, default="medium")
-    has_breaking_changes = Column(Boolean, default=False, nullable=False)
-    security_update = Column(Boolean, default=False, nullable=False)
+    # Change assessment
+    change_type = Column(String(20), nullable=False, default="minor")
+    is_significant = Column(Boolean, default=False, nullable=False)
+    confidence_score = Column(Float, nullable=True)
     
     # Content
     summary = Column(Text, nullable=True)
-    raw_changelog = Column(Text, nullable=True)
-    processed_changelog = Column(JSON, nullable=True)  # Structured data
+    raw_content = Column(Text, nullable=True)
+    processed_content = Column(JSON, nullable=True)  # Structured data
     
     # Analysis status tracking
     analysis_status = Column(String(20), default="pending")
     
     # Constraints
     __table_args__ = (
-        CheckConstraint('impact_level IN ("low", "medium", "high", "critical")', 
-                       name='impact_level_valid'),
-        Index('idx_update_tool_version', 'tool_id', 'version'),
+        CheckConstraint('change_type IN ("minor", "moderate", "major", "critical")', 
+                       name='change_type_valid'),
+        Index('idx_update_site_detected', 'site_id', 'detected_at'),
     )
 ```
 
@@ -135,15 +135,15 @@ class Update(Base):
 ### 1. Strategic Indexing
 
 ```python
-class Tool(Base):
+class MonitoredSite(Base):
     # Single column indexes for common queries
     name = Column(String(255), nullable=False, index=True)
-    github_repo = Column(String(255), nullable=True, index=True)
+    site_type = Column(String(255), nullable=True, index=True)
     
     # Composite indexes for complex queries
     __table_args__ = (
-        Index('idx_tool_owner_active', 'owner_id', 'is_active'),
-        Index('idx_tool_category_language', 'category', 'language'),
+        Index('idx_site_owner_active', 'owner_id', 'is_active'),
+        Index('idx_site_type_frequency', 'site_type', 'check_frequency'),
     )
 ```
 
@@ -155,32 +155,32 @@ class Tool(Base):
 ### 2. Avoiding N+1 Query Problems
 
 ```python
-# ❌ This triggers N+1 queries (1 query for users + N queries for tools)
+# ❌ This triggers N+1 queries (1 query for users + N queries for sites)
 users = session.query(User).all()
 for user in users:
-    print(f"{user.email} has {len(user.tools)} tools")  # Database hit per user!
+    print(f"{user.email} has {len(user.monitored_sites)} sites")  # Database hit per user!
 
 # ✅ Eager loading - single query with JOIN
-users = session.query(User).options(joinedload(User.tools)).all()
+users = session.query(User).options(joinedload(User.monitored_sites)).all()
 for user in users:
-    print(f"{user.email} has {len(user.tools)} tools")  # No additional queries
+    print(f"{user.email} has {len(user.monitored_sites)} sites")  # No additional queries
 ```
 
 ### 3. Query Optimization
 
 ```python
 # ❌ Loads everything unnecessarily
-all_tools = session.query(Tool).all()
+all_sites = session.query(MonitoredSite).all()
 
 # ✅ Filter and limit appropriately
-active_tools = (session.query(Tool)
-               .filter(Tool.is_active == True)
-               .filter(Tool.deleted_at.is_(None))
+active_sites = (session.query(MonitoredSite)
+               .filter(MonitoredSite.is_active == True)
+               .filter(MonitoredSite.deleted_at.is_(None))
                .limit(100)
                .all())
 
 # ✅ Select only needed columns
-tool_names = session.query(Tool.name, Tool.url).filter(Tool.is_active == True).all()
+site_names = session.query(MonitoredSite.name, MonitoredSite.url).filter(MonitoredSite.is_active == True).all()
 ```
 
 ## Database Testing Strategy
@@ -206,37 +206,37 @@ def db_session():
     
     session.close()
 
-def test_user_tool_relationship(db_session):
-    """Test that user-tool relationships work correctly."""
+def test_user_site_relationship(db_session):
+    """Test that user-site relationships work correctly."""
     user = User(id="test-user", email="test@example.com")
-    tool = Tool(name="React", url="https://reactjs.org", owner_id=user.id)
+    site = MonitoredSite(name="Tech Blog", url="https://example.com/blog", owner_id=user.id)
     
-    db_session.add_all([user, tool])
+    db_session.add_all([user, site])
     db_session.commit()
     
     # Test relationship works both ways
-    assert len(user.tools) == 1
-    assert tool.owner == user
-    assert user.tools[0].name == "React"
+    assert len(user.monitored_sites) == 1
+    assert site.owner == user
+    assert user.monitored_sites[0].name == "Tech Blog"
 ```
 
 ### Testing Data Constraints
 
 ```python
-def test_impact_level_constraint(db_session):
-    """Test that invalid impact levels are rejected."""
+def test_change_type_constraint(db_session):
+    """Test that invalid change types are rejected."""
     user = User(id="test-user", email="test@example.com")
-    tool = Tool(name="React", url="https://reactjs.org", owner_id=user.id)
-    db_session.add_all([user, tool])
+    site = MonitoredSite(name="Tech Blog", url="https://example.com/blog", owner_id=user.id)
+    db_session.add_all([user, site])
     db_session.commit()
     
     # This should fail due to check constraint
     with pytest.raises(IntegrityError):
-        invalid_update = Update(
-            tool_id=tool.id,
-            version="1.0.0",
-            release_date=datetime.now(UTC),
-            impact_level="INVALID_LEVEL"  # Not in allowed values
+        invalid_update = ContentUpdate(
+            site_id=site.id,
+            title="New Post",
+            detected_at=datetime.now(UTC),
+            change_type="INVALID_TYPE"  # Not in allowed values
         )
         db_session.add(invalid_update)
         db_session.commit()
@@ -310,8 +310,8 @@ alembic upgrade head
 
 ```python
 # alembic/env.py
-from src.api.database.base import Base
-from src.api.database.models import User, Tool, Update, AIInsight
+from src.database.base import Base
+from src.database.models import User, MonitoredSite, ContentUpdate, AnalysisResult
 
 # This tells Alembic about your models
 target_metadata = Base.metadata

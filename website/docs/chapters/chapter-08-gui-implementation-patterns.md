@@ -18,7 +18,7 @@
 
 ## Introduction: Beyond the Command Line
 
-While CLI tools are powerful for developers, modern applications need intuitive web interfaces for broader adoption. This chapter covers the GUI implementation patterns developed for Changelogger - transforming our robust backend scraping engine into a polished web application.
+While CLI tools are powerful for developers, modern applications need intuitive web interfaces for broader adoption. This chapter covers GUI implementation patterns for web applications - transforming robust backend systems into polished web applications.
 
 **What You'll Learn:**
 - **Modern Web Stack**: Next.js, React, TypeScript, Tailwind CSS
@@ -40,14 +40,14 @@ CLI Tool → Web API → Basic Web UI → PWA → Mobile App Experience
 
 ### The Full-Stack Architecture
 
-Our Changelogger implementation demonstrates a clean separation between data processing and presentation:
+A modern web application demonstrates clean separation between data processing and presentation:
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
 │   Next.js App   │    │   FastAPI       │    │   Data Layer    │
 │                 │    │   Backend       │    │                 │
 │ • React UI      │◄──►│ • REST APIs     │◄──►│ • SQLAlchemy    │
-│ • PWA Features  │    │ • Authentication │    │ • SQLite/Postgres│
+│ • PWA Features  │    │ • Authentication │    │ • Database      │
 │ • Offline Cache │    │ • LLM Integration│    │ • Redis Cache   │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```

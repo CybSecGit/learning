@@ -1,669 +1,562 @@
 # Chapter 3: Failure-Driven Development
 ## *Or: How to Embrace the Chaos and Learn from Every Crash*
 
-> "I have not failed. I've just found 10,000 ways that won't work." - Thomas Edison
+> "I have not failed. I've just found 10,000 ways that won't work." - Thomas Edison  
 > "I've found 10,001." - Every Web Scraper Developer Ever
 
-Welcome to the most honest chapter about software development you'll ever read. We're going to talk about failure - not as something to avoid, but as your most valuable teacher.
+Failure-Driven Development (FDD) is the acknowledgment that software development is fundamentally an exercise in managing things that don't work yet. It's like learning to ride a bike by cataloging every creative way you can fall off one.
 
 ## The Great Lie of Programming Tutorials
 
-Most tutorials show you this magical world where:
-- Code works on the first try
-- Dependencies install perfectly
+Most programming resources present this fantasy world where:
+- Code compiles on the first try
+- Dependencies resolve perfectly
 - Network requests never fail
-- Everything is clean and predictable
+- APIs return exactly what the documentation promises
+- Everything is deterministic and predictable
 
-**This is complete nonsense.**
+**This is pedagogical malpractice.**
 
-Real development looks like this:
-- Import errors for 20 minutes
-- SSL certificate mysteries
-- Rate limiting surprises
+Real development looks more like:
+- Import errors for the first 20 minutes
+- SSL certificate archaeology
+- Rate limiting surprise parties
 - "It worked yesterday" syndrome
-- Documentation that lies to your face
+- Documentation that gaslights you
+- Stack traces that read like modern poetry
 
-## Our Philosophy: Fail Fast, Learn Faster
+## The Philosophy of Failure-Driven Development
 
-Instead of pretending everything works perfectly, we're going to:
+Instead of pretending everything works perfectly, FDD embraces reality:
 
-1. **Start with broken code** and debug it together
-2. **Intentionally trigger errors** to see how they work
-3. **Celebrate each failure** as a learning milestone
-4. **Build resilience** through repeated exposure to problems
-5. **Develop debugging intuition** through practice
+1. **Start with broken code** - It's going to break anyway
+2. **Intentionally trigger errors** - Control the chaos
+3. **Celebrate each failure** - It's a learning checkpoint
+4. **Build resilience** - Through repeated exposure to problems
+5. **Develop debugging intuition** - Pattern recognition for pain
 
-## Chapter 3.1: The Magnificent Seven (Types of Failures)
+## The Magnificent Seven: Failure Taxonomies
 
-Let's categorize the beautiful ways your web scraper will fail:
+Let's categorize the beautiful ways your code will betray you:
 
-### 1. 💥 The Import Explosion
+### 1. 💥 The Import Implosion
 *"ImportError: No module named 'your_hopes_and_dreams'"*
 
-**What it looks like:**
+**Manifestation:**
 ```python
-from changelogger.scraper import BasicScraper
-# ImportError: No module named 'changelogger'
+from awesome_library import MagicSolver
+# ImportError: No module named 'awesome_library'
 ```
 
-**Why it happens:**
-- Wrong directory
-- Virtual environment not activated
+**Root Causes:**
+- Virtual environment amnesia
 - Package not installed
-- Python path issues
+- Wrong Python version
+- PYTHONPATH mysteries
+- Typos (it's always typos)
 
-**The learning opportunity:**
-Understanding Python's import system, virtual environments, and package structure.
+**Learning Opportunity:**
+Python's import system is like a treasure hunt where X marks approximately 17 different spots.
 
-**How to embrace it:**
-```bash
-# Intentionally break imports to practice debugging
-python -c "from nonexistent_module import everything"
-# Now debug: Where are you? What's in sys.path? Is venv active?
+**Diagnostic Ritual:**
+```python
+import sys
+print(f"Python: {sys.version}")
+print(f"Path: {sys.path}")
+print(f"Where am I?: {os.getcwd()}")
+print(f"Who am I?: {os.getenv('VIRTUAL_ENV', 'No venv!')}")
 ```
 
 ### 2. 🌐 The Network Nightmare
 *"The internet exists, but not for you right now"*
 
-**What it looks like:**
+**Manifestation:**
 ```python
-result = await scraper.fetch_url("https://example.com")
-# TimeoutError, ConnectionError, SSLError, DNSError...
+response = await client.get("https://api.example.com/data")
+# TimeoutError, ConnectionError, SSLError, DNSError, 
+# HTTPError, TooManyRedirects, ContentDecodingError...
 ```
 
-**Why it happens:**
-- DNS resolution failures
-- SSL certificate issues
-- Corporate firewalls
-- Server timeouts
-- Rate limiting
-- The server just doesn't like you today
+**Root Causes:**
+- DNS having an existential crisis
+- SSL certificates from the past/future
+- Firewalls with trust issues
+- Servers taking mental health days
+- Rate limiting (aka "you're too eager")
+- Cosmic rays (unproven but suspected)
 
-**The learning opportunity:**
-Network protocols, HTTP status codes, debugging connectivity issues.
+**Learning Opportunity:**
+Networks are distributed systems, and distributed systems are founded on lies.
 
-**How to embrace it:**
+**Failure Playground:**
 ```python
-# Intentionally cause network failures
-urls = [
-    "https://this-domain-does-not-exist.invalid",  # DNS failure
-    "http://localhost:99999",                      # Connection refused
-    "https://httpbin.org/delay/30",               # Timeout
-    "https://httpbin.org/status/429",             # Rate limited
-]
-# Debug each one - what's the specific error? How do you handle it?
+# Intentionally trigger different network failures
+failure_urls = {
+    "DNS Failure": "https://this-will-never-resolve-pinky-promise.invalid",
+    "Connection Refused": "http://localhost:99999",
+    "Timeout": "https://httpbin.org/delay/300",
+    "404 Not Found": "https://httpbin.org/status/404",
+    "500 Server Error": "https://httpbin.org/status/500",
+    "SSL Error": "https://expired.badssl.com/",
+}
+
+for failure_type, url in failure_urls.items():
+    try:
+        response = await client.get(url, timeout=5)
+    except Exception as e:
+        print(f"{failure_type}: {type(e).__name__} - {str(e)}")
 ```
 
 ### 3. 🔧 The Configuration Catastrophe
 *"Your settings are technically valid but practically useless"*
 
-**What it looks like:**
+**Manifestation:**
 ```python
-config = ScrapingConfig(
-    timeout=0,           # Instant timeout
-    request_delay=-5,    # Negative delay
-    max_concurrent_requests=0  # No requests allowed
+config = Config(
+    timeout=0.00001,      # Optimistic microsecond timeout
+    retry_count=-5,       # Negative retries (time travel?)
+    max_workers=10000,    # More threads than atoms in your CPU
+    cache_size="yes",     # Boolean string type confusion
 )
-# Everything fails in creative ways
 ```
 
-**Why it happens:**
-- No input validation
-- Extreme edge cases
-- Copy-paste errors
-- "What could go wrong?" attitude
+**Root Causes:**
+- No validation (trust everyone!)
+- Edge cases as primary use cases
+- Copy-paste from Stack Overflow
+- Units confusion (seconds? milliseconds? fortnights?)
+- The eternal optimism of default values
 
-**The learning opportunity:**
-Configuration validation, sensible defaults, edge case handling.
+**Learning Opportunity:**
+Configuration is user input, and users are chaos agents.
 
-**How to embrace it:**
+**Configuration Stress Test:**
 ```python
-# Try terrible configurations
-bad_configs = [
-    ScrapingConfig(timeout=0.001),     # Microscopic timeout
-    ScrapingConfig(request_delay=300), # 5-minute delays
-    ScrapingConfig(max_concurrent_requests=1000),  # DDOS yourself
+# Test terrible but "valid" configurations
+evil_configs = [
+    {"timeout": 0},           # Instant timeout
+    {"timeout": 999999},      # Heat death of universe timeout
+    {"max_retries": -1},      # Infinite retries
+    {"pool_size": 1},         # Single-threaded "concurrency"
+    {"buffer_size": 2**32},   # 4GB buffer for 1KB response
 ]
-# What breaks? How? Can you make it fail gracefully?
+
+for config in evil_configs:
+    print(f"Testing config: {config}")
+    # Watch it burn beautifully
 ```
 
 ### 4. 🤖 The Async Apocalypse
-*"Event loops, coroutines, and timing issues, oh my!"*
+*"Concurrent programming: Now with 100% more race conditions!"*
 
-**What it looks like:**
+**Manifestation:**
 ```python
-# This will fail spectacularly
-def not_async_function():
-    result = scraper.fetch_url("https://example.com")  # Missing await
-    return result
-
-# RuntimeError: coroutine 'fetch_url' was never awaited
+# Spot the bug (hint: there are 3)
+async def fetch_all(urls):
+    results = []
+    for url in urls:
+        task = asyncio.create_task(fetch(url))
+    results.append(await task)  # Only awaits last task
+    return results
 ```
 
-**Why it happens:**
-- Forgetting `await`
-- Mixing sync and async code
+**Root Causes:**
+- Forgetting `await` (the async equivalent of forgetting semicolons)
 - Event loop confusion
-- Timing issues
+- Shared state mutations
+- Deadlocks (the gift that stops giving)
+- Race conditions (Heisenberg's favorite bug)
 
-**The learning opportunity:**
-Async programming, coroutines, event loops, concurrency.
+**Learning Opportunity:**
+Async programming is like juggling, except the balls are on fire and someone keeps adding more.
 
-**How to embrace it:**
+**Async Antipatterns Museum:**
 ```python
-# Common async mistakes to practice fixing
+# Gallery of async horrors
 async def async_mistakes():
-    # Mistake 1: Forgetting await
-    result = scraper.fetch_url("https://example.com")  # Oops
-
-    # Mistake 2: Using sync in async context
-    time.sleep(1)  # Should be await asyncio.sleep(1)
-
-    # Mistake 3: Not handling concurrent failures
-    tasks = [scraper.fetch_url(url) for url in many_urls]
-    results = await asyncio.gather(*tasks)  # One failure kills all
+    # Exhibit A: The Forgotten Await
+    result = fetch_data()  # Returns coroutine object, not data
+    
+    # Exhibit B: The Synchronous Sleep
+    time.sleep(1)  # Blocks entire event loop
+    
+    # Exhibit C: The Unhandled Exception
+    tasks = [fetch(url) for url in urls]
+    results = await asyncio.gather(*tasks)  # One failure crashes all
+    
+    # Exhibit D: The Infinite Loop
+    while True:
+        await check_status()  # No sleep, CPU goes brrr
 ```
 
-### 5. 📊 The Data Disaster
-*"You got data, but it's not the data you wanted"*
+### 5. 📊 The Data Type Disaster
+*"I was told there would be JSON"*
 
-**What it looks like:**
+**Manifestation:**
 ```python
-# Expected JSON, got HTML
-response_data = json.loads(result.content)
+# Expectation: JSON
+data = json.loads(response.text)
+# Reality: HTML error page
 # JSONDecodeError: Expecting value: line 1 column 1 (char 0)
-
-# Expected text, got bytes
-headers = dict(response.headers)  # Bytes keys/values
-user_agent = headers["User-Agent"]  # KeyError or encoding error
 ```
 
-**Why it happens:**
-- Content type mismatches
-- Encoding issues
-- Bytes vs strings confusion
-- API format changes
+**Root Causes:**
+- Content-Type lies
+- Encoding mysteries (UTF-8? Latin-1? Klingon?)
+- Binary pretending to be text
+- XML in JSON's clothing
+- Empty responses masquerading as data
+- Servers returning HTML errors for API calls
 
-**The learning opportunity:**
-Data types, encoding, content negotiation, defensive programming.
+**Learning Opportunity:**
+Data formats are social constructs, and society is collapsing.
 
-**How to embrace it:**
+**Type Confusion Olympics:**
 ```python
-# Test with different content types
-test_urls = [
-    "https://httpbin.org/json",      # JSON response
-    "https://httpbin.org/html",      # HTML response
-    "https://httpbin.org/xml",       # XML response
-    "https://httpbin.org/image/png", # Binary response
-]
-# Try to parse each as JSON - what breaks? How do you detect content type?
+def parse_response(response):
+    """Try to parse response as everything until something works."""
+    content = response.text
+    
+    # Try JSON
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError:
+        pass
+    
+    # Try XML
+    try:
+        return xmltodict.parse(content)
+    except:
+        pass
+    
+    # Try CSV
+    try:
+        return list(csv.DictReader(io.StringIO(content)))
+    except:
+        pass
+    
+    # Give up, return as text
+    return content
 ```
 
-### 6. ⏱️ The Performance Pitfall
-*"It works, but glacially slow or suspiciously fast"*
+### 6. ⏱️ The Performance Paradox
+*"It works! (On the test data of 10 items)"*
 
-**What it looks like:**
+**Manifestation:**
 ```python
-# Sequential processing (slow)
-results = []
-for url in 1000_urls:
-    result = await scraper.fetch_url(url)  # 1000 sequential requests
-    results.append(result)
-# Takes 30 minutes, gets you banned
+# Works great for 10 URLs
+results = [fetch(url) for url in urls[:10]]
 
-# Uncontrolled concurrency (fast but destructive)
-tasks = [scraper.fetch_url(url) for url in 1000_urls]
-results = await asyncio.gather(*tasks)  # 1000 simultaneous requests
-# Takes 3 seconds, definitely gets you banned
+# Production has 10,000 URLs
+results = [fetch(url) for url in urls]  # Server: "I'm going to stop you right there"
 ```
 
-**Why it happens:**
-- No rate limiting
-- Poor concurrency management
+**Root Causes:**
+- Linear algorithms meet exponential data
+- No rate limiting (YOLO approach)
 - Resource exhaustion
-- Server overload
+- Database connection pool parties
+- Memory leaks (the slow killer)
+- Cache stampedes
 
-**The learning opportunity:**
-Performance optimization, rate limiting, concurrency control, resource management.
+**Learning Opportunity:**
+Performance problems are just correctness problems that haven't happened yet.
 
-**How to embrace it:**
+**Performance Pitfall Showcase:**
 ```python
-# Benchmark different approaches
-import time
-
-# Approach 1: Sequential (slow but safe)
-start = time.time()
-for url in test_urls:
-    await scraper.fetch_url(url)
-print(f"Sequential: {time.time() - start:.2f}s")
-
-# Approach 2: Unlimited concurrency (fast but dangerous)
-start = time.time()
-tasks = [scraper.fetch_url(url) for url in test_urls]
-await asyncio.gather(*tasks)
-print(f"Concurrent: {time.time() - start:.2f}s")
-
-# Which gets better results? Which gets you banned?
+# The "It Works In Dev" Suite
+async def performance_antipatterns():
+    # Antipattern 1: Unbounded concurrency
+    tasks = [fetch(url) for url in million_urls]
+    await asyncio.gather(*tasks)  # RIP server
+    
+    # Antipattern 2: N+1 queries
+    users = await get_users()
+    for user in users:
+        user.posts = await get_posts(user.id)  # 1000 users = 1001 queries
+    
+    # Antipattern 3: No pagination
+    all_data = await api.get("/all-data-ever")  # 50GB JSON response
+    
+    # Antipattern 4: Synchronous in async
+    async def process(item):
+        time.sleep(1)  # Blocks event loop
+        return item * 2
 ```
 
 ### 7. 🔒 The Security Surprise
-*"Your scraper works, but also accidentally joins a botnet"*
+*"Your code works perfectly! (For hackers)"*
 
-**What it looks like:**
+**Manifestation:**
 ```python
-# Logging sensitive data
-logger.info(f"Response: {result.content}")  # Logs API keys, tokens
-logger.info(f"Headers: {result.headers}")   # Logs auth headers
+# User input? Straight to eval!
+user_code = input("Enter calculation: ")
+result = eval(user_code)  # What could go wrong?
 
-# Trusting user input
-user_url = input("Enter URL: ")
-result = await scraper.fetch_url(user_url)  # SSRF vulnerability
+# Log everything!
+logger.info(f"User password: {password}")  # Now in plaintext logs
 
-# No input validation
-config = load_config_from_file(user_file)  # Code injection risk
+# Trust all SSL certificates!
+ssl_context.verify_mode = ssl.CERT_NONE  # YOLO security
 ```
 
-**Why it happens:**
-- Security not considered early
-- Trusting inputs blindly
-- Oversharing in logs
-- Copy-paste from tutorials
+**Root Causes:**
+- Trusting input (rookie mistake)
+- Logging sensitive data (compliance nightmare)
+- Disabled security features (convenience!)
+- SQL injection (the classic)
+- Pickle deserialization (arbitrary code execution as a feature)
+- Default credentials (admin/admin)
 
-**The learning opportunity:**
-Security mindset, input validation, secure logging, threat modeling.
+**Learning Opportunity:**
+Security is like a parachute—you don't need it until you really, really do.
 
-**How to embrace it:**
+**Security Horror Stories:**
 ```python
-# Security testing scenarios
-dangerous_inputs = [
-    "file:///etc/passwd",           # File system access
-    "http://localhost:22",          # Port scanning
-    "javascript:alert('xss')",     # XSS attempt
-    "data:text/html,<script>...</script>",  # Data URL injection
-]
-# Test your input validation - what gets through? What should be blocked?
+# The Hall of Shame
+def security_disasters():
+    # Disaster 1: SQL Injection Welcome Mat
+    query = f"SELECT * FROM users WHERE id = {user_input}"
+    
+    # Disaster 2: Path Traversal Tourism
+    file_path = f"/data/{user_input}"
+    with open(file_path) as f:  # ../../../../etc/passwd
+        return f.read()
+    
+    # Disaster 3: Pickle Bomb
+    data = pickle.loads(user_data)  # Remote code execution
+    
+    # Disaster 4: SSRF Express
+    url = request.args.get('url')
+    return requests.get(url).text  # Hello internal network!
 ```
 
-## Chapter 3.2: The Debugging Mindset
+## The Debugging Mindset: Sherlock Holmes Meets Rubber Duck
 
-When things go wrong (not if, when), here's how to think:
+When facing failures, channel your inner detective:
 
-### 1. 🤔 **"What exactly is breaking?"**
+### 1. 🔍 **Observe Without Judgment**
 ```python
-# Bad debugging: "It doesn't work"
-# Good debugging: "The HTTP request succeeds but JSON parsing fails with 'expecting value at line 1 column 1'"
+# Bad: "It's broken"
+# Good: "HTTP 403 Forbidden on POST /api/users at 2:34 PM after 5 successful requests"
 
-# Add debug prints everywhere
-print(f"🐛 About to fetch: {url}")
-print(f"🐛 Got response: status={response.status}, length={len(content)}")
-print(f"🐛 Content preview: {content[:100]}...")
+# Add context to everything
+logger.info(f"Request {request_id}: Starting {method} {url}")
+logger.info(f"Request {request_id}: Headers: {headers}")
+logger.info(f"Request {request_id}: Response: {status} in {elapsed}ms")
 ```
 
-### 2. 🔍 **"What did I assume wrongly?"**
+### 2. 🧪 **Form Hypotheses**
 ```python
-# Assumption: "The API returns JSON"
-# Reality: "The API returns HTML when there's an error"
+# Hypothesis 1: Rate limiting after 5 requests
+# Test: Wait 60 seconds between requests
+# Result: Still fails - hypothesis rejected
 
-# Test your assumptions
-print(f"Content type: {response.headers.get('content-type')}")
-print(f"Is JSON?: {content.strip().startswith('{')}")
+# Hypothesis 2: Authentication token expired
+# Test: Get fresh token
+# Result: Works! - hypothesis confirmed
 ```
 
-### 3. 🧪 **"Can I make a simpler version that works?"**
+### 3. 🔬 **Isolate Variables**
 ```python
-# Complex (and broken):
-async def complex_scraper():
-    async with aiohttp.ClientSession() as session:
-        tasks = [session.get(url) for url in urls]
-        responses = await asyncio.gather(*tasks, return_exceptions=True)
-        # 47 more lines of complex processing
+# Complex failing system
+async def complex_process():
+    data = await fetch_data()
+    processed = await transform(data)
+    validated = await validate(processed)
+    result = await save(validated)
+    return result
 
-# Simple (and working):
-async def simple_scraper():
-    result = await scraper.fetch_url("https://httpbin.org/get")
-    print(f"Status: {result.status_code}")
-    print(f"Success: {result.is_success()}")
+# Simplified debugging
+async def debug_process():
+    # Test each step independently
+    print("Testing fetch...")
+    data = await fetch_data()
+    print(f"Fetched: {len(data)} items")
+    
+    print("Testing transform...")
+    processed = await transform(data[:1])  # Just one item
+    print(f"Transformed: {processed}")
+    
+    # Continue until failure point found
 ```
 
-### 4. 📚 **"What would the error message look like if I designed it?"**
+### 4. 📝 **Document the Journey**
 ```python
-# Cryptic error: "Expecting value: line 1 column 1 (char 0)"
-# Helpful error: "Expected JSON response but got HTML. Content-Type: text/html. Status: 404. Server returned error page instead of API response."
+"""
+Debugging Log: The Case of the Midnight Timeout
 
-# Design better error messages
-if not result.is_success():
-    print(f"❌ Request failed:")
-    print(f"   URL: {result.url}")
-    print(f"   Status: {result.status_code}")
-    print(f"   Content-Type: {result.headers.get('content-type', 'unknown')}")
-    print(f"   Content preview: {result.content[:200]}...")
+1. Symptom: Requests timeout every night at 2 AM
+2. Initial hypothesis: Server maintenance window
+   - Checked: No maintenance scheduled
+3. Second hypothesis: Database backup job
+   - Checked: Backup runs at 3 AM
+4. Third hypothesis: Log rotation
+   - CONFIRMED: Log rotation locks files, causing 30s delays
+5. Solution: Implement async logging with queue
+
+Time spent: 4 hours
+Cups of coffee: 7
+Sanity remaining: 12%
+"""
 ```
 
-## Chapter 3.3: Hands-On Failure Workshop
+## Building Resilient Systems: Failing Successfully
 
-Let's practice failing magnificently:
-
-### Exercise 1: The Import Disaster
+### The Circuit Breaker Pattern
 ```python
-# Save this as broken_imports.py and run it
-from definitely_not_installed import MagicalScraper
-from changelogger.wrong_module import NonExistentClass
-from ..invalid.relative import SomethingElse
-
-# Your mission: Fix each import error one by one
-# Document what you learned from each failure
-```
-
-### Exercise 2: The Network Nightmare
-```python
-# Save this as network_disasters.py
-import asyncio
-from src.changelogger.scraper import BasicScraper, ScrapingConfig
-
-async def network_failure_tour():
-    scraper = BasicScraper(ScrapingConfig(timeout=2))
-
-    # Each of these should fail differently
-    test_cases = [
-        ("DNS Failure", "https://definitely-not-a-real-domain-12345.invalid"),
-        ("Connection Refused", "http://localhost:99999"),
-        ("Timeout", "https://httpbin.org/delay/10"),
-        ("404 Error", "https://httpbin.org/status/404"),
-        ("Rate Limited", "https://httpbin.org/status/429"),
-        ("Server Error", "https://httpbin.org/status/500"),
-    ]
-
-    for test_name, url in test_cases:
-        print(f"\n🧪 Testing: {test_name}")
+class CircuitBreaker:
+    """Stop trying when it's clearly not working."""
+    
+    def __init__(self, failure_threshold=5, recovery_timeout=60):
+        self.failure_count = 0
+        self.failure_threshold = failure_threshold
+        self.recovery_timeout = recovery_timeout
+        self.last_failure_time = None
+        self.state = "closed"  # closed, open, half-open
+    
+    async def call(self, func, *args, **kwargs):
+        if self.state == "open":
+            if time.time() - self.last_failure_time > self.recovery_timeout:
+                self.state = "half-open"
+            else:
+                raise Exception("Circuit breaker is open")
+        
         try:
-            result = await scraper.fetch_url(url)
-            print(f"   Status: {result.status_code}")
-            print(f"   Success: {result.is_success()}")
-            print(f"   Error: {result.error}")
+            result = await func(*args, **kwargs)
+            if self.state == "half-open":
+                self.state = "closed"
+                self.failure_count = 0
+            return result
         except Exception as e:
-            print(f"   Exception: {type(e).__name__}: {e}")
-
-        # Question: How is each failure different?
-        # Question: Which ones should you retry?
-        # Question: How would you explain each to a user?
-
-asyncio.run(network_failure_tour())
+            self.failure_count += 1
+            self.last_failure_time = time.time()
+            
+            if self.failure_count >= self.failure_threshold:
+                self.state = "open"
+            
+            raise e
 ```
 
-### Exercise 3: The Configuration Catastrophe
+### The Retry with Exponential Backoff
 ```python
-# Save this as config_disasters.py
-from src.changelogger.scraper import BasicScraper, ScrapingConfig
-
-def test_terrible_configs():
-    """Test configurations that are technically valid but practically useless."""
-
-    terrible_configs = [
-        ("Microscopic Timeout", ScrapingConfig(timeout=0.001)),
-        ("Massive Delay", ScrapingConfig(request_delay=60)),
-        ("Zero Concurrency", ScrapingConfig(max_concurrent_requests=0)),
-        ("Ludicrous Concurrency", ScrapingConfig(max_concurrent_requests=10000)),
-        ("Negative Delay", ScrapingConfig(request_delay=-1)),
-    ]
-
-    for config_name, config in terrible_configs:
-        print(f"\n🧪 Testing: {config_name}")
+async def retry_with_backoff(func, max_retries=3, base_delay=1):
+    """Try, try again, but maybe wait a bit longer each time."""
+    
+    for attempt in range(max_retries):
         try:
-            scraper = BasicScraper(config)
-            print(f"   ✅ Scraper created (somehow)")
-
-            # Try to use it
-            result = await scraper.fetch_url("https://httpbin.org/get")
-            print(f"   Status: {result.status_code}")
-            print(f"   Time: {result.fetch_time:.3f}s")
-
+            return await func()
         except Exception as e:
-            print(f"   💥 Failed: {e}")
-
-        # Question: Should these configurations be allowed?
-        # Question: How would you validate inputs?
-        # Question: What are sensible defaults?
-
-asyncio.run(test_terrible_configs())
+            if attempt == max_retries - 1:
+                raise e
+            
+            # Exponential backoff with jitter
+            delay = base_delay * (2 ** attempt) + random.uniform(0, 1)
+            logger.warning(f"Attempt {attempt + 1} failed, retrying in {delay:.2f}s")
+            await asyncio.sleep(delay)
 ```
 
-## Chapter 3.4: Learning from Production Failures
-
-Here are real failure stories from production web scrapers (names changed to protect the embarrassed):
-
-### The Case of the Midnight Memory Leak
-**The failure:** Scraper ran fine during testing, but crashed every night at 2 AM with out-of-memory errors.
-
-**The investigation:**
-- Memory usage grew slowly over time
-- Only happened with long-running processes
-- Only with certain websites
-
-**The root cause:** Not closing HTTP connections properly. Each request left a connection open, slowly exhausting memory.
-
-**The fix:**
+### The Bulkhead Pattern
 ```python
-# Before (broken):
-async def fetch_url(self, url):
-    client = rnet.Client()
-    response = await client.get(url)
-    return response  # Connection never closed!
-
-# After (fixed):
-async def fetch_url(self, url):
-    client = rnet.Client()
-    try:
-        response = await client.get(url)
-        return response
-    finally:
-        await client.close()  # Always close connections
+class Bulkhead:
+    """Isolate failures to prevent total system collapse."""
+    
+    def __init__(self, max_concurrent=10):
+        self.semaphore = asyncio.Semaphore(max_concurrent)
+        self.in_flight = 0
+        self.failures = 0
+    
+    async def execute(self, func, *args, **kwargs):
+        async with self.semaphore:
+            self.in_flight += 1
+            try:
+                result = await func(*args, **kwargs)
+                return result
+            except Exception as e:
+                self.failures += 1
+                raise e
+            finally:
+                self.in_flight -= 1
 ```
 
-**The lesson:** Resource management matters. Test with long-running processes.
+## Real-World War Stories
 
-### The Great Rate Limiting Disaster of 2023
-**The failure:** Scraper worked perfectly for weeks, then suddenly all requests started returning 429 errors.
+### The Case of the Infinite Loop
+**Symptom**: CPU at 100%, application unresponsive  
+**Root Cause**: Retry logic retrying immediately on permanent failures  
+**Fix**: Add backoff and maximum retry limits  
+**Lesson**: Infinite optimism leads to infinite loops
 
-**The investigation:**
-- Rate limiting was implemented correctly
-- Server wasn't overloaded
-- Other scrapers worked fine
+### The Mystery of the Missing Data
+**Symptom**: Random data loss in production  
+**Root Cause**: Race condition in caching layer  
+**Fix**: Proper locking mechanisms  
+**Lesson**: Concurrent programming is hard, distributed concurrent programming is harder
 
-**The root cause:** The scraper was so polite that it wasn't using sessions. Each request created a new connection, which the server interpreted as different clients making rapid requests.
+### The SSL Certificate Time Bomb
+**Symptom**: Everything breaks on January 1st  
+**Root Cause**: Hardcoded certificate expiration date  
+**Fix**: Dynamic certificate validation  
+**Lesson**: Hard-coded dates are time bombs
 
-**The fix:**
+## The Failure Success Metrics
+
+Track your failures like achievements:
+
 ```python
-# Before (polite but inefficient):
-for url in urls:
-    await asyncio.sleep(1)  # Polite delay
-    client = rnet.Client()  # New connection every time
-    response = await client.get(url)
-
-# After (polite and efficient):
-client = rnet.Client()  # One connection for all requests
-for url in urls:
-    await asyncio.sleep(1)  # Still polite
-    response = await client.get(url)  # Reuse connection
-```
-
-**The lesson:** Politeness isn't just about delays. Connection reuse matters.
-
-### The SSL Certificate Mystery
-**The failure:** Scraper worked on developer machines but failed in production with SSL errors.
-
-**The investigation:**
-- Same code, same Python version
-- Same target websites
-- Different SSL errors in production
-
-**The root cause:** Production environment had outdated CA certificates. The websites had updated their SSL certificates to use newer certificate authorities.
-
-**The fix:**
-```python
-# Quick fix (not recommended for production):
-import ssl
-ssl_context = ssl.create_default_context()
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
-
-# Better fix: Update CA certificates
-# apt-get update && apt-get install ca-certificates
-```
-
-**The lesson:** Environment differences are real. Test in production-like environments.
-
-## Chapter 3.5: Building Failure Resilience
-
-How to make your scraper antifragile:
-
-### 1. **Expect Everything to Fail**
-```python
-async def resilient_fetch(self, url):
-    """Fetch URL with the assumption that everything will go wrong."""
-
-    # Validate inputs (because users lie)
-    if not url or not isinstance(url, str):
-        return ScrapingResult(url="invalid", status_code=0, error="Invalid URL")
-
-    # Set reasonable timeouts (because servers are slow)
-    timeout = min(self.config.timeout, 30)  # Never wait more than 30s
-
-    # Try the request (because networks are unreliable)
-    try:
-        result = await self._do_request(url, timeout)
-
-        # Validate the response (because servers lie)
-        if result.status_code == 200 and not result.content:
-            return ScrapingResult(url=url, status_code=200, error="Empty response")
-
-        return result
-
-    except Exception as e:
-        # Log for debugging (because future you will thank you)
-        logger.warning(f"Request failed for {url}: {e}")
-        return ScrapingResult(url=url, status_code=0, error=str(e))
-```
-
-### 2. **Make Failures Observable**
-```python
-# Track failure patterns
-failure_counts = {}
-failure_patterns = {}
-
-def record_failure(url, error):
-    """Record failure for pattern analysis."""
-    domain = urlparse(url).netloc
-    failure_counts[domain] = failure_counts.get(domain, 0) + 1
-
-    error_type = type(error).__name__
-    failure_patterns[error_type] = failure_patterns.get(error_type, 0) + 1
-
-    # Alert if failure rate is high
-    if failure_counts[domain] > 10:
-        logger.error(f"High failure rate for {domain}: {failure_counts[domain]} failures")
-```
-
-### 3. **Degrade Gracefully**
-```python
-async def fetch_with_fallbacks(self, url):
-    """Try multiple strategies when things fail."""
-
-    # Try 1: Normal request
-    try:
-        return await self.fetch_url(url)
-    except TimeoutError:
+class FailureMetrics:
+    """Because you can't improve what you don't measure."""
+    
+    def __init__(self):
+        self.failures_by_type = defaultdict(int)
+        self.recovery_times = []
+        self.failure_patterns = defaultdict(list)
+    
+    def record_failure(self, error_type, context, recovery_time=None):
+        self.failures_by_type[error_type] += 1
+        
+        if recovery_time:
+            self.recovery_times.append(recovery_time)
+        
+        self.failure_patterns[error_type].append({
+            'time': datetime.now(),
+            'context': context
+        })
+    
+    def get_mttr(self):
+        """Mean Time To Recovery"""
+        if not self.recovery_times:
+            return None
+        return sum(self.recovery_times) / len(self.recovery_times)
+    
+    def get_failure_rate(self, error_type=None):
+        """Failures per time period"""
+        # Implementation depends on your time window
         pass
-
-    # Try 2: Longer timeout
-    try:
-        old_timeout = self.config.timeout
-        self.config.timeout = old_timeout * 2
-        return await self.fetch_url(url)
-    finally:
-        self.config.timeout = old_timeout
-
-    # Try 3: Different user agent
-    try:
-        old_agent = self.config.user_agent
-        self.config.user_agent = "curl/7.68.0"  # Look like curl
-        return await self.fetch_url(url)
-    finally:
-        self.config.user_agent = old_agent
-
-    # Give up gracefully
-    return ScrapingResult(url=url, status_code=0, error="All fallback strategies failed")
 ```
 
-## Chapter 3.6: The Failure Hall of Fame
+## Conclusion: Failure as a Feature
 
-Let's celebrate some spectacular failures:
+Failure-Driven Development isn't about celebrating incompetence—it's about acknowledging reality. Software fails. Networks fail. Humans fail. The difference between junior and senior developers isn't that seniors write bug-free code; it's that seniors expect bugs and plan accordingly.
 
-### 🏆 Most Creative Import Error
-```python
-from __future__ import braces
-# SyntaxError: not a chance
-```
+Every error message is a teacher. Every stack trace tells a story. Every production outage is a masterclass in distributed systems. The goal isn't to avoid failure—it's to fail fast, fail gracefully, and fail forward.
 
-### 🏆 Most Optimistic Timeout
-```python
-config = ScrapingConfig(timeout=0.00001)  # 10 microseconds
-# Narrator: "It was not enough time"
-```
-
-### 🏆 Most Honest Error Message
-```python
-# Real error from a production system:
-"Error: Something went wrong. We're not sure what. Good luck debugging this."
-```
-
-### 🏆 Most Expensive Mistake
-```python
-# Accidentally scraped the same page 1 million times
-for i in range(1000000):
-    await scraper.fetch_url("https://expensive-api.com/data")
-# Invoice: $47,000
-# Manager's response: "So... about that code review process..."
-```
-
-### 🏆 Most Philosophical Error Message
-```python
-# Real error from a production system:
-"Error: Something went wrong. We're not sure what. Good luck debugging this."
-# Followed by: "Also, it's probably your fault somehow."
-```
-
-### 🏆 Most Passive-Aggressive Timeout
-```python
-config = ScrapingConfig(timeout=1)  # 1 second
-# Later in logs: "Request timed out. Maybe try being more patient next time?"
-```
-
-## Chapter Summary: Embrace the Chaos
-
-What we learned from this chapter:
-
-1. **Failure is inevitable** - Plan for it, don't fight it
-2. **Every error teaches something** - Collect them like Pokemon
-3. **Good error handling** is more important than perfect code
-4. **Debug incrementally** - Start simple, add complexity slowly
-5. **Test your assumptions** - They're probably wrong
-6. **Build observability** - You can't fix what you can't see
-7. **Practice failing** - The more you practice, the faster you recover
-
-## Next Chapter Preview
-
-In Chapter 4, we'll take our battle-tested scraper and add HTML parsing with selectolax. Spoiler alert: This will introduce entirely new categories of failures involving:
-
-- Character encoding mysteries
-- CSS selector nightmares
-- DOM structure assumptions
-- JavaScript-rendered content
-- And the eternal question: "Why is this `<div>` empty?"
-
-But hey, at least now you know how to fail gracefully!
+Remember: The only systems that never fail are the ones that were never built.
 
 ---
 
-*"The master has failed more times than the beginner has even tried."* - Stephen McCranie
+*"Failure is simply the opportunity to begin again, this time more intelligently."* - Henry Ford
 
-*"The expert debugger has encountered more error types than the novice has ever imagined."* - Anonymous (definitely not chatGPT)
+*"Segmentation fault (core dumped)"* - C Programming Language
+
+## Practical Exercises
+
+1. **The Failure Museum**: Create a test suite that intentionally triggers 20 different types of failures. Document each one with cause, effect, and fix.
+
+2. **Chaos Engineering Light**: Build a simple system and then try to break it in creative ways. Keep a "destruction diary" of what worked.
+
+3. **The Recovery Race**: Implement the same functionality with different error handling strategies (retry, circuit breaker, fallback). Measure which recovers fastest from failures.
+
+4. **Debug Detective**: Take an open-source project, introduce a subtle bug, and practice debugging it using only logs and print statements.
+
+5. **Failure Fortune Telling**: Before running your code, predict three ways it might fail. Run it and see how many you got right. Improve your prediction rate over time.

@@ -1,5 +1,5 @@
-# Chapter 9: Claude Code Orchestration and Advanced Parallelism
-## *Or: How to Build an AI Development Army That Actually Works Together*
+# Claude Code Orchestration and Advanced Parallelism
+## *Or: How to Build an AI Development Team That Actually Works Together*
 
 > "Why have one Claude when you can have an entire development team?" - Modern Development Proverb
 

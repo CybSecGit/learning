@@ -1,5 +1,5 @@
-# Chapter 10: Modern Dependency Management & Security
-## *Or: How to Stop Your Dependencies from Stabbing You in the Back (Like Your Ex Did)*
+# Modern Dependency Management & Security
+## *Or: How to Stop Your Dependencies from Stabbing You in the Back*
 
 > "Managing dependencies in 2024 is like being a parent of 847 toddlers, where each toddler occasionally turns into a security vulnerability and demands immediate attention at 3 AM." - Every Senior Developer's Therapy Session
 
@@ -12,7 +12,7 @@
 - [License Compliance: The Legal Minefield](#license-compliance-the-legal-minefield)
 - [Cost Analysis of Technical Debt](#cost-analysis-of-technical-debt)
 - [Supply Chain Attack Prevention](#supply-chain-attack-prevention)
-- [The Changelogger Approach: A Real-World Case Study](#the-changelogger-approach-a-real-world-case-study)
+- [A Real-World Case Study](#a-real-world-case-study)
 - [Building Your Own Dependency Management System](#building-your-own-dependency-management-system)
 
 ---
@@ -961,20 +961,20 @@ The numbers speak for themselves. This investment will pay for itself {"quickly"
 
 ---
 
-## The Changelogger Approach: A Real-World Case Study
+## Real-World Implementation: A Case Study
 
-### How We Actually Solved This (Without Losing Our Minds)
+### How This Actually Works in Practice (Without Losing Your Mind)
 
-Let me tell you about how we implemented this in the real world with Changelogger. Spoiler alert: it wasn't pretty at first, but it works now.
+Let me tell you about how this looks in a real-world implementation. Spoiler alert: it wasn't pretty at first, but it works now.
 
 ```python
-# changelogger_dependency_manager.py - The real implementation
-class ChangeloggerDependencyManager:
+# dependency_manager.py - A real implementation
+class DependencyManager:
     def __init__(self):
         self.priority_queue = DependencyPriorityQueue()
         self.github_automator = GitHubDependencyAutomator(
             github_token=os.getenv("GITHUB_TOKEN"),
-            repo_name="cybsecgit/changelogger"
+            repo_name=os.getenv("GITHUB_REPO")
         )
         self.vulnerability_scanner = ComprehensiveVulnerabilityScanner()
         self.license_manager = LicenseComplianceManager()
@@ -1061,7 +1061,7 @@ class ChangeloggerDependencyManager:
         """Generate the mother of all compliance reports"""
         
         report = f"""
-# Changelogger Dependency Compliance Report
+# Dependency Compliance Report
 *Generated: {datetime.now().isoformat()}*
 
 ## 🚨 Executive Summary

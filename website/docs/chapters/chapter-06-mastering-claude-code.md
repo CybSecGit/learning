@@ -304,38 +304,38 @@ Use multiple Claude instances for parallel development:
 
 ---
 
-## Changelogger-Specific Best Practices
+## Project-Specific Best Practices
 
 ### Project Context Management
 
 **Starting a Session:**
 ```bash
 # Give Claude context about where you are
-"I'm working on the LLM integration layer. Here's what we've built so far..."
+"I'm working on the API integration layer. Here's what we've built so far..."
 
 # Reference specific files and patterns
-"Look at src/changelogger/llm/base.py to understand our interface pattern"
+"Look at src/api/base.py to understand our interface pattern"
 
 # Explain current goals
-"We need to implement the OpenAI client following the same patterns as our scraping code"
+"We need to implement the client following the same patterns as our data processing code"
 ```
 
 ### Code Quality Automation
 
 **Integrate with Development Workflow:**
 ```bash
-# Claude automatically follows our quality standards
+# Claude automatically follows your quality standards
 "Implement this feature following our CLAUDE.md guidelines"
-"Make sure to include comprehensive error handling like in core.py"
+"Make sure to include comprehensive error handling like in our core modules"
 "Add learning concepts documentation for any new patterns"
 ```
 
 ### Testing Integration
 
-**Leverage Our Testing Patterns:**
+**Leverage Your Testing Patterns:**
 ```bash
-# Claude understands our testing conventions
-"Add tests following the same patterns as test_config.py"
+# Claude understands your testing conventions
+"Add tests following the same patterns as our existing test files"
 "Make sure to include both unit and integration tests"
 "Use mocking for external API calls like we do in other tests"
 ```
@@ -345,9 +345,9 @@ Use multiple Claude instances for parallel development:
 **Maintain Documentation Standards:**
 ```bash
 # Claude updates docs automatically
-"Update the README with the new LLM features"
-"Add these concepts to learning_concepts.md with the same humor style"
-"Update the Makefile with LLM-related commands"
+"Update the README with the new API features"
+"Add these concepts to our learning documentation with consistent style"
+"Update build scripts with new commands"
 ```
 
 ---
@@ -363,14 +363,14 @@ Use multiple Claude instances for parallel development:
 /clear
 
 # Provide fresh context
-"I'm working on the Changelogger project. It's a Python tool for scraping and analyzing changelogs with AI. Here's the current structure..."
+"I'm working on a Python application for data processing and analysis. Here's the current structure..."
 ```
 
 **Problem**: Claude references old code patterns
 **Solution**:
 ```bash
 # Show current patterns explicitly
-"The correct pattern for error handling in this project is shown in src/changelogger/core.py lines 125-176"
+"The correct pattern for error handling in this project is shown in src/core.py lines 125-176"
 ```
 
 ### Permission and Access Issues
@@ -426,7 +426,7 @@ claude --allow-tools=Read,Write,Edit,Bash,Glob,Grep
 "Add error handling"
 
 # ✅ Context + Command
-"The current OpenAI client doesn't handle rate limits properly. Add error handling that catches rate limit exceptions and implements exponential backoff like we do in the scraping code"
+"The current API client doesn't handle rate limits properly. Add error handling that catches rate limit exceptions and implements exponential backoff like we do in our data processing code"
 ```
 
 ### 2. Leveraging Claude's Strengths
@@ -450,16 +450,16 @@ claude --allow-tools=Read,Write,Edit,Bash,Glob,Grep
 **Session Preparation:**
 ```bash
 # Start sessions with clear objectives
-"Today we're implementing OpenAI client integration. Key requirements: cost protection, rate limiting, error handling"
+"Today we're implementing API client integration. Key requirements: cost protection, rate limiting, error handling"
 
 # Reference relevant context
-"Use the patterns from src/changelogger/core.py and follow our CLAUDE.md guidelines"
+"Use the patterns from src/core.py and follow our CLAUDE.md guidelines"
 ```
 
 **Progress Tracking:**
 ```bash
 # Regular check-ins
-"What's the current status of our LLM integration?"
+"What's the current status of our API integration?"
 "What are the next steps to complete this feature?"
 "Are we following our testing and documentation standards?"
 ```
@@ -1782,13 +1782,13 @@ The future might include:
 
 ---
 
-## Real-World Examples from Changelogger Development
+## Real-World Development Examples
 
-### Example 1: Implementing LLM Foundation
+### Example 1: Implementing API Foundation
 
 **Initial Request:**
 ```bash
-"I need to implement the foundation for LLM integration. Create an abstract interface and configuration system that supports multiple providers like OpenAI and Anthropic."
+"I need to implement the foundation for external API integration. Create an abstract interface and configuration system that supports multiple providers."
 ```
 
 **Claude's Approach:**
@@ -1797,13 +1797,13 @@ The future might include:
 3. **Implemented** step-by-step with comprehensive tests
 4. **Committed** with detailed documentation updates
 
-**Result**: Clean, extensible foundation that follows project conventions
+**Result**: Clean, extensible foundation that follows established project conventions
 
-### Example 2: Adding Tool Management Features
+### Example 2: Adding Configuration Management Features
 
 **Initial Request:**
 ```bash
-"Users need a way to add tools to the scrape list without manually editing JSON. Design a user-friendly CLI interface."
+"Users need a way to add configurations without manually editing JSON. Design a user-friendly CLI interface."
 ```
 
 **Claude's Approach:**
@@ -1812,7 +1812,7 @@ The future might include:
 3. **Implemented** with comprehensive error handling and validation
 4. **Enhanced** with template system and help documentation
 
-**Result**: Intuitive tool management that eliminated manual JSON editing
+**Result**: Intuitive configuration management that eliminated manual JSON editing
 
 ### Example 3: Documentation and Learning Integration
 
@@ -1827,7 +1827,7 @@ The future might include:
 3. **Added** educational content with practical examples
 4. **Ensured** documentation accuracy with current implementation
 
-**Result**: Comprehensive, up-to-date documentation that teaches while it informs
+**Result**: Comprehensive, up-to-date documentation that educates while it informs
 
 ---
 

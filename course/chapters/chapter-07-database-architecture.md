@@ -1,16 +1,16 @@
-# Chapter 7: Database Architecture & SQLAlchemy ORM
+# Database Architecture & SQLAlchemy ORM
 
 > "A database is the permanent memory of your application. Design it well, and your application can scale to millions of users. Design it poorly, and it will crash with a hundred."
 
-## Learning Objectives
+## Core Concepts
 
-By the end of this chapter, you will:
-- Understand database design principles for web scraping applications
-- Implement SQLAlchemy ORM models with proper relationships
-- Set up database migrations with Alembic
-- Design schemas that scale from SQLite to PostgreSQL
-- Write comprehensive database tests
-- Avoid common database pitfalls
+This guide covers:
+- Database design principles for data-intensive applications
+- SQLAlchemy ORM models with proper relationships
+- Database migrations with Alembic
+- Schemas that scale from SQLite to PostgreSQL
+- Comprehensive database testing strategies
+- Common pitfalls and how to avoid them
 
 ## Why Databases Matter for Web Scraping
 
@@ -26,9 +26,9 @@ A well-designed database ensures your scraping operation can:
 - **Maintain data integrity**: Prevent corruption and ensure consistency
 - **Support analytics**: Track trends and generate insights over time
 
-## Real-World Example: Changelogger Database Design
+## Real-World Example: Application Database Design
 
-Let's walk through the database architecture we built for Changelogger, a tool that monitors software changelogs.
+Let's explore a database architecture for a tool that monitors and analyzes external data sources.
 
 ### Core Entities and Relationships
 
@@ -248,7 +248,7 @@ def test_impact_level_constraint(db_session):
 
 ```python
 # For local development - zero setup
-DATABASE_URL = "sqlite:///./changelogger.db"
+DATABASE_URL = "sqlite:///./app.db"
 
 engine = create_engine(DATABASE_URL)
 ```
@@ -410,7 +410,7 @@ except IntegrityError:
     user = session.query(User).filter(User.email == email).first()
 ```
 
-## Exercise: Build Your Own Scraping Database
+## Exercise: Build Your Own Data Collection Database
 
 Create a database schema for a web scraping project that monitors e-commerce prices:
 
