@@ -84,6 +84,17 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: '🎯 Learning Plans',
+      items: [
+        {
+          type: 'doc',
+          id: 'learning-plans',
+          label: '🚀 Complete Learning Plans',
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: '📖 Learning Concepts',
       items: [
         {
