@@ -313,7 +313,7 @@ This structure provides:
 **Solution**: Use pyenv or container-based development
 
 ### The "Dependency Conflict" Nightmare
-**Problem**: Package A needs urllib3<2.0, Package B needs urllib3>=2.0  
+**Problem**: Package A needs urllib3&lt;2.0, Package B needs urllib3&gt;=2.0  
 **Solution**: Use tools like pip-tools or poetry for dependency resolution
 
 ### The "Works on My Machine" Classic

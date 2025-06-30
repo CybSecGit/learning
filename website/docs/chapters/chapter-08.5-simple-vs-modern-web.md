@@ -288,7 +288,7 @@ def index():
     posts = Post.query.order_by(Post.created.desc()).all()
     return render_template('index.html', posts=posts)
 
-# That's it. Renders in <50ms. No build step.
+# That's it. Renders in &lt;50ms. No build step.
 ```
 
 ---
