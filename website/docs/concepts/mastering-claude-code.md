@@ -8,7 +8,8 @@
 - [Setup and Customization](#setup-and-customization)
 - [Core Workflow Patterns](#core-workflow-patterns)
 - [Advanced Techniques](#advanced-techniques)
-- [Changelogger-Specific Best Practices](#changelogger-specific-best-practices)
+- [Project-Specific Best Practices](#project-specific-best-practices)
+- [Hooks: Automating and Customizing Claude Code Behavior](#hooks-automating-and-customizing-claude-code-behavior)
 - [Troubleshooting and Common Issues](#troubleshooting-and-common-issues)
 - [Pro Tips and Hidden Features](#pro-tips-and-hidden-features)
 
@@ -349,6 +350,1327 @@ Use multiple Claude instances for parallel development:
 "Add these concepts to our learning documentation with consistent style"
 "Update build scripts with new commands"
 ```
+
+---
+
+## Hooks: Automating and Customizing Claude Code Behavior
+### *Or: How to Make Claude Code Dance to Your Development Rhythm*
+
+> "Hooks are the secret sauce that transforms Claude Code from a smart assistant into a customized development powerhouse." - Someone who discovered hooks (probably)
+
+Hooks are user-defined shell commands that execute at specific points in Claude Code's lifecycle, providing deterministic control over its behavior. Think of hooks as your personal development automation layer that can:
+
+- **Customize notifications** for different events
+- **Automate code formatting** before and after operations
+- **Implement comprehensive logging** of all activities
+- **Provide real-time feedback** and validation
+- **Create custom permission gates** and security checks
+- **Integrate with external tools** and workflows
+
+### Understanding Hook Events
+### *Think of Claude Code Like a Smart Kitchen Assistant*
+
+Imagine Claude Code as a super-smart kitchen assistant that helps you cook (code). Hooks are like having little helpers that jump into action at specific moments during the cooking process:
+
+**1. PreToolUse** - *The "Before We Start Cooking" Helper*
+> Like a prep cook who automatically washes their hands, checks ingredients, and preheats the oven **before** you start any recipe. This hook runs before Claude touches any tool.
+
+**2. PostToolUse** - *The "After We Finish This Step" Helper*  
+> Like a cleaning assistant who automatically wipes down counters, puts away ingredients, and updates your recipe notes **after** each cooking step is complete.
+
+**3. Notification** - *The "Kitchen Update Announcer" Helper*
+> Like having someone constantly updating the family group chat: "Started chopping onions!", "Oven preheated!", "Dinner's ready!" - this hook triggers whenever Claude wants to tell you something.
+
+**4. Stop** - *The "End of Cooking Session" Helper*
+> Like the final kitchen cleanup crew that summarizes what you cooked, how long it took, what dishes need washing, and what ingredients you used up.
+
+**The Magic Ingredient: JSON Data**
+Each hook gets a detailed "recipe card" (JSON data) that tells it exactly what's happening:
+- What tool Claude is using (like "chopping knife" vs "blender")
+- What Claude is trying to do ("dice the onions" vs "puree the tomatoes")  
+- Which cooking session this is (so multiple chefs don't get confused)
+
+Think of it as having a really good kitchen notepad that gets passed between all your helpers!
+
+---
+
+## Setting Up Hooks: Step-by-Step Guide
+
+### Initial Configuration
+
+**1. Create your settings directory and file:**
+```bash
+# Create Claude Code settings directory
+mkdir -p ~/.claude
+
+# Create settings file
+touch ~/.claude/settings.json
+```
+
+**2. Basic hook configuration structure:**
+
+### *Building Your Hook Recipe Book* 📖
+
+Think of this JSON as writing instructions for your kitchen helpers. Here's how to read this "recipe card":
+
+```json
+{
+  "hooks": {                           // 👈 This is your "Recipe Book"
+    "PreToolUse": [                    // 👈 "Before Cooking" section
+      {
+        "matcher": "Bash",             // 👈 "Only when using the big knife"
+        "hooks": [                     // 👈 "Here's what to do:"
+          {
+            "type": "command",         // 👈 "Run this kitchen command"
+            "command": "echo 'Getting ready to chop!'"  // 👈 The actual thing to do
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Translation**: "Hey hook system, whenever Claude is about to use the Bash tool (like picking up a big chopping knife), please run this echo command first (like announcing 'Getting ready to chop!')."
+
+**3. Understanding matchers - The "Which Kitchen Tool?" Filter:**
+
+Think of matchers like telling your helpers which kitchen situations they should care about:
+
+- `"*"` - **"Every single kitchen tool"** (like having a helper who jumps in no matter what you're doing - mixing, chopping, baking, everything!)
+
+- `"Bash"` - **"Only the big chef's knife"** (your helper only activates when you pick up that specific dangerous tool)
+
+- `"Read|Write|Edit"` - **"Only when handling ingredients"** (like saying "only help me when I'm reading recipes, writing shopping lists, or editing meal plans")
+
+- `"!Bash"` - **"Everything EXCEPT the big knife"** (your helper works with all tools but stays away when you're doing the scary chopping stuff)
+
+**Real-world example**: `"Write|Edit"` is like having a spell-checker helper who only cares when you're writing or editing documents, but ignores you when you're just reading or running commands.
+
+**4. Test your first hook:**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"🎯 Claude is about to use a tool!\" >> ~/.claude/activity.log"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## 20 Essential Hook Examples for Software Engineers
+### *Your Personal Development Automation Army* 🤖
+
+Think of these hooks as hiring a bunch of specialized assistants for your development workflow. Each one is like a tiny robot that's really, really good at one specific job and never gets tired of doing it!
+
+### 1. Development Activity Logger
+### *The "What Did I Just Do?" Assistant* 📝
+
+**Simple explanation**: Like having a really observant coworker who writes down everything you do with timestamps, so you can look back later and remember "Oh right, at 2:30 PM I was trying to fix that database connection issue."
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command + \" - \" + (.tool_input.description // \"No description\")' | ts '[%Y-%m-%d %H:%M:%S]' >> ~/.claude/bash-history.log"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**What this does**: Every time Claude runs a bash command, this hook writes it to a log file with a timestamp. It's like having a digital lab notebook that automatically tracks all your terminal experiments!
+
+### 2. Auto-Format Code Before Commits
+### *The "Make Me Look Professional" Assistant* ✨
+
+**Simple explanation**: Like having a friend who always fixes your hair and straightens your shirt before you walk into an important meeting. This hook automatically cleans up your code formatting before you commit it, so you never accidentally push messy code.
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"git commit\"; then echo \"🎨 Auto-formatting before commit...\"; if [ -f \"package.json\" ]; then npm run format 2>/dev/null || true; elif [ -f \"pyproject.toml\" ]; then black . && isort . 2>/dev/null || true; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**The magic**: Detects when you're about to `git commit`, then automatically runs the right formatter (Prettier for JavaScript, Black for Python) based on what files it finds in your project. No more "oops, I committed ugly code" moments!
+
+### 3. Test Suite Validator
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"git commit\\|git push\"; then echo \"🧪 Running tests before commit...\"; if npm test --silent 2>/dev/null; then echo \"✅ Tests passed\"; else echo \"❌ Tests failed - blocking commit\"; exit 2; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 4. Environment Safety Check
+### *The "Wait, Are You Sure About That?" Assistant* 🚨
+
+**Simple explanation**: Like having a safety-conscious friend who grabs your arm when you're about to touch a hot stove. This hook spots dangerous commands and stops Claude from running them automatically.
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'CMD=$(jq -r \".tool_input.command\"); if echo \"$CMD\" | grep -q \"rm -rf\\|sudo\\|format\\|fdisk\"; then echo \"🚨 Dangerous command detected: $CMD\"; echo \"Are you sure? This could be destructive.\"; exit 2; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Life-saving feature**: When Claude tries to run commands like `rm -rf` (delete everything), `sudo` (admin access), or `format` (wipe a drive), this hook slams on the brakes and says "WHOA THERE!" The `exit 2` actually **blocks** the dangerous command from running. It's like having a safety net for your terminal!
+
+### 5. Docker Resource Monitor
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"docker\\|compose\"; then echo \"🐳 Docker resources:\"; docker system df | head -2; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 6. Dependency Vulnerability Scanner
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"npm install\\|pip install\\|yarn add\"; then echo \"🔍 Scanning for vulnerabilities...\"; if command -v safety >/dev/null; then safety check --json 2>/dev/null | jq -r \".[] | \\\"⚠️  \\(.package): \\(.advisory)\\\"\" | head -3; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 7. Code Review Checklist Reminder
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"📝 Code Review Checklist:\n✓ Security considerations\n✓ Error handling\n✓ Test coverage\n✓ Performance impact\n✓ Documentation updated\""
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 8. Performance Impact Analyzer
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"build\\|compile\\|test\"; then END_TIME=$(date +%s%3N); DURATION=$((END_TIME - ${START_TIME:-$END_TIME})); echo \"⏱️ Operation took ${DURATION}ms\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 9. Branch Protection Enforcer
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"git push.*main\\|git push.*master\"; then BRANCH=$(git branch --show-current); if [ \"$BRANCH\" = \"main\" ] || [ \"$BRANCH\" = \"master\" ]; then echo \"🚫 Direct push to $BRANCH blocked. Use feature branches!\"; exit 2; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 10. Database Backup Reminder
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"DROP\\|DELETE\\|TRUNCATE\\|ALTER.*DROP\"; then echo \"💾 Database operation detected! When did you last backup?\"; echo \"Consider: pg_dump, mysqldump, or your backup tool\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 11. API Key Scanner
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(jq -r \".tool_input.file_path // \\\"\\\"\" | grep -v \"null\"); if [ -n \"$FILE\" ]; then if grep -qE \"(api_key|secret_key|password|token).*=.*[a-zA-Z0-9]{10,}\" \"$FILE\" 2>/dev/null; then echo \"🔑 Potential API key detected in $FILE\"; echo \"Remember: Use environment variables!\"; fi; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 12. Code Complexity Monitor
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(jq -r \".tool_input.file_path // \\\"\\\"\" | grep -v \"null\"); if [ -n \"$FILE\" ] && [ -f \"$FILE\" ]; then LINES=$(wc -l < \"$FILE\"); if [ $LINES -gt 300 ]; then echo \"📏 File $FILE has $LINES lines. Consider breaking it down?\"; fi; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 13. License Compliance Checker
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"npm install\\|pip install\"; then echo \"⚖️ Reminder: Check package licenses for compliance\"; if command -v license-checker >/dev/null; then license-checker --summary 2>/dev/null | tail -5; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 14. Documentation Sync Checker
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(jq -r \".tool_input.file_path // \\\"\\\"\" | grep -v \"null\"); if [ -n \"$FILE\" ] && echo \"$FILE\" | grep -qE \"\\.(js|py|ts|go)$\"; then echo \"📖 Updated $FILE - does documentation need updating?\"; ls README.md docs/ 2>/dev/null | head -3; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 15. Resource Usage Alert
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'DISK_USAGE=$(df / | awk \"NR==2 {print \\$5}\" | sed \"s/%//\"); if [ \"$DISK_USAGE\" -gt 85 ]; then echo \"💾 Warning: Disk usage at ${DISK_USAGE}%\"; fi; MEM_USAGE=$(free | awk \"NR==2{printf \\\"%.0f\\\", \\$3/\\$2*100}\"); if [ \"$MEM_USAGE\" -gt 85 ]; then echo \"🧠 Warning: Memory usage at ${MEM_USAGE}%\"; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 16. Timezone-Aware Logging
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'TOOL=$(jq -r \".tool_name\"); echo \"[$(date -u +\"%Y-%m-%d %H:%M:%S UTC\")] 🛠️ $TOOL\" >> ~/.claude/activity.log'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 17. CI/CD Status Monitor
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"git push\"; then echo \"🚀 Push detected! Checking CI/CD status...\"; if command -v gh >/dev/null; then gh workflow list --limit 3 2>/dev/null; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 18. Environment Variable Validator
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"docker-compose\\|docker run\"; then MISSING_VARS=\"\"; for var in DATABASE_URL API_KEY SECRET_KEY; do if [ -z \"${!var}\" ]; then MISSING_VARS=\"$MISSING_VARS $var\"; fi; done; if [ -n \"$MISSING_VARS\" ]; then echo \"⚠️ Missing env vars:$MISSING_VARS\"; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 19. Backup Automation Trigger
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(jq -r \".tool_input.file_path // \\\"\\\"\" | grep -v \"null\"); if [ -n \"$FILE\" ] && echo \"$FILE\" | grep -qE \"(config|settings|env)\" && [ ! -f \"$FILE.backup.$(date +%Y%m%d)\" ]; then cp \"$FILE\" \"$FILE.backup.$(date +%Y%m%d)\" 2>/dev/null && echo \"💾 Auto-backed up $FILE\"; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 20. Project Health Dashboard
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"npm test\\|pytest\\|go test\"; then echo \"📊 Project Health:\"; echo \"✓ Tests: $(echo $?)\"; echo \"✓ Git status: $(git status --porcelain | wc -l) files changed\"; echo \"✓ Dependencies: $(npm outdated 2>/dev/null | wc -l || echo 0) outdated\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## 15 Advanced Hook Examples for Cybersecurity Engineers
+### *Your Digital Security Squad* 🛡️
+
+Think of these hooks as your personal cybersecurity team that never sleeps, never misses anything suspicious, and maintains perfect audit logs. Each hook is like having a specialist security guard watching for different types of threats and suspicious activities.
+
+### 21. Security Command Auditor
+### *The "Big Brother But For Good Reasons" Assistant* 👁️
+
+**Simple explanation**: Like having a security camera that records everything but also has a really smart AI that yells "STOP!" when it sees someone trying to break in. This hook logs every command for compliance and blocks obviously dangerous ones.
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'CMD=$(jq -r \".tool_input.command\"); echo \"[$(date -u +\"%Y-%m-%d %H:%M:%S UTC\")] SECURITY_AUDIT: $CMD\" >> ~/.claude/security.log; if echo \"$CMD\" | grep -qE \"(sudo|su|chmod 777|rm -rf|dd if=|nc -l|ncat|socat)\"; then echo \"🚨 SECURITY: Privileged/dangerous command detected\"; exit 2; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Why this matters**: Creates a tamper-proof audit trail (with UTC timestamps!) while actively preventing commands that could be used for privilege escalation, data destruction, or network backdoors. Perfect for compliance requirements and incident investigation.
+
+### 22. Network Activity Monitor
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -qE \"(curl|wget|nmap|nc|telnet|ssh)\"; then echo \"🌐 Network activity detected\"; netstat -tuln | grep LISTEN | head -5; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 23. Code Secrets Scanner
+### *The "Secrets Police" Assistant* 🔐
+
+**Simple explanation**: Like having a really paranoid friend who looks over your shoulder every time you write code and says "Hey, did you just write your password in there?" This hook scans every file you create or edit for things that look like API keys, passwords, or other secrets.
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(jq -r \".tool_input.file_path // \\\"\\\"\" | grep -v \"null\"); if [ -n \"$FILE\" ]; then if grep -qE \"(password|secret|key|token)\\s*=\\s*['\\\"][^'\\\"]{10,}\" \"$FILE\" 2>/dev/null; then echo \"🔐 SECURITY: Potential hardcoded secret in $FILE\"; exit 2; fi; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**The pattern it catches**: Lines that look like `api_key = "sk-1234567890abcdef"` or `password = "super_secret_123"`. If it finds anything suspicious, it **blocks the file write** (exit 2) and yells at you to use environment variables instead. Prevents the classic "oops I committed my API keys" disaster!
+
+### 24. Vulnerability Database Checker
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"docker run\\|docker pull\"; then IMAGE=$(echo \"$1\" | grep -oE \"[a-zA-Z0-9._/-]+:[a-zA-Z0-9._-]+\" | head -1); if [ -n \"$IMAGE\" ]; then echo \"🛡️ Checking image $IMAGE for vulnerabilities...\"; if command -v trivy >/dev/null; then trivy image --severity HIGH,CRITICAL --quiet \"$IMAGE\" 2>/dev/null | head -5; fi; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 25. File Integrity Monitor
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'FILE=$(jq -r \".tool_input.file_path // \\\"\\\"\" | grep -v \"null\"); if [ -n \"$FILE\" ] && [ -f \"$FILE\" ]; then HASH=$(sha256sum \"$FILE\" | cut -d\" \" -f1); echo \"[$(date -u +\"%Y-%m-%d %H:%M:%S\")] FILE_INTEGRITY: $FILE:$HASH\" >> ~/.claude/integrity.log; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 26. Permission Escalation Detector
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -qE \"(sudo|su -|pkexec|doas)\"; then echo \"⬆️ SECURITY: Permission escalation detected\"; CALLER_UID=$(ps -o uid= -p $PPID); if [ \"$CALLER_UID\" != \"0\" ]; then echo \"Non-root user attempting privilege escalation\"; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 27. Crypto Operation Monitor
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -qE \"(openssl|gpg|ssh-keygen|age)\"; then echo \"🔐 Cryptographic operation detected\"; echo \"Algorithm: $(echo \"$1\" | grep -oE \"(rsa|ecdsa|ed25519|aes|chacha20)\")\" | head -1; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 28. Container Security Scanner
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"docker run\"; then if echo \"$1\" | grep -q \"--privileged\"; then echo \"⚠️ SECURITY: Privileged container detected\"; fi; if ! echo \"$1\" | grep -q \"--user\"; then echo \"⚠️ SECURITY: Container running as root\"; fi; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 29. SQL Injection Pattern Detector
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'CONTENT=$(jq -r \".tool_input.new_string // .tool_input.content // \\\"\\\"\" | grep -v \"null\"); if echo \"$CONTENT\" | grep -qE \"(SELECT|INSERT|UPDATE|DELETE).*\\+.*['\\\"]\" 2>/dev/null; then echo \"🚨 SECURITY: Potential SQL injection pattern detected\"; echo \"Use parameterized queries!\"; exit 2; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 30. Suspicious Network Patterns
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -qE \"(nc.*-e|bash.*tcp|python.*socket|perl.*socket)\"; then echo \"🚨 SECURITY: Potential reverse shell pattern detected\"; echo \"Command: $1\"; exit 2; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 31. Certificate Validation Monitor
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -qE \"(curl.*-k|wget.*--no-check-certificate)\"; then echo \"⚠️ SECURITY: TLS certificate validation disabled\"; echo \"This makes the connection vulnerable to MITM attacks\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 32. Binary Execution Monitor
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'BINARY=$(echo \"$1\" | awk \"{print \\$1}\"); if [ -f \"$BINARY\" ] && file \"$BINARY\" | grep -q \"executable\"; then HASH=$(sha256sum \"$BINARY\" | cut -d\" \" -f1); echo \"🔍 SECURITY: Executing binary $BINARY (SHA256: ${HASH:0:16}...)\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 33. Data Exfiltration Detector
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -qE \"(curl.*-T|scp|rsync.*ssh|tar.*ssh)\"; then echo \"📤 SECURITY: Potential data transfer detected\"; echo \"Destination: $(echo \"$1\" | grep -oE \"[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\")\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 34. Process Injection Monitor
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -qE \"(gdb.*attach|ptrace|inject|/proc/[0-9]+/mem)\"; then echo \"💉 SECURITY: Potential process injection/debugging detected\"; echo \"Target: $(echo \"$1\" | grep -oE \"[0-9]+\" | head -1)\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 35. Compliance Evidence Collector
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'SESSION_ID=$(jq -r \".session_id\"); TOOL=$(jq -r \".tool_name\"); TIMESTAMP=$(date -u +\"%Y-%m-%d %H:%M:%S UTC\"); echo \"{\\\"timestamp\\\":\\\"$TIMESTAMP\\\",\\\"session\\\":\\\"$SESSION_ID\\\",\\\"tool\\\":\\\"$TOOL\\\",\\\"user\\\":\\\"$(whoami)\\\",\\\"host\\\":\\\"$(hostname)\\\"}\" >> ~/.claude/compliance.jsonl'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Advanced Hook Patterns and Best Practices
+### *Level Up Your Hook Game* 🎮
+
+Now that you understand the basics, let's talk about some ninja-level hook techniques. Think of these as advanced cooking methods - once you master them, you can create some truly spectacular automation!
+
+### 1. Conditional Logic in Hooks
+### *The "Smart Decision Maker" Pattern* 🧠
+
+**Simple explanation**: Like having a hook that can actually think about the situation and react differently. This one checks what day it is and what command you're running, then gives different advice accordingly.
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'CMD=$(jq -r \".tool_input.command\"); if [ \"$(date +%u)\" -gt 5 ]; then echo \"🏖️ Weekend detected - are you sure about working?\"; fi; if echo \"$CMD\" | grep -q \"rm\"; then echo \"🗑️ Deletion command - double check!\"; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**The clever bit**: This hook checks two things:
+1. **Is it the weekend?** (`date +%u` gives day of week, >5 means Saturday/Sunday)
+2. **Are you deleting something?** (looks for `rm` in the command)
+
+Then it gives you different warnings based on what it finds. It's like having a hook with personality!
+
+### 2. Environment-Specific Hooks
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ \"$ENVIRONMENT\" = \"production\" ]; then echo \"🚨 PRODUCTION environment detected!\"; echo \"Extra caution required.\"; sleep 2; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 3. Hook Chaining and Dependencies
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"🔍 Pre-edit validation...\" && ~/.claude/scripts/validate-file.sh'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'echo \"✨ Post-edit formatting...\" && ~/.claude/scripts/format-file.sh'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 4. Dynamic Hook Configuration
+```bash
+# ~/.claude/scripts/dynamic-hook.sh
+#!/bin/bash
+CONFIG_FILE="$HOME/.claude/dynamic-settings.json"
+
+# Load environment-specific settings
+case "$ENVIRONMENT" in
+  "production")
+    cp "$HOME/.claude/hooks/production.json" "$CONFIG_FILE"
+    ;;
+  "staging")
+    cp "$HOME/.claude/hooks/staging.json" "$CONFIG_FILE"
+    ;;
+  *)
+    cp "$HOME/.claude/hooks/development.json" "$CONFIG_FILE"
+    ;;
+esac
+```
+
+### 5. Hook Performance Monitoring
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo $(($(date +%s%3N))) > /tmp/claude_hook_start_$$"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'START=$(cat /tmp/claude_hook_start_$$ 2>/dev/null || echo 0); END=$(date +%s%3N); DURATION=$((END - START)); echo \"Hook execution: ${DURATION}ms\" >> ~/.claude/hook-performance.log; rm -f /tmp/claude_hook_start_$$'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Hook Security and Best Practices
+### *Don't Shoot Yourself in the Foot* 🔫🦶
+
+Remember: hooks run with **your full user permissions**. This is like giving someone the keys to your house - it's incredibly powerful, but you want to make sure they're trustworthy and well-behaved!
+
+### Security Considerations
+
+**1. Principle of Least Privilege**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ \"$(id -u)\" = \"0\" ]; then echo \"⚠️ Running as root - hooks have full system access\"; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**2. Input Validation and Sanitization**
+### *The "Trust But Verify" Rule* ✅
+
+**Simple explanation**: Like a bouncer at a club who checks everyone's ID, even if they look familiar. Your hooks should always validate the data they receive before doing anything with it.
+
+```bash
+# Always validate hook inputs
+#!/bin/bash
+INPUT=$(jq -r '.tool_input.command' 2>/dev/null)
+if [ $? -ne 0 ] || [ -z "$INPUT" ]; then
+  echo "Invalid hook input" >&2
+  exit 1
+fi
+
+# Sanitize for shell injection
+SAFE_INPUT=$(printf '%q' "$INPUT")
+```
+
+**Why this matters**: Without validation, a malicious or corrupted JSON input could trick your hook into running dangerous commands. The `printf '%q'` part is like putting the input in a safe container where it can't escape and cause trouble.
+
+**3. Error Handling and Logging**
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'set -euo pipefail; { your-hook-command; } 2>&1 | tee -a ~/.claude/hook-errors.log'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Performance Best Practices
+
+**1. Timeout Protection**
+```bash
+#!/bin/bash
+timeout 5s your-long-running-command || {
+  echo "Hook timed out after 5 seconds" >&2
+  exit 1
+}
+```
+
+**2. Asynchronous Execution for Non-Critical Hooks**
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'nohup ~/.claude/scripts/background-task.sh &'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**3. Selective Hook Activation**
+```bash
+#!/bin/bash
+# Only run expensive hooks during business hours
+HOUR=$(date +%H)
+if [ "$HOUR" -ge 9 ] && [ "$HOUR" -le 17 ]; then
+  ./expensive-hook-script.sh
+fi
+```
+
+---
+
+## Troubleshooting Hooks
+### *When Your Robot Assistants Go Rogue* 🤖💥
+
+Even the best hooks sometimes misbehave. Here's how to figure out what went wrong and fix it - think of this as your hook debugging toolkit!
+
+### Common Issues and Solutions
+
+**1. Hook Not Executing**
+```bash
+# Debug: Check if settings file is valid JSON
+jq . ~/.claude/settings.json
+
+# Check hook matcher patterns
+echo "Testing matcher: Bash against: $(jq -r '.tool_name')"
+```
+
+**2. Permission Errors**
+```bash
+# Make hook scripts executable
+chmod +x ~/.claude/scripts/*.sh
+
+# Check file ownership
+ls -la ~/.claude/settings.json
+```
+
+**3. Exit Code Behavior - The Hook's Way of Talking**
+Think of exit codes like traffic lights for your hooks:
+
+- **Exit code `0`** = 🟢 **Green light**: "Everything's good, keep going!"
+- **Exit code `2`** = 🔴 **Red light**: "STOP! I'm blocking this command because it's dangerous!"
+- **Other exit codes** = 🟡 **Yellow light**: "Something weird happened, but I'll let you continue with a warning"
+
+This is how hooks communicate back to Claude Code about what happened.
+
+**4. JSON Parsing Errors**
+```bash
+# Robust JSON parsing in hooks
+#!/bin/bash
+TOOL_NAME=$(echo "$1" | jq -r '.tool_name // "unknown"' 2>/dev/null)
+if [ "$TOOL_NAME" = "null" ] || [ -z "$TOOL_NAME" ]; then
+  echo "Failed to parse hook input" >&2
+  exit 1
+fi
+```
+
+### Hook Testing Framework
+
+Create a testing setup for your hooks:
+
+```bash
+#!/bin/bash
+# ~/.claude/scripts/test-hooks.sh
+
+# Test hook with mock data
+MOCK_DATA='{
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "echo Hello World",
+    "description": "Test command"
+  },
+  "session_id": "test-session"
+}'
+
+echo "Testing hooks with mock data..."
+echo "$MOCK_DATA" | ~/.claude/scripts/your-hook.sh
+```
+
+---
+
+## Integration with Development Workflows
+
+### Git Integration
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"git commit\"; then echo \"📝 Commit hooks:\"; echo \"✓ Linting: $(npm run lint --silent 2>&1 | grep -c error || echo 0) errors\"; echo \"✓ Tests: $(npm test --silent 2>&1 | grep -c failed || echo 0) failures\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### CI/CD Pipeline Integration
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if echo \"$1\" | grep -q \"git push\"; then echo \"🚀 Triggering CI/CD pipeline...\"; curl -X POST \"$CI_WEBHOOK_URL\" -H \"Authorization: token $CI_TOKEN\" --data \"{\\\"ref\\\": \\\"$(git branch --show-current)\\\"}\" 2>/dev/null && echo \"✅ Pipeline triggered\"; fi' -- $(jq -r '.tool_input.command')"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Monitoring and Alerting Integration
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'if [ \"$?\" -ne 0 ]; then curl -X POST \"$SLACK_WEBHOOK\" --data \"{\\\"text\\\": \\\"❌ Claude Code operation failed: $(jq -r .tool_name)\\\"}\" 2>/dev/null; fi'"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+## Real-World Hook Implementations
+
+### Example: Complete Development Environment Setup
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/pre-command.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/post-edit.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/notify.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/scripts/session-summary.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Supporting Scripts:**
+
+```bash
+# ~/.claude/scripts/pre-command.sh
+#!/bin/bash
+set -euo pipefail
+
+# Load environment
+source ~/.claude/scripts/common.sh
+
+# Log command
+log_command "$(jq -r '.tool_input.command')"
+
+# Security checks
+check_dangerous_commands "$(jq -r '.tool_input.command')"
+
+# Environment validation
+validate_environment
+```
+
+```bash
+# ~/.claude/scripts/post-edit.sh
+#!/bin/bash
+set -euo pipefail
+
+FILE=$(jq -r '.tool_input.file_path // ""')
+if [ -n "$FILE" ] && [ -f "$FILE" ]; then
+  # Auto-format
+  format_file "$FILE"
+  
+  # Security scan
+  scan_for_secrets "$FILE"
+  
+  # Update documentation
+  update_docs_if_needed "$FILE"
+fi
+```
+
+```bash
+# ~/.claude/scripts/session-summary.sh
+#!/bin/bash
+set -euo pipefail
+
+echo "📊 Claude Code Session Summary"
+echo "Duration: $(($(date +%s) - ${SESSION_START:-$(date +%s)})) seconds"
+echo "Commands executed: $(wc -l < ~/.claude/session.log)"
+echo "Files modified: $(grep -c "Edit\|Write" ~/.claude/session.log)"
+echo "Security alerts: $(grep -c "SECURITY" ~/.claude/security.log)"
+```
+
+---
+
+## Conclusion: Mastering Claude Code Hooks
+
+Hooks transform Claude Code from an assistant into a fully integrated development environment that adapts to your workflow. Key takeaways:
+
+1. **Start Simple**: Begin with basic logging hooks and gradually add complexity
+2. **Security First**: Always validate inputs and avoid privilege escalation
+3. **Performance Matters**: Keep hooks fast and use async execution for heavy operations
+4. **Test Thoroughly**: Create mock data to test your hooks before deployment
+5. **Document Everything**: Maintain clear documentation of your hook configurations
+
+**Remember**: Hooks execute with your full user permissions. Use them responsibly and always validate inputs to prevent security issues.
+
+> "With great hooks comes great responsibility." - Claude Code User Manual (probably)
+
+The combination of Claude Code's intelligence with your custom automation creates a development environment that's not just smart, but perfectly tailored to your needs and security requirements.
 
 ---
 
