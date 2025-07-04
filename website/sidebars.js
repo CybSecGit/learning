@@ -58,6 +58,7 @@ const sidebars = {
         'concepts/testing-like-you-mean-it',
         'concepts/mastering-claude-code',
         'concepts/claude-code-workshop',
+        'concepts/playwright-mcp-mastery',
         'concepts/modern-dependency-management',
       ],
     },
