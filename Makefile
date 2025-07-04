@@ -1,60 +1,61 @@
-# Web Scraping Course Makefile
+# Makefile for Development Skills Laboratory
 # Simplifies common development tasks
 
-.PHONY: help install install-dev test lint format clean docker-build docker-up docker-down docs
+.PHONY: help install test lint format security clean docker-build docker-up docker-down docker-logs docker-shell docker-clean docs-build docs-serve docs-clear docs-deploy
 
 # Default target
 help:
-	@echo "Web Scraping Course - Available Commands:"
-	@echo "  make install       - Install production dependencies"
-	@echo "  make install-dev   - Install all dependencies (including dev)"
-	@echo "  make test         - Run all tests"
-	@echo "  make lint         - Run linting checks"
-	@echo "  make format       - Format code with black"
-	@echo "  make clean        - Clean up temporary files"
-	@echo "  make docker-build - Build Docker image"
-	@echo "  make docker-up    - Start Docker services"
-	@echo "  make docker-down  - Stop Docker services"
-	@echo "  make docs         - Build documentation"
-	@echo "  make serve-docs   - Serve documentation locally"
+	@echo "Development Skills Laboratory - Available Commands:"
+	@echo "  make install       - Install Python dependencies using uv"
+	@echo "  make test          - Run all Python tests"
+	@echo "  make lint          - Run linting checks (ruff)"
+	@echo "  make format        - Format Python code (black, ruff)"
+	@echo "  make security      - Run security checks (bandit, safety)"
+	@echo "  make clean         - Clean up temporary files and caches"
+	@echo "  make docker-build  - Build Docker images for the project"
+	@echo "  make docker-up     - Start Docker services (database, etc.)"
+	@echo "  make docker-down   - Stop Docker services"
+	@echo "  make docker-logs   - View Docker service logs"
+	@echo "  make docker-shell  - Get a shell inside the main Docker container"
+	@echo "  make docker-clean  - Stop and remove all Docker containers and images"
+	@echo "  make docs-build    - Build the Docusaurus documentation site"
+	@echo "  make docs-serve    - Serve the Docusaurus documentation site locally"
+	@echo "  make docs-clear    - Clear Docusaurus build cache"
+	@echo "  make docs-deploy   - Deploy the Docusaurus site to GitHub Pages"
 
-# Install production dependencies
+# Install Python dependencies
 install:
-	pip install -r requirements.txt
-
-# Install all dependencies including development
-install-dev:
-	pip install -r requirements.txt -r requirements-dev.txt
+	@echo "Installing Python dependencies..."
+	uv venv
+	source .venv/bin/activate && uv pip install -r requirements.txt -r requirements-dev.txt
 	pre-commit install
 
-# Run tests
+# Run Python tests
 test:
-	pytest course/tests/ -v --cov=course --cov-report=html
+	@echo "Running Python tests..."
+	source .venv/bin/activate && pytest website/docs/ -v --cov=website/docs/ --cov-report=html
 
-# Run specific test
-test-one:
-	@read -p "Enter test name: " test_name; \
-	pytest course/tests/ -v -k $$test_name
-
-# Run linting
+# Run linting checks
 lint:
-	flake8 course/
-	mypy course/
-	black --check course/
-	isort --check-only course/
+	@echo "Running linting checks..."
+	source .venv/bin/activate && ruff check .
+	source .venv/bin/activate && mypy .
 
-# Format code
+# Format Python code
 format:
-	black course/
-	isort course/
+	@echo "Formatting Python code..."
+	source .venv/bin/activate && black .
+	source .venv/bin/activate && ruff format .
 
-# Security check
+# Run security checks
 security:
-	bandit -r course/
-	safety check
+	@echo "Running security checks..."
+	source .venv/bin/activate && bandit -r .
+	source .venv/bin/activate && safety check
 
-# Clean temporary files
+# Clean temporary files and caches
 clean:
+	@echo "Cleaning temporary files and caches..."
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
 	find . -type f -name "*.pyo" -delete
@@ -65,118 +66,48 @@ clean:
 	rm -rf htmlcov/
 	rm -rf dist/
 	rm -rf build/
+	rm -rf .venv/
+	cd website && npm run clear
 
 # Docker commands
 docker-build:
-	docker build -t webscraping-course .
+	@echo "Building Docker images..."
+	docker build -t learning-platform .
 
 docker-up:
+	@echo "Starting Docker services..."
 	docker-compose up -d
 
 docker-down:
+	@echo "Stopping Docker services..."
 	docker-compose down
 
 docker-logs:
-	docker-compose logs -f course
+	@echo "Viewing Docker service logs..."
+	docker-compose logs -f
 
 docker-shell:
-	docker-compose exec course bash
+	@echo "Getting a shell inside the main Docker container..."
+	docker-compose exec learning bash
 
 docker-clean:
-	docker-compose down -v
-	docker rmi webscraping-course
+	@echo "Stopping and removing all Docker containers and images..."
+	docker-compose down -v --rmi all
+	docker rmi learning-platform || true
 
-# Documentation
-docs:
-	cd website && npm run build
+# Docusaurus documentation commands
+docs-build:
+	@echo "Building Docusaurus documentation site..."
+	cd website && npm install && npm run build
 
-serve-docs:
-	cd website && npm start
+docs-serve:
+	@echo "Serving Docusaurus documentation site locally..."
+	cd website && npm install && npm start
 
-# Course exercises
-run-exercise:
-	@echo "Available exercises:"
-	@ls -1 course/exercises/*.py | sed 's/course\/exercises\//  - /'
-	@read -p "Enter exercise name (without .py): " exercise; \
-	python course/exercises/$$exercise.py
+docs-clear:
+	@echo "Clearing Docusaurus build cache..."
+	cd website && npm run clear
 
-# Database operations
-db-init:
-	docker-compose exec postgres psql -U scraper -d scraping_db -f /docker-entrypoint-initdb.d/init.sql
-
-db-shell:
-	docker-compose exec postgres psql -U scraper -d scraping_db
-
-# Development server
-dev:
-	@echo "Starting development environment..."
-	docker-compose up -d postgres redis
-	python -m ipython
-
-# Jupyter notebook
-notebook:
-	jupyter notebook --notebook-dir=course/
-
-# Check Python version
-check-python:
-	@python --version
-	@pip --version
-
-# Initialize project
-init: install-dev
-	@echo "Setting up git hooks..."
-	pre-commit install
-	@echo "Creating necessary directories..."
-	mkdir -p workspace data logs output
-	@echo "Project initialized!"
-
-# Run specific Python file
-run:
-	@read -p "Enter Python file path: " filepath; \
-	python $$filepath
-
-# Update dependencies
-update-deps:
-	pip-compile requirements.in -o requirements.txt
-	pip-compile requirements-dev.in -o requirements-dev.txt
-
-# Create new exercise
-new-exercise:
-	@read -p "Enter exercise name: " name; \
-	cp course/exercises/template.py course/exercises/$$name.py; \
-	echo "Created course/exercises/$$name.py"
-
-# Run performance profiling
-profile:
-	@read -p "Enter script to profile: " script; \
-	python -m cProfile -s cumulative $$script
-
-# Generate coverage report
-coverage:
-	pytest course/tests/ --cov=course --cov-report=html
-	@echo "Coverage report generated in htmlcov/index.html"
-
-# Watch for changes and run tests
-watch:
-	@echo "Watching for changes..."
-	@while true; do \
-		inotifywait -e modify -r course/; \
-		clear; \
-		make test; \
-	done
-
-# Backup course data
-backup:
-	@timestamp=$$(date +%Y%m%d_%H%M%S); \
-	tar -czf backup_$$timestamp.tar.gz course/ data/ logs/; \
-	echo "Backup created: backup_$$timestamp.tar.gz"
-
-# Quick start for new students
-quickstart: docker-build docker-up
-	@echo "====================================="
-	@echo "Web Scraping Course is ready!"
-	@echo "====================================="
-	@echo "Access Jupyter at: http://localhost:8889"
-	@echo "Enter course shell: make docker-shell"
-	@echo "View logs: make docker-logs"
-	@echo "====================================="
+docs-deploy:
+	@echo "Deploying Docusaurus site to GitHub Pages..."
+	cd website && npm install && npm run deploy

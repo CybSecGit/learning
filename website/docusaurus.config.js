@@ -82,7 +82,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Course',
+            title: 'Learning',
             items: [
               {
                 label: '🚀 Getting Started',
@@ -92,33 +92,29 @@ const config = {
                 label: '🐛 Debugging Journey',
                 to: '/debugging-journey',
               },
-              // TODO: Add when content exists
-              // {
-              //   label: '🧪 Exercises',
-              //   to: '/exercises',
-              // },
+              {
+                label: '🧪 Exercises',
+                to: '/exercises/claude-code-exercises',
+              },
             ],
           },
           {
-            title: 'Resources',
+            title: 'Concepts',
             items: [
-              // TODO: Add when content exists
-              // {
-              //   label: '⚙️ Setup Guide',
-              //   to: '/setup',
-              // },
-              // {
-              //   label: '🧪 Testing Guide',
-              //   to: '/testing',
-              // },
-              // {
-              //   label: '🏗️ Project Structure',
-              //   to: '/project-structure',
-              // },
               {
-                label: '🐳 Containerization',
-                to: '/chapters/chapter-00-containerization',
+                label: '🐍 Python Concepts',
+                to: '/concepts/python-concepts',
               },
+              {
+                label: '🐹 Go Concepts',
+                to: '/concepts/golang-concepts',
+              },
+              {
+                label: '🦕 TypeScript/Deno Concepts',
+                to: '/concepts/typescript-deno-concepts',
+              },
+            ],
+          },
             ],
           },
           {

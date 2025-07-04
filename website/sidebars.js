@@ -60,6 +60,8 @@ const sidebars = {
         'concepts/claude-code-workshop',
         'concepts/playwright-mcp-mastery',
         'concepts/modern-dependency-management',
+        'concepts/claude-code-orchestration',
+        'concepts/mastering-gemini-cli',
       ],
     },
     {
@@ -85,7 +87,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '🎯 Learning Plans',
+      label: '📚 Learning Plans',
       items: [
         {
           type: 'doc',
@@ -135,21 +137,9 @@ const sidebars = {
       label: '🔧 Resources',
       items: [
         'debugging-journey',
-        {
-          type: 'doc',
-          id: 'resources/docker-quick-start',
-          label: '🐳 Docker Quick Start',
-        },
-        {
-          type: 'doc',
-          id: 'resources/security-note',
-          label: '🔒 Security Guidelines',
-        },
-        {
-          type: 'doc',
-          id: 'resources/contributing',
-          label: '🤝 Contributing Guide',
-        },
+        'resources/docker-quick-start',
+        'resources/security-note',
+        'resources/contributing',
       ],
     },
   ],
