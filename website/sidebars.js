@@ -19,139 +19,64 @@ const sidebars = {
       id: 'intro',
       label: '🏠 Wiki Overview',
     },
+    
+    // Core Development Concepts
+    'concepts/containerization',
+    'concepts/python-project-setup',
+    'concepts/failure-driven-development',
+    'concepts/testing-like-you-mean-it',
+    
+    // AI Development Tools
+    'concepts/mastering-claude-code',
+    'concepts/claude-code-workshop', 
+    'concepts/mastering-gemini-cli',
+    'concepts/playwright-mcp-mastery',
+    
+    // Frontend Development
+    'frontend/gui-implementation-patterns',
+    'frontend/webassembly-the-fast-lane',
+    'frontend/websockets-realtime-communication',
+    'frontend/simple-vs-modern-web',
+    
+    // Backend Development
+    'backend/modern-web-scraping',
+    'backend/database-architecture',
+    'backend/privacy-first-llm-architecture',
+    'backend/pattern-based-ai-automation',
+    'backend/model-context-protocol-mcp-architecture',
+    'concepts/modern-dependency-management',
+    
+    // Security
+    'security/user-agents-and-stealth',
+    'security/docker-first-production-security',
+    
+    // Programming Languages
+    'concepts/python-concepts',
+    'concepts/golang-concepts',
+    'concepts/typescript-deno-concepts',
+    
+    // Learning Plans
     {
-      type: 'category',
-      label: '🎨 Frontend Development',
-      items: [
-        'frontend/webassembly-the-fast-lane',
-        'frontend/websockets-realtime-communication',
-        'frontend/simple-vs-modern-web',
-        'frontend/gui-implementation-patterns',
-      ],
+      type: 'doc',
+      id: 'learning-plans/index',
+      label: '🎯 Learning Plans Overview',
     },
-    {
-      type: 'category',
-      label: '⚙️ Backend Development',
-      items: [
-        'backend/modern-web-scraping',
-        'backend/database-architecture',
-        'backend/privacy-first-llm-architecture',
-        'backend/pattern-based-ai-automation',
-        'backend/model-context-protocol-mcp-architecture',
-      ],
-    },
-    {
-      type: 'category',
-      label: '🔒 Security',
-      items: [
-        'security/user-agents-and-stealth',
-        'security/docker-first-production-security',
-      ],
-    },
-    {
-      type: 'category',
-      label: '💡 Core Concepts',
-      items: [
-        'concepts/containerization',
-        'concepts/python-project-setup',
-        'concepts/failure-driven-development',
-        'concepts/testing-like-you-mean-it',
-        'concepts/mastering-claude-code',
-        'concepts/claude-code-workshop',
-        'concepts/playwright-mcp-mastery',
-        'concepts/modern-dependency-management',
-      ],
-    },
-    {
-      type: 'category',
-      label: '🧪 Exercises',
-      items: [
-        {
-          type: 'doc',
-          id: 'exercises/claude-code-exercises',
-          label: 'Claude Code Exercises',
-        },
-        {
-          type: 'doc',
-          id: 'exercises/language-exercises',
-          label: 'Language-Specific Exercises',
-        },
-        {
-          type: 'doc',
-          id: 'exercises/debugging-exercise',
-          label: 'Debugging Challenge',
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: '🎯 Learning Plans',
-      items: [
-        {
-          type: 'doc',
-          id: 'learning-plans/learning-plans-overview',
-          label: '📚 Overview',
-        },
-        {
-          type: 'doc',
-          id: 'learning-plans/plan-1-threat-intelligence',
-          label: '🕵️ Plan 1: Threat Intelligence',
-        },
-        {
-          type: 'doc',
-          id: 'learning-plans/plan-2-static-analysis',
-          label: '🔍 Plan 2: Static Analysis',
-        },
-        {
-          type: 'doc',
-          id: 'learning-plans/plan-3-api-security',
-          label: '🛡️ Plan 3: API Security',
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: '📖 Learning Concepts',
-      items: [
-        {
-          type: 'doc',
-          id: 'concepts/python-concepts',
-          label: '🐍 Python Concepts',
-        },
-        {
-          type: 'doc',
-          id: 'concepts/golang-concepts',
-          label: '🐹 Go Concepts',
-        },
-        {
-          type: 'doc',
-          id: 'concepts/typescript-deno-concepts',
-          label: '🦕 TypeScript/Deno Concepts',
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: '🔧 Resources',
-      items: [
-        'debugging-journey',
-        {
-          type: 'doc',
-          id: 'resources/docker-quick-start',
-          label: '🐳 Docker Quick Start',
-        },
-        {
-          type: 'doc',
-          id: 'resources/security-note',
-          label: '🔒 Security Guidelines',
-        },
-        {
-          type: 'doc',
-          id: 'resources/contributing',
-          label: '🤝 Contributing Guide',
-        },
-      ],
-    },
+    'learning-plans/plan-1-threat-intelligence',
+    'learning-plans/plan-2-static-analysis',
+    'learning-plans/plan-3-api-security',
+    
+    // Hands-on Exercises
+    'exercises/claude-code-exercises',
+    'exercises/language-exercises',
+    'exercises/debugging-exercise',
+    
+    // Debugging & Troubleshooting
+    'debugging-journey',
+    
+    // Resources & Guides
+    'resources/docker-quick-start',
+    'resources/security-note',
+    'resources/contributing',
   ],
 };
 

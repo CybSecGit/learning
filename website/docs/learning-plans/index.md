@@ -1,5 +1,5 @@
 ---
-id: learning-plans-overview
+id: index
 title: Learning Plans Overview
 sidebar_label: 📚 Overview
 description: Overview of comprehensive learning plans that combine programming skills with security concepts
