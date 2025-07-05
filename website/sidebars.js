@@ -49,6 +49,7 @@ const sidebars = {
     // Security
     'security/user-agents-and-stealth',
     'security/docker-first-production-security',
+    'security/github-graphql-security',
     
     // Programming Languages
     'concepts/python-concepts',
@@ -69,6 +70,7 @@ const sidebars = {
     'exercises/claude-code-exercises',
     'exercises/language-exercises',
     'exercises/debugging-exercise',
+    'exercises/github-graphql-security-exercises',
     
     // Debugging & Troubleshooting
     'debugging-journey',
