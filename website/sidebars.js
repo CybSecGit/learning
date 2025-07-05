@@ -14,71 +14,144 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   courseSidebar: [
+    // Getting Started
     {
-      type: 'doc',
-      id: 'intro',
-      label: '🏠 Wiki Overview',
+      type: 'category',
+      label: '🚀 Getting Started',
+      collapsed: false,
+      items: [
+        'intro',
+        'resources/docker-quick-start',
+        'concepts/python-project-setup',
+        'concepts/containerization',
+      ],
     },
     
     // Core Development Concepts
-    'concepts/containerization',
-    'concepts/python-project-setup',
-    'concepts/failure-driven-development',
-    'concepts/testing-like-you-mean-it',
-    
-    // AI Development Tools
-    'concepts/mastering-claude-code',
-    'concepts/claude-code-workshop', 
-    'concepts/mastering-gemini-cli',
-    'concepts/playwright-mcp-mastery',
-    
-    // Frontend Development
-    'frontend/gui-implementation-patterns',
-    'frontend/webassembly-the-fast-lane',
-    'frontend/websockets-realtime-communication',
-    'frontend/simple-vs-modern-web',
-    
-    // Backend Development
-    'backend/modern-web-scraping',
-    'backend/database-architecture',
-    'backend/privacy-first-llm-architecture',
-    'backend/pattern-based-ai-automation',
-    'backend/model-context-protocol-mcp-architecture',
-    'concepts/modern-dependency-management',
-    
-    // Security
-    'security/user-agents-and-stealth',
-    'security/docker-first-production-security',
-    'security/github-graphql-security',
-    
-    // Programming Languages
-    'concepts/python-concepts',
-    'concepts/golang-concepts',
-    'concepts/typescript-deno-concepts',
-    
-    // Learning Plans
     {
-      type: 'doc',
-      id: 'learning-plans/index',
-      label: '🎯 Learning Plans Overview',
+      type: 'category',
+      label: '📚 Core Concepts',
+      collapsed: true,
+      items: [
+        'concepts/failure-driven-development',
+        'concepts/testing-like-you-mean-it',
+        'concepts/modern-dependency-management',
+        'debugging-journey',
+      ],
     },
-    'learning-plans/plan-1-threat-intelligence',
-    'learning-plans/plan-2-static-analysis',
-    'learning-plans/plan-3-api-security',
     
-    // Hands-on Exercises
-    'exercises/claude-code-exercises',
-    'exercises/language-exercises',
-    'exercises/debugging-exercise',
-    'exercises/github-graphql-security-exercises',
+    // Development Tools & AI
+    {
+      type: 'category',
+      label: '🤖 Development Tools',
+      collapsed: true,
+      items: [
+        'concepts/mastering-claude-code',
+        'concepts/claude-code-workshop',
+        'concepts/mastering-gemini-cli',
+        'concepts/playwright-mcp-mastery',
+      ],
+    },
     
-    // Debugging & Troubleshooting
-    'debugging-journey',
+    // Technical Topics (with subcategories)
+    {
+      type: 'category',
+      label: '💻 Technical Topics',
+      collapsed: true,
+      items: [
+        // Frontend
+        {
+          type: 'category',
+          label: '🎨 Frontend Development',
+          collapsed: true,
+          items: [
+            'frontend/gui-implementation-patterns',
+            'frontend/webassembly-the-fast-lane',
+            'frontend/websockets-realtime-communication',
+            'frontend/simple-vs-modern-web',
+          ],
+        },
+        // Backend
+        {
+          type: 'category',
+          label: '⚙️ Backend Development',
+          collapsed: true,
+          items: [
+            'backend/modern-web-scraping',
+            'backend/database-architecture',
+            'backend/privacy-first-llm-architecture',
+            'backend/pattern-based-ai-automation',
+            'backend/model-context-protocol-mcp-architecture',
+          ],
+        },
+        // Security
+        {
+          type: 'category',
+          label: '🔒 Security',
+          collapsed: true,
+          items: [
+            'security/docker-first-production-security',
+            'security/github-graphql-security',
+            'security/user-agents-and-stealth',
+            'resources/security-note',
+          ],
+        },
+        // Languages
+        {
+          type: 'category',
+          label: '📝 Programming Languages',
+          collapsed: true,
+          items: [
+            'concepts/python-concepts',
+            'concepts/golang-concepts',
+            'concepts/typescript-deno-concepts',
+          ],
+        },
+      ],
+    },
     
-    // Resources & Guides
-    'resources/docker-quick-start',
-    'resources/security-note',
-    'resources/contributing',
+    // Learning & Practice
+    {
+      type: 'category',
+      label: '🎯 Learning & Practice',
+      collapsed: true,
+      items: [
+        // Learning Plans
+        {
+          type: 'category',
+          label: '📋 Learning Plans',
+          collapsed: true,
+          items: [
+            'learning-plans/index',
+            'learning-plans/plan-1-threat-intelligence',
+            'learning-plans/plan-2-static-analysis',
+            'learning-plans/plan-3-api-security',
+          ],
+        },
+        // Exercises
+        {
+          type: 'category',
+          label: '🏋️ Hands-on Exercises',
+          collapsed: true,
+          items: [
+            'exercises/claude-code-exercises',
+            'exercises/github-graphql-security-exercises',
+            'exercises/language-exercises',
+            'exercises/debugging-exercise',
+          ],
+        },
+      ],
+    },
+    
+    // Resources
+    {
+      type: 'category',
+      label: '📖 Resources',
+      collapsed: true,
+      items: [
+        'resources/contributing',
+      ],
+    },
   ],
 };
 
