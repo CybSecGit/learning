@@ -48,6 +48,7 @@ const sidebars = {
       items: [
         'concepts/mastering-claude-code',
         'concepts/claude-code-workshop',
+        'concepts/vibe-coding',
         'concepts/mastering-gemini-cli',
         'concepts/playwright-mcp-mastery',
       ],
