@@ -21,9 +21,6 @@ const sidebars = {
       collapsed: false,
       items: [
         'intro',
-        'resources/docker-quick-start',
-        'concepts/python-project-setup',
-        'concepts/containerization',
       ],
     },
     
@@ -36,6 +33,8 @@ const sidebars = {
         'concepts/failure-driven-development',
         'concepts/testing-like-you-mean-it',
         'concepts/modern-dependency-management',
+        'resources/docker-quick-start',
+        'concepts/containerization',
         'debugging-journey',
       ],
     },
@@ -104,6 +103,7 @@ const sidebars = {
           collapsed: true,
           items: [
             'concepts/python-concepts',
+            'concepts/python-project-setup',
             'concepts/golang-concepts',
             'concepts/typescript-deno-concepts',
           ],
