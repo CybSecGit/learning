@@ -68,12 +68,24 @@ Think of these as "choose your own adventure" books, but instead of fighting dra
   - **Duration**: 6-8 weeks (4-5 hours/week)
   - **Prerequisites**: Completion of Plan 1 or equivalent Go experience
 
+- **[Plan 3: API Security Testing & Automation](./plan-3-api-security)**
+  - For when you want to secure and automate API security testing
+  - **Skills Learned**: API security testing, OAuth flows, OWASP API Top 10, automation
+  - **Duration**: 4-6 weeks (3-4 hours/week)
+  - **Prerequisites**: Basic HTTP knowledge, programming experience
+
+- **[Plan 4: AWS CDK TypeScript Mastery](./plan-4-aws-cdk-typescript)**
+  - From CloudFormation veteran to CDK wizard with TypeScript
+  - **Skills Learned**: TypeScript, CDK constructs, event-driven architecture, enterprise patterns
+  - **Duration**: 7-8 weeks intensive learning
+  - **Prerequisites**: CloudFormation proficiency, AWS knowledge, basic programming
+
 ### 🚀 Future Learning Plans
 
-- **Plan 3: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
-- **Plan 4: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
-- **Plan 5: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
-- **Plan 6: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
+- **Plan 5: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
+- **Plan 6: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
+- **Plan 7: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
+- **Plan 8: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
 
 ## Getting Started
 

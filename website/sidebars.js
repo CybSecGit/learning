@@ -126,6 +126,7 @@ const sidebars = {
             'learning-plans/plan-1-threat-intelligence',
             'learning-plans/plan-2-static-analysis',
             'learning-plans/plan-3-api-security',
+            'learning-plans/plan-4-aws-cdk-typescript',
           ],
         },
         // Exercises
