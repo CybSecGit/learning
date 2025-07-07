@@ -80,12 +80,18 @@ Think of these as "choose your own adventure" books, but instead of fighting dra
   - **Duration**: 7-8 weeks intensive learning
   - **Prerequisites**: CloudFormation proficiency, AWS knowledge, basic programming
 
+- **[Plan 5: Makefile Mastery & Next.js Development](./plan-5-makefile-nextjs)**
+  - From command line chaos to full-stack orchestration
+  - **Skills Learned**: Makefile automation, Next.js 15+, TypeScript, testing, CI/CD
+  - **Duration**: 6-7 weeks of deliberate practice
+  - **Prerequisites**: Basic command line, JavaScript knowledge
+
 ### 🚀 Future Learning Plans
 
-- **Plan 5: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
-- **Plan 6: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
-- **Plan 7: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
-- **Plan 8: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
+- **Plan 6: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
+- **Plan 7: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
+- **Plan 8: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
+- **Plan 9: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
 
 ## Getting Started
 

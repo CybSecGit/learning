@@ -147,6 +147,27 @@ const sidebars = {
                 'learning-plans/cdk-typescript/troubleshooting',
               ],
             },
+            {
+              type: 'category',
+              label: 'Plan 5: Makefile & Next.js',
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'learning-plans/plan-5-makefile-nextjs',
+              },
+              items: [
+                'learning-plans/makefile-nextjs/setup',
+                'learning-plans/makefile-nextjs/module-1',
+                'learning-plans/makefile-nextjs/module-2',
+                'learning-plans/makefile-nextjs/module-3',
+                'learning-plans/makefile-nextjs/module-4',
+                'learning-plans/makefile-nextjs/module-5',
+                'learning-plans/makefile-nextjs/module-6',
+                'learning-plans/makefile-nextjs/module-7',
+                'learning-plans/makefile-nextjs/debugging-guide',
+                'learning-plans/makefile-nextjs/troubleshooting',
+              ],
+            },
           ],
         },
         // Exercises
