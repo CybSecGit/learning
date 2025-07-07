@@ -126,7 +126,27 @@ const sidebars = {
             'learning-plans/plan-1-threat-intelligence',
             'learning-plans/plan-2-static-analysis',
             'learning-plans/plan-3-api-security',
-            'learning-plans/plan-4-aws-cdk-typescript',
+            {
+              type: 'category',
+              label: 'Plan 4',
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'learning-plans/plan-4-aws-cdk-typescript',
+              },
+              items: [
+                'learning-plans/cdk-typescript/setup',
+                'learning-plans/cdk-typescript/module-1',
+                'learning-plans/cdk-typescript/module-2',
+                'learning-plans/cdk-typescript/module-3',
+                'learning-plans/cdk-typescript/module-4',
+                'learning-plans/cdk-typescript/module-5',
+                'learning-plans/cdk-typescript/module-6',
+                'learning-plans/cdk-typescript/module-7',
+                'learning-plans/cdk-typescript/debugging-guide',
+                'learning-plans/cdk-typescript/troubleshooting',
+              ],
+            },
           ],
         },
         // Exercises
