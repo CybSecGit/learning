@@ -128,7 +128,7 @@ const sidebars = {
             'learning-plans/plan-3-api-security',
             {
               type: 'category',
-              label: 'Plan 4',
+              label: 'Plan 4: CDK TypeScript',
               collapsed: true,
               link: {
                 type: 'doc',
