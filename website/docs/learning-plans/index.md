@@ -86,12 +86,18 @@ Think of these as "choose your own adventure" books, but instead of fighting dra
   - **Duration**: 6-7 weeks of deliberate practice
   - **Prerequisites**: Basic command line, JavaScript knowledge
 
+- **[Plan 6: Go TUI Development with Charm](./plan-6-go-tui-charm)**
+  - From command line peasant to terminal UI aristocrat
+  - **Skills Learned**: Bubble Tea framework, Lip Gloss styling, reactive TUI patterns, SSH apps
+  - **Duration**: 6-8 weeks of terminal enlightenment
+  - **Prerequisites**: Basic Go knowledge, terminal comfort, hatred for boring CLIs
+
 ### 🚀 Future Learning Plans
 
-- **Plan 6: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
-- **Plan 7: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
-- **Plan 8: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
-- **Plan 9: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
+- **Plan 7: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
+- **Plan 8: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
+- **Plan 9: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
+- **Plan 10: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
 
 ## Getting Started
 
