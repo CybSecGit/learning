@@ -48,6 +48,7 @@ const sidebars = {
         'concepts/mastering-claude-code',
         'concepts/claude-code-workshop',
         'concepts/vibe-coding',
+        'concepts/pre-commit-hooks-claude-code',
         'concepts/mastering-gemini-cli',
         'concepts/playwright-mcp-mastery',
       ],
@@ -185,6 +186,8 @@ const sidebars = {
                 'learning-plans/go-tui-charm/debugging-guide',
               ],
             },
+            'learning-plans/plan-7-cve-database',
+            'learning-plans/plan-8-gpt2-anomaly-detection',
           ],
         },
         // Exercises
