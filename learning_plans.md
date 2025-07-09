@@ -62,12 +62,18 @@ Think of these as "choose your own adventure" books, but instead of fighting dra
   - **Duration**: 6-8 weeks (4-5 hours/week)
   - **Prerequisites**: Completion of Plan 1 or equivalent Go experience
 
+- [Plan 3: Python + GPT-2 for Log Anomaly Detection](./learning_plan_gpt2_anomaly_detection.md)
+  - For when you want to teach AI to be your paranoid security analyst
+  - **Skills Learned**: GPT-2 fine-tuning, log analysis, real-time anomaly detection, ML deployment, reinforcement learning
+  - **Duration**: 6 weeks (4-5 hours/week)
+  - **Prerequisites**: Python proficiency, basic ML understanding, familiarity with log files
+
 ### 🚀 Future Learning Plans
 
-- **Plan 3: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
-- **Plan 4: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
-- **Plan 5: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
-- **Plan 6: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
+- **Plan 4: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
+- **Plan 5: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
+- **Plan 6: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
+- **Plan 7: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
 
 ---
 
