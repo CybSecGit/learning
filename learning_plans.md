@@ -68,12 +68,18 @@ Think of these as "choose your own adventure" books, but instead of fighting dra
   - **Duration**: 6 weeks (4-5 hours/week)
   - **Prerequisites**: Python proficiency, basic ML understanding, familiarity with log files
 
+- [Plan 4: Python + Personal CVE Database Builder](./learning_plan_cve_database.md)
+  - For when you want to become the vulnerability whisperer with your own CVE empire
+  - **Skills Learned**: Database design, API integration, data aggregation, enrichment pipelines, creative vulnerability analysis
+  - **Duration**: 8-10 weeks (5-6 hours/week)
+  - **Prerequisites**: Python proficiency, SQL basics, API understanding, ~50GB storage space
+
 ### 🚀 Future Learning Plans
 
-- **Plan 4: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
-- **Plan 5: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
-- **Plan 6: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
-- **Plan 7: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
+- **Plan 5: Python + Vulnerability Scanner Builder** - Learn Python while building a network security scanner
+- **Plan 6: TypeScript + Browser Security Extension** - Frontend skills meets security tooling
+- **Plan 7: Rust + Cryptographic Tool Suite** - Memory safety meets cryptography
+- **Plan 8: C + Reverse Engineering Lab** - Low-level programming meets malware analysis (defensive only!)
 
 ---
 
