@@ -110,7 +110,8 @@
 
 /* Inline code styling - minimal */
 .markdown code:not(.prism-code code) {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
   border-radius: 3px;
   color: var(--skills-accent-code);
   padding: 0.2rem 0.4rem;
@@ -174,7 +175,8 @@
 }
 
 .menu__link:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
 }
 
 .menu__link--active {
@@ -195,7 +197,8 @@
 }
 
 .markdown table th {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
   font-weight: 600;
   text-align: left;
   padding: 0.75rem;
@@ -221,7 +224,8 @@
 }
 
 .button:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
 }
 
 .button--primary {
@@ -314,7 +318,8 @@
 }
 
 .sidebar-category-primary > .menu__list-item-collapsible > .menu__link:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
 }
 
 /* Secondary categories - even more minimal */
@@ -327,7 +332,8 @@
 }
 
 .sidebar-category-secondary > .menu__list-item-collapsible > .menu__link:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
 }
 
 /* Subcategory styling - completely minimal */
@@ -339,7 +345,8 @@
 }
 
 .sidebar-subcategory > .menu__list-item-collapsible > .menu__link:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
 }
 
 /* Development tools section - minimal */
@@ -349,7 +356,8 @@
 }
 
 .development-tools-section > .menu__list-item-collapsible > .menu__link:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
 }
 
 /* Technical domain section - minimal */
@@ -359,7 +367,8 @@
 }
 
 .technical-domain-section > .menu__list-item-collapsible > .menu__link:hover {
-  background: var(--ifm-color-emphasis-100);
+  background: var(--ifm-color-primary);
+  color: white;
 }
 
 /* Enhanced menu item active states */
@@ -407,5 +416,6 @@
 }
 
 [data-theme='dark'] .menu__link:hover {
-  background: var(--ifm-color-emphasis-200);
+  background: var(--ifm-color-primary);
+  color: white;
 }
