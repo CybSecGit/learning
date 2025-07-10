@@ -14,69 +14,99 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   courseSidebar: [
-    // Getting Started
+    // Quick Start Section (always visible)
     {
       type: 'category',
       label: '🚀 Getting Started',
       collapsed: false,
+      className: 'sidebar-category-primary',
       items: [
         'intro',
+        'getting-started/setup',
+        'getting-started/preview',
+        'reference/docker-quick-start',
       ],
     },
-    
-    // Core Development Concepts
+
+    // Core Learning Foundation
     {
-      type: 'category',
+      type: 'category', 
       label: '📚 Core Concepts',
-      collapsed: true,
+      collapsed: false,
+      className: 'sidebar-category-primary',
       items: [
-        'concepts/failure-driven-development',
-        'concepts/testing-like-you-mean-it',
-        'concepts/modern-dependency-management',
-        'resources/docker-quick-start',
-        'concepts/containerization',
-        'debugging-journey',
-      ],
-    },
-    
-    // Development Tools & AI
-    {
-      type: 'category',
-      label: '🤖 Development Tools',
-      collapsed: true,
-      items: [
-        'concepts/mastering-claude-code',
-        'concepts/claude-code-workshop',
-        'concepts/vibe-coding',
-        'concepts/pre-commit-hooks-claude-code',
-        'concepts/mastering-gemini-cli',
-        'concepts/playwright-mcp-mastery',
-      ],
-    },
-    
-    // Technical Topics (with subcategories)
-    {
-      type: 'category',
-      label: '💻 Technical Topics',
-      collapsed: true,
-      items: [
-        // Frontend
+        // Fundamental Development Practices
         {
           type: 'category',
-          label: '🎨 Frontend Development',
-          collapsed: true,
+          label: '🎯 Development Fundamentals',
+          className: 'sidebar-subcategory',
           items: [
-            'frontend/gui-implementation-patterns',
-            'frontend/webassembly-the-fast-lane',
-            'frontend/websockets-realtime-communication',
-            'frontend/simple-vs-modern-web',
-          ],
+            'core-concepts/failure-driven-development',
+            'core-concepts/testing-like-you-mean-it', 
+            'core-concepts/containerization',
+            'concepts/modern-dependency-management',
+          ]
         },
-        // Backend
+        // Programming Languages
+        {
+          type: 'category',
+          label: '📝 Programming Languages',
+          className: 'sidebar-subcategory',
+          items: [
+            'concepts/python-concepts',
+            'concepts/python-project-setup',
+            'concepts/golang-concepts',
+            'concepts/typescript-deno-concepts',
+          ]
+        }
+      ]
+    },
+
+    // Development Tools & Workflow
+    {
+      type: 'category',
+      label: '🔧 Development Tools',
+      collapsed: true,
+      className: 'sidebar-category-secondary',
+      items: [
+        // AI-Assisted Development
+        {
+          type: 'category',
+          label: '🤖 AI Development Tools',
+          className: 'development-tools-section',
+          items: [
+            'development-tools/mastering-claude-code',
+            'development-tools/claude-code-workshop',
+            'development-tools/claude-code-orchestration',
+            'concepts/vibe-coding',
+            'development-tools/mastering-gemini-cli',
+          ]
+        },
+        // Testing & Quality Tools
+        {
+          type: 'category',
+          label: '🧪 Testing & Quality',
+          className: 'development-tools-section',
+          items: [
+            'development-tools/playwright-mcp-mastery',
+            'concepts/pre-commit-hooks-claude-code',
+          ]
+        }
+      ]
+    },
+
+    // Technical Domain Knowledge
+    {
+      type: 'category',
+      label: '🏗️ Technical Domains', 
+      collapsed: true,
+      className: 'sidebar-category-secondary',
+      items: [
+        // Backend Development
         {
           type: 'category',
           label: '⚙️ Backend Development',
-          collapsed: true,
+          className: 'technical-domain-section',
           items: [
             'backend/modern-web-scraping',
             'backend/database-architecture',
@@ -86,49 +116,55 @@ const sidebars = {
             'backend/model-context-protocol-mcp-architecture',
           ],
         },
+        // Frontend Development
+        {
+          type: 'category', 
+          label: '🎨 Frontend Development',
+          className: 'technical-domain-section',
+          items: [
+            'frontend/gui-implementation-patterns',
+            'frontend/webassembly-the-fast-lane',
+            'frontend/websockets-realtime-communication',
+            'frontend/simple-vs-modern-web',
+          ],
+        },
         // Security
         {
           type: 'category',
-          label: '🔒 Security',
-          collapsed: true,
+          label: '🔒 Security & Production',
+          className: 'technical-domain-section',
           items: [
             'security/docker-first-production-security',
             'security/github-graphql-security',
             'security/user-agents-and-stealth',
-            'resources/security-note',
+            'reference/security-note',
           ],
-        },
-        // Languages
-        {
-          type: 'category',
-          label: '📝 Programming Languages',
-          collapsed: true,
-          items: [
-            'concepts/python-concepts',
-            'concepts/python-project-setup',
-            'concepts/golang-concepts',
-            'concepts/typescript-deno-concepts',
-          ],
-        },
-      ],
+        }
+      ]
     },
-    
-    // Learning & Practice
+
+    // Structured Learning Paths
     {
       type: 'category',
-      label: '🎯 Learning & Practice',
+      label: '🎯 Learning Paths',
       collapsed: true,
+      className: 'sidebar-category-secondary',
       items: [
-        // Learning Plans
+        'learning-plans/index',
         {
           type: 'category',
-          label: '📋 Learning Plans',
-          collapsed: true,
+          label: '📋 Security Learning Paths',
           items: [
-            'learning-plans/index',
             'learning-plans/plan-1-threat-intelligence',
             'learning-plans/plan-2-static-analysis',
             'learning-plans/plan-3-api-security',
+            'learning-plans/plan-7-cve-database',
+          ]
+        },
+        {
+          type: 'category',
+          label: '🚀 Development Learning Paths',
+          items: [
             {
               type: 'category',
               label: 'Plan 4: CDK TypeScript',
@@ -186,31 +222,67 @@ const sidebars = {
                 'learning-plans/go-tui-charm/debugging-guide',
               ],
             },
-            'learning-plans/plan-7-cve-database',
-            'learning-plans/plan-8-gpt2-anomaly-detection',
-          ],
+          ]
         },
-        // Exercises
         {
           type: 'category',
-          label: '🏋️ Hands-on Exercises',
-          collapsed: true,
+          label: '🧠 AI/ML Learning Paths',
+          items: [
+            'learning-plans/plan-8-gpt2-anomaly-detection',
+          ]
+        }
+      ]
+    },
+
+    // Hands-on Practice & Tutorials
+    {
+      type: 'category',
+      label: '🛠️ Hands-on Practice',
+      collapsed: true,
+      className: 'sidebar-category-secondary',
+      items: [
+        // Tutorial-style Content
+        {
+          type: 'category',
+          label: '📝 Step-by-Step Tutorials',
+          items: [
+            'hands-on-practice/web-scraping-tutorial',
+            'hands-on-practice/user-agents-stealth-tutorial',
+            'hands-on-practice/database-architecture-tutorial',
+            'hands-on-practice/gui-patterns-tutorial',
+            'hands-on-practice/github-graphql-security-tutorial',
+          ]
+        },
+        // Exercises & Challenges
+        {
+          type: 'category',
+          label: '🏋️ Exercises & Challenges',
           items: [
             'exercises/claude-code-exercises',
             'exercises/github-graphql-security-exercises',
             'exercises/language-exercises',
             'exercises/debugging-exercise',
-          ],
+          ]
         },
-      ],
+        // Debugging & Troubleshooting
+        {
+          type: 'category',
+          label: '🐛 Debugging & Troubleshooting',
+          items: [
+            'hands-on-practice/debugging-journey',
+          ]
+        }
+      ]
     },
-    
-    // Resources
+
+    // Quick Reference & Resources
     {
       type: 'category',
-      label: '📖 Resources',
+      label: '📖 Reference',
       collapsed: true,
+      className: 'sidebar-category-secondary',
       items: [
+        'design-showcase',
         'resources/contributing',
       ],
     },

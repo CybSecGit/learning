@@ -32,7 +32,7 @@ export default {
         },
         "blog": false,
         "theme": {
-          "customCss": "/home/cybsec/code/learning/website/src/css/custom.css"
+          "customCss": "/home/cybsec/code/learning/website/src/css/enhanced-custom.css"
         }
       }
     ]
@@ -318,11 +318,19 @@ export default {
       "respectPrefersColorScheme": true
     },
     "docs": {
-      "versionPersistence": "localStorage",
       "sidebar": {
-        "hideable": false,
-        "autoCollapseCategories": false
-      }
+        "hideable": true,
+        "autoCollapseCategories": true
+      },
+      "versionPersistence": "localStorage"
+    },
+    "algolia": false,
+    "announcementBar": {
+      "id": "development_lab",
+      "content": "🚀 Development Skills Laboratory - Learn through hands-on practice and systematic debugging",
+      "backgroundColor": "#7c3aed",
+      "textColor": "#ffffff",
+      "isCloseable": true
     },
     "blog": {
       "sidebar": {

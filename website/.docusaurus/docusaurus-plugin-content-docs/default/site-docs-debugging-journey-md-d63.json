@@ -20,11 +20,11 @@
   },
   "sidebar": "courseSidebar",
   "previous": {
-    "title": "🦕 TypeScript/Deno Concepts",
-    "permalink": "/learning/concepts/typescript-deno-concepts"
+    "title": "Containerization",
+    "permalink": "/learning/concepts/containerization"
   },
   "next": {
-    "title": "Docker Quick Start",
-    "permalink": "/learning/resources/docker-quick-start"
+    "title": "Mastering Claude Code",
+    "permalink": "/learning/concepts/mastering-claude-code"
   }
 }

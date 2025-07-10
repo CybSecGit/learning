@@ -19,7 +19,7 @@
   },
   "sidebar": "courseSidebar",
   "next": {
-    "title": "Chapter 0: Containerization",
-    "permalink": "/learning/chapters/chapter-00-containerization"
+    "title": "Failure-Driven Development",
+    "permalink": "/learning/concepts/failure-driven-development"
   }
 }

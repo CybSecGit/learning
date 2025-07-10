@@ -1,140 +1,144 @@
 {
-  "/learning/-7c6": {
+  "/learning/-3e3": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/learning/-4c9": {
+  "/learning/-e79": {
     "__comp": "a7bd4aaa",
     "__props": "61d951c9"
   },
-  "/learning/-56c": {
+  "/learning/-f36": {
     "__comp": "a94703ab"
   },
-  "/learning/chapters/chapter-00-containerization-ec6": {
+  "/learning/backend/database-architecture-e3d": {
     "__comp": "17896441",
-    "content": "bc379315"
+    "content": "a4566e52"
   },
-  "/learning/chapters/chapter-01-setup-ea5": {
+  "/learning/backend/model-context-protocol-mcp-architecture-c33": {
     "__comp": "17896441",
-    "content": "c5064aa9"
+    "content": "847330d5"
   },
-  "/learning/chapters/chapter-02-preview-2cd": {
+  "/learning/backend/modern-web-scraping-265": {
     "__comp": "17896441",
-    "content": "df833ce3"
+    "content": "fbb47a93"
   },
-  "/learning/chapters/chapter-02-web-scraping-fb8": {
+  "/learning/backend/pattern-based-ai-automation-818": {
     "__comp": "17896441",
-    "content": "9578f424"
+    "content": "159da4a4"
   },
-  "/learning/chapters/chapter-03-failure-driven-development-a25": {
+  "/learning/backend/privacy-first-llm-architecture-a82": {
     "__comp": "17896441",
-    "content": "574efd74"
+    "content": "093ad1b5"
   },
-  "/learning/chapters/chapter-04-testing-like-you-mean-it-e61": {
+  "/learning/concepts/claude-code-examples/go/CLAUDE-839": {
     "__comp": "17896441",
-    "content": "c36f7b06"
+    "content": "aa5f76f0"
   },
-  "/learning/chapters/chapter-05-user-agents-and-stealth-709": {
+  "/learning/concepts/claude-code-examples/imports/development-config-bab": {
     "__comp": "17896441",
-    "content": "2368feea"
+    "content": "710ee7b2"
   },
-  "/learning/chapters/chapter-06-mastering-claude-code-99d": {
+  "/learning/concepts/claude-code-examples/imports/error-handling-c66": {
     "__comp": "17896441",
-    "content": "46586084"
+    "content": "cd976379"
   },
-  "/learning/chapters/chapter-06.5-claude-code-workshop-532": {
+  "/learning/concepts/claude-code-examples/imports/git-workflow-751": {
     "__comp": "17896441",
-    "content": "cc406811"
+    "content": "af4d6c9b"
   },
-  "/learning/chapters/chapter-07-database-architecture-faf": {
+  "/learning/concepts/claude-code-examples/imports/production-config-76f": {
     "__comp": "17896441",
-    "content": "c23d1068"
+    "content": "ee750c79"
   },
-  "/learning/chapters/chapter-08-gui-implementation-patterns-ba8": {
+  "/learning/concepts/claude-code-examples/imports/security-guidelines-00b": {
     "__comp": "17896441",
-    "content": "16030caa"
+    "content": "d10b9959"
   },
-  "/learning/chapters/chapter-08.5-simple-vs-modern-web-4af": {
+  "/learning/concepts/claude-code-examples/imports/style-guide-9a5": {
     "__comp": "17896441",
-    "content": "4cf30db2"
+    "content": "b2632982"
   },
-  "/learning/chapters/chapter-09-privacy-first-llm-architecture-3a9": {
+  "/learning/concepts/claude-code-examples/imports/testing-conventions-d89": {
     "__comp": "17896441",
-    "content": "09a4583e"
+    "content": "88065509"
   },
-  "/learning/chapters/chapter-10-modern-dependency-management-da7": {
+  "/learning/concepts/claude-code-examples/python/CLAUDE-157": {
     "__comp": "17896441",
-    "content": "bc0e73f2"
+    "content": "2c094577"
   },
-  "/learning/chapters/chapter-11-pattern-based-ai-automation-625": {
+  "/learning/concepts/claude-code-examples/typescript/CLAUDE-890": {
     "__comp": "17896441",
-    "content": "bb1b57dc"
+    "content": "301c3664"
   },
-  "/learning/chapters/chapter-12-model-context-protocol-mcp-architecture-488": {
+  "/learning/concepts/claude-code-workshop-e21": {
     "__comp": "17896441",
-    "content": "162a6493"
+    "content": "15424ff2"
   },
-  "/learning/chapters/chapter-13-docker-first-production-security-549": {
+  "/learning/concepts/containerization-218": {
     "__comp": "17896441",
-    "content": "d4ea6669"
+    "content": "4ea79a76"
   },
-  "/learning/chapters/claude-code-examples/go/CLAUDE-32d": {
+  "/learning/concepts/failure-driven-development-d16": {
     "__comp": "17896441",
-    "content": "a3660ffe"
-  },
-  "/learning/chapters/claude-code-examples/imports/development-config-53a": {
-    "__comp": "17896441",
-    "content": "5bcc543f"
-  },
-  "/learning/chapters/claude-code-examples/imports/error-handling-eb9": {
-    "__comp": "17896441",
-    "content": "b6904c54"
-  },
-  "/learning/chapters/claude-code-examples/imports/git-workflow-22b": {
-    "__comp": "17896441",
-    "content": "84f28596"
-  },
-  "/learning/chapters/claude-code-examples/imports/production-config-86c": {
-    "__comp": "17896441",
-    "content": "78e2fd1c"
-  },
-  "/learning/chapters/claude-code-examples/imports/security-guidelines-3dc": {
-    "__comp": "17896441",
-    "content": "463014e7"
-  },
-  "/learning/chapters/claude-code-examples/imports/style-guide-eb6": {
-    "__comp": "17896441",
-    "content": "a0b40ae8"
-  },
-  "/learning/chapters/claude-code-examples/imports/testing-conventions-1a7": {
-    "__comp": "17896441",
-    "content": "3e85295f"
-  },
-  "/learning/chapters/claude-code-examples/python/CLAUDE-c34": {
-    "__comp": "17896441",
-    "content": "e4d658fb"
-  },
-  "/learning/chapters/claude-code-examples/typescript/CLAUDE-73f": {
-    "__comp": "17896441",
-    "content": "6aa3da99"
+    "content": "7d30c131"
   },
   "/learning/concepts/golang-concepts-b7c": {
     "__comp": "17896441",
     "content": "070f4087"
   },
+  "/learning/concepts/mastering-claude-code-498": {
+    "__comp": "17896441",
+    "content": "1058ee04"
+  },
+  "/learning/concepts/mastering-gemini-cli-f78": {
+    "__comp": "17896441",
+    "content": "b5a7fcb6"
+  },
+  "/learning/concepts/modern-dependency-management-abb": {
+    "__comp": "17896441",
+    "content": "3632e50d"
+  },
+  "/learning/concepts/playwright-mcp-mastery-c17": {
+    "__comp": "17896441",
+    "content": "54592379"
+  },
+  "/learning/concepts/postgres-sqlalchemy-alembic-trinity-a3d": {
+    "__comp": "17896441",
+    "content": "2cdaf8a3"
+  },
+  "/learning/concepts/pre-commit-hooks-claude-code-72d": {
+    "__comp": "17896441",
+    "content": "fcfc1ebd"
+  },
   "/learning/concepts/python-concepts-6ee": {
     "__comp": "17896441",
     "content": "f91e419c"
+  },
+  "/learning/concepts/python-project-setup-3f7": {
+    "__comp": "17896441",
+    "content": "3aaf59de"
+  },
+  "/learning/concepts/testing-like-you-mean-it-b16": {
+    "__comp": "17896441",
+    "content": "80848eaf"
   },
   "/learning/concepts/typescript-deno-concepts-256": {
     "__comp": "17896441",
     "content": "f6e6b5ae"
   },
+  "/learning/concepts/vibe-coding-da1": {
+    "__comp": "17896441",
+    "content": "856950bb"
+  },
   "/learning/debugging-journey-94d": {
     "__comp": "17896441",
     "content": "d638cc49"
+  },
+  "/learning/design-showcase-7de": {
+    "__comp": "17896441",
+    "content": "01695dbd"
   },
   "/learning/exercises/claude-code-exercises-dd2": {
     "__comp": "17896441",
@@ -144,9 +148,169 @@
     "__comp": "17896441",
     "content": "dd67767f"
   },
+  "/learning/exercises/github-graphql-security-exercises-a2e": {
+    "__comp": "17896441",
+    "content": "f915b325"
+  },
   "/learning/exercises/language-exercises-939": {
     "__comp": "17896441",
     "content": "42f32e13"
+  },
+  "/learning/frontend/gui-implementation-patterns-fed": {
+    "__comp": "17896441",
+    "content": "d5137df1"
+  },
+  "/learning/frontend/simple-vs-modern-web-138": {
+    "__comp": "17896441",
+    "content": "9b4e98eb"
+  },
+  "/learning/frontend/webassembly-the-fast-lane-060": {
+    "__comp": "17896441",
+    "content": "d7f681e3"
+  },
+  "/learning/frontend/websockets-realtime-communication-f8f": {
+    "__comp": "17896441",
+    "content": "34787a00"
+  },
+  "/learning/learning-plans/-cff": {
+    "__comp": "17896441",
+    "content": "b08dff75"
+  },
+  "/learning/learning-plans/cdk-typescript/debugging-guide-5d0": {
+    "__comp": "17896441",
+    "content": "55ecde7d"
+  },
+  "/learning/learning-plans/cdk-typescript/module-1-538": {
+    "__comp": "17896441",
+    "content": "2dd1c582"
+  },
+  "/learning/learning-plans/cdk-typescript/module-2-754": {
+    "__comp": "17896441",
+    "content": "328d9245"
+  },
+  "/learning/learning-plans/cdk-typescript/module-3-c8d": {
+    "__comp": "17896441",
+    "content": "123b1a24"
+  },
+  "/learning/learning-plans/cdk-typescript/module-4-4fa": {
+    "__comp": "17896441",
+    "content": "eb315f81"
+  },
+  "/learning/learning-plans/cdk-typescript/module-5-ba9": {
+    "__comp": "17896441",
+    "content": "60783cb7"
+  },
+  "/learning/learning-plans/cdk-typescript/module-6-7ec": {
+    "__comp": "17896441",
+    "content": "05eb8317"
+  },
+  "/learning/learning-plans/cdk-typescript/module-7-5a4": {
+    "__comp": "17896441",
+    "content": "262328cd"
+  },
+  "/learning/learning-plans/cdk-typescript/setup-1d0": {
+    "__comp": "17896441",
+    "content": "a5aa5fcd"
+  },
+  "/learning/learning-plans/cdk-typescript/troubleshooting-e17": {
+    "__comp": "17896441",
+    "content": "e5e566e6"
+  },
+  "/learning/learning-plans/go-tui-charm/debugging-guide-d7e": {
+    "__comp": "17896441",
+    "content": "2ebbd469"
+  },
+  "/learning/learning-plans/go-tui-charm/installation-70b": {
+    "__comp": "17896441",
+    "content": "5b396e2b"
+  },
+  "/learning/learning-plans/go-tui-charm/module-1-6c7": {
+    "__comp": "17896441",
+    "content": "6bc0a9e1"
+  },
+  "/learning/learning-plans/go-tui-charm/setup-7b9": {
+    "__comp": "17896441",
+    "content": "b6f52088"
+  },
+  "/learning/learning-plans/makefile-nextjs/debugging-guide-da1": {
+    "__comp": "17896441",
+    "content": "66e73142"
+  },
+  "/learning/learning-plans/makefile-nextjs/makefile-cool-tricks-345": {
+    "__comp": "17896441",
+    "content": "ace9711e"
+  },
+  "/learning/learning-plans/makefile-nextjs/module-1-9f3": {
+    "__comp": "17896441",
+    "content": "e02d6ee9"
+  },
+  "/learning/learning-plans/makefile-nextjs/module-2-e77": {
+    "__comp": "17896441",
+    "content": "770b5a83"
+  },
+  "/learning/learning-plans/makefile-nextjs/module-3-fec": {
+    "__comp": "17896441",
+    "content": "ded09097"
+  },
+  "/learning/learning-plans/makefile-nextjs/module-4-6ef": {
+    "__comp": "17896441",
+    "content": "5c461f6c"
+  },
+  "/learning/learning-plans/makefile-nextjs/module-5-9bd": {
+    "__comp": "17896441",
+    "content": "fc563940"
+  },
+  "/learning/learning-plans/makefile-nextjs/module-6-978": {
+    "__comp": "17896441",
+    "content": "9e06b633"
+  },
+  "/learning/learning-plans/makefile-nextjs/module-7-4d9": {
+    "__comp": "17896441",
+    "content": "151d857d"
+  },
+  "/learning/learning-plans/makefile-nextjs/nextjs-rendering-strategies-18d": {
+    "__comp": "17896441",
+    "content": "c9958bf0"
+  },
+  "/learning/learning-plans/makefile-nextjs/setup-5e3": {
+    "__comp": "17896441",
+    "content": "45544aea"
+  },
+  "/learning/learning-plans/makefile-nextjs/troubleshooting-48c": {
+    "__comp": "17896441",
+    "content": "de1e9699"
+  },
+  "/learning/learning-plans/plan-1-threat-intelligence-212": {
+    "__comp": "17896441",
+    "content": "ffebf6f0"
+  },
+  "/learning/learning-plans/plan-2-static-analysis-134": {
+    "__comp": "17896441",
+    "content": "5bf557a9"
+  },
+  "/learning/learning-plans/plan-3-api-security-cf2": {
+    "__comp": "17896441",
+    "content": "e36f48da"
+  },
+  "/learning/learning-plans/plan-4-aws-cdk-typescript-668": {
+    "__comp": "17896441",
+    "content": "c3393f51"
+  },
+  "/learning/learning-plans/plan-5-makefile-nextjs-0d9": {
+    "__comp": "17896441",
+    "content": "0912a33e"
+  },
+  "/learning/learning-plans/plan-6-go-tui-charm-cef": {
+    "__comp": "17896441",
+    "content": "71c1603d"
+  },
+  "/learning/learning-plans/plan-7-cve-database-0fc": {
+    "__comp": "17896441",
+    "content": "45051035"
+  },
+  "/learning/learning-plans/plan-8-gpt2-anomaly-detection-f35": {
+    "__comp": "17896441",
+    "content": "6209452d"
   },
   "/learning/resources/contributing-df5": {
     "__comp": "17896441",
@@ -159,6 +323,18 @@
   "/learning/resources/security-note-7b8": {
     "__comp": "17896441",
     "content": "dbbc6be0"
+  },
+  "/learning/security/docker-first-production-security-961": {
+    "__comp": "17896441",
+    "content": "30049339"
+  },
+  "/learning/security/github-graphql-security-de3": {
+    "__comp": "17896441",
+    "content": "9506d9f4"
+  },
+  "/learning/security/user-agents-and-stealth-528": {
+    "__comp": "17896441",
+    "content": "501f27c5"
   },
   "/learning/-b2d": {
     "__comp": "17896441",

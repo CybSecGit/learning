@@ -38,7 +38,7 @@ const config = {
         },
         blog: false, // Disable blog
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve('./src/css/enhanced-custom.css'),
         },
       }),
     ],
@@ -147,6 +147,20 @@ const config = {
         defaultMode: 'light',
         disableSwitch: false,
         respectPrefersColorScheme: true,
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
+      },
+      algolia: false, // Disable for now, can be added later
+      announcementBar: {
+        id: 'development_lab',
+        content: '🚀 Development Skills Laboratory - Learn through hands-on practice and systematic debugging',
+        backgroundColor: '#7c3aed',
+        textColor: '#ffffff',
+        isCloseable: true,
       },
     }),
 };

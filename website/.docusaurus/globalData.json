@@ -11,132 +11,118 @@
           "mainDocId": "intro",
           "docs": [
             {
-              "id": "chapters/chapter-00-containerization",
-              "path": "/learning/chapters/chapter-00-containerization",
+              "id": "backend/database-architecture",
+              "path": "/learning/backend/database-architecture",
               "sidebar": "courseSidebar"
             },
             {
-              "id": "chapters/chapter-01-setup",
-              "path": "/learning/chapters/chapter-01-setup",
+              "id": "backend/model-context-protocol-mcp-architecture",
+              "path": "/learning/backend/model-context-protocol-mcp-architecture",
               "sidebar": "courseSidebar"
             },
             {
-              "id": "chapters/chapter-02-preview",
-              "path": "/learning/chapters/chapter-02-preview"
-            },
-            {
-              "id": "chapters/chapter-02-web-scraping",
-              "path": "/learning/chapters/chapter-02-web-scraping",
+              "id": "backend/modern-web-scraping",
+              "path": "/learning/backend/modern-web-scraping",
               "sidebar": "courseSidebar"
             },
             {
-              "id": "chapters/chapter-03-failure-driven-development",
-              "path": "/learning/chapters/chapter-03-failure-driven-development",
+              "id": "backend/pattern-based-ai-automation",
+              "path": "/learning/backend/pattern-based-ai-automation",
               "sidebar": "courseSidebar"
             },
             {
-              "id": "chapters/chapter-04-testing-like-you-mean-it",
-              "path": "/learning/chapters/chapter-04-testing-like-you-mean-it",
+              "id": "backend/privacy-first-llm-architecture",
+              "path": "/learning/backend/privacy-first-llm-architecture",
               "sidebar": "courseSidebar"
             },
             {
-              "id": "chapters/chapter-05-user-agents-and-stealth",
-              "path": "/learning/chapters/chapter-05-user-agents-and-stealth",
+              "id": "concepts/claude-code-examples/go/CLAUDE",
+              "path": "/learning/concepts/claude-code-examples/go/CLAUDE"
+            },
+            {
+              "id": "concepts/claude-code-examples/imports/development-config",
+              "path": "/learning/concepts/claude-code-examples/imports/development-config"
+            },
+            {
+              "id": "concepts/claude-code-examples/imports/error-handling",
+              "path": "/learning/concepts/claude-code-examples/imports/error-handling"
+            },
+            {
+              "id": "concepts/claude-code-examples/imports/git-workflow",
+              "path": "/learning/concepts/claude-code-examples/imports/git-workflow"
+            },
+            {
+              "id": "concepts/claude-code-examples/imports/production-config",
+              "path": "/learning/concepts/claude-code-examples/imports/production-config"
+            },
+            {
+              "id": "concepts/claude-code-examples/imports/security-guidelines",
+              "path": "/learning/concepts/claude-code-examples/imports/security-guidelines"
+            },
+            {
+              "id": "concepts/claude-code-examples/imports/style-guide",
+              "path": "/learning/concepts/claude-code-examples/imports/style-guide"
+            },
+            {
+              "id": "concepts/claude-code-examples/imports/testing-conventions",
+              "path": "/learning/concepts/claude-code-examples/imports/testing-conventions"
+            },
+            {
+              "id": "concepts/claude-code-examples/python/CLAUDE",
+              "path": "/learning/concepts/claude-code-examples/python/CLAUDE"
+            },
+            {
+              "id": "concepts/claude-code-examples/typescript/CLAUDE",
+              "path": "/learning/concepts/claude-code-examples/typescript/CLAUDE"
+            },
+            {
+              "id": "concepts/claude-code-workshop",
+              "path": "/learning/concepts/claude-code-workshop",
               "sidebar": "courseSidebar"
             },
             {
-              "id": "chapters/chapter-06-mastering-claude-code",
-              "path": "/learning/chapters/chapter-06-mastering-claude-code",
+              "id": "concepts/containerization",
+              "path": "/learning/concepts/containerization",
               "sidebar": "courseSidebar"
             },
             {
-              "id": "chapters/chapter-06.5-claude-code-workshop",
-              "path": "/learning/chapters/chapter-06.5-claude-code-workshop",
+              "id": "concepts/failure-driven-development",
+              "path": "/learning/concepts/failure-driven-development",
               "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-07-database-architecture",
-              "path": "/learning/chapters/chapter-07-database-architecture",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-08-gui-implementation-patterns",
-              "path": "/learning/chapters/chapter-08-gui-implementation-patterns",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-08.5-simple-vs-modern-web",
-              "path": "/learning/chapters/chapter-08.5-simple-vs-modern-web",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-09-privacy-first-llm-architecture",
-              "path": "/learning/chapters/chapter-09-privacy-first-llm-architecture",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-10-modern-dependency-management",
-              "path": "/learning/chapters/chapter-10-modern-dependency-management",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-11-pattern-based-ai-automation",
-              "path": "/learning/chapters/chapter-11-pattern-based-ai-automation",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-12-model-context-protocol-mcp-architecture",
-              "path": "/learning/chapters/chapter-12-model-context-protocol-mcp-architecture",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/chapter-13-docker-first-production-security",
-              "path": "/learning/chapters/chapter-13-docker-first-production-security",
-              "sidebar": "courseSidebar"
-            },
-            {
-              "id": "chapters/claude-code-examples/go/CLAUDE",
-              "path": "/learning/chapters/claude-code-examples/go/CLAUDE"
-            },
-            {
-              "id": "chapters/claude-code-examples/imports/development-config",
-              "path": "/learning/chapters/claude-code-examples/imports/development-config"
-            },
-            {
-              "id": "chapters/claude-code-examples/imports/error-handling",
-              "path": "/learning/chapters/claude-code-examples/imports/error-handling"
-            },
-            {
-              "id": "chapters/claude-code-examples/imports/git-workflow",
-              "path": "/learning/chapters/claude-code-examples/imports/git-workflow"
-            },
-            {
-              "id": "chapters/claude-code-examples/imports/production-config",
-              "path": "/learning/chapters/claude-code-examples/imports/production-config"
-            },
-            {
-              "id": "chapters/claude-code-examples/imports/security-guidelines",
-              "path": "/learning/chapters/claude-code-examples/imports/security-guidelines"
-            },
-            {
-              "id": "chapters/claude-code-examples/imports/style-guide",
-              "path": "/learning/chapters/claude-code-examples/imports/style-guide"
-            },
-            {
-              "id": "chapters/claude-code-examples/imports/testing-conventions",
-              "path": "/learning/chapters/claude-code-examples/imports/testing-conventions"
-            },
-            {
-              "id": "chapters/claude-code-examples/python/CLAUDE",
-              "path": "/learning/chapters/claude-code-examples/python/CLAUDE"
-            },
-            {
-              "id": "chapters/claude-code-examples/typescript/CLAUDE",
-              "path": "/learning/chapters/claude-code-examples/typescript/CLAUDE"
             },
             {
               "id": "concepts/golang-concepts",
               "path": "/learning/concepts/golang-concepts",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/mastering-claude-code",
+              "path": "/learning/concepts/mastering-claude-code",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/mastering-gemini-cli",
+              "path": "/learning/concepts/mastering-gemini-cli",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/modern-dependency-management",
+              "path": "/learning/concepts/modern-dependency-management",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/playwright-mcp-mastery",
+              "path": "/learning/concepts/playwright-mcp-mastery",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/postgres-sqlalchemy-alembic-trinity",
+              "path": "/learning/concepts/postgres-sqlalchemy-alembic-trinity",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/pre-commit-hooks-claude-code",
+              "path": "/learning/concepts/pre-commit-hooks-claude-code",
               "sidebar": "courseSidebar"
             },
             {
@@ -145,13 +131,33 @@
               "sidebar": "courseSidebar"
             },
             {
+              "id": "concepts/python-project-setup",
+              "path": "/learning/concepts/python-project-setup",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "concepts/testing-like-you-mean-it",
+              "path": "/learning/concepts/testing-like-you-mean-it",
+              "sidebar": "courseSidebar"
+            },
+            {
               "id": "concepts/typescript-deno-concepts",
               "path": "/learning/concepts/typescript-deno-concepts",
               "sidebar": "courseSidebar"
             },
             {
+              "id": "concepts/vibe-coding",
+              "path": "/learning/concepts/vibe-coding",
+              "sidebar": "courseSidebar"
+            },
+            {
               "id": "debugging-journey",
               "path": "/learning/debugging-journey",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "design-showcase",
+              "path": "/learning/design-showcase",
               "sidebar": "courseSidebar"
             },
             {
@@ -165,13 +171,211 @@
               "sidebar": "courseSidebar"
             },
             {
+              "id": "exercises/github-graphql-security-exercises",
+              "path": "/learning/exercises/github-graphql-security-exercises",
+              "sidebar": "courseSidebar"
+            },
+            {
               "id": "exercises/language-exercises",
               "path": "/learning/exercises/language-exercises",
               "sidebar": "courseSidebar"
             },
             {
+              "id": "frontend/gui-implementation-patterns",
+              "path": "/learning/frontend/gui-implementation-patterns",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "frontend/simple-vs-modern-web",
+              "path": "/learning/frontend/simple-vs-modern-web",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "frontend/webassembly-the-fast-lane",
+              "path": "/learning/frontend/webassembly-the-fast-lane",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "frontend/websockets-realtime-communication",
+              "path": "/learning/frontend/websockets-realtime-communication",
+              "sidebar": "courseSidebar"
+            },
+            {
               "id": "intro",
               "path": "/learning/",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/debugging-guide",
+              "path": "/learning/learning-plans/cdk-typescript/debugging-guide",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/module-1",
+              "path": "/learning/learning-plans/cdk-typescript/module-1",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/module-2",
+              "path": "/learning/learning-plans/cdk-typescript/module-2",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/module-3",
+              "path": "/learning/learning-plans/cdk-typescript/module-3",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/module-4",
+              "path": "/learning/learning-plans/cdk-typescript/module-4",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/module-5",
+              "path": "/learning/learning-plans/cdk-typescript/module-5",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/module-6",
+              "path": "/learning/learning-plans/cdk-typescript/module-6",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/module-7",
+              "path": "/learning/learning-plans/cdk-typescript/module-7",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/setup",
+              "path": "/learning/learning-plans/cdk-typescript/setup",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/cdk-typescript/troubleshooting",
+              "path": "/learning/learning-plans/cdk-typescript/troubleshooting",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/go-tui-charm/debugging-guide",
+              "path": "/learning/learning-plans/go-tui-charm/debugging-guide",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/go-tui-charm/installation",
+              "path": "/learning/learning-plans/go-tui-charm/installation",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/go-tui-charm/module-1",
+              "path": "/learning/learning-plans/go-tui-charm/module-1",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/go-tui-charm/setup",
+              "path": "/learning/learning-plans/go-tui-charm/setup",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/index",
+              "path": "/learning/learning-plans/",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/debugging-guide",
+              "path": "/learning/learning-plans/makefile-nextjs/debugging-guide",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/makefile-cool-tricks",
+              "path": "/learning/learning-plans/makefile-nextjs/makefile-cool-tricks"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/module-1",
+              "path": "/learning/learning-plans/makefile-nextjs/module-1",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/module-2",
+              "path": "/learning/learning-plans/makefile-nextjs/module-2",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/module-3",
+              "path": "/learning/learning-plans/makefile-nextjs/module-3",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/module-4",
+              "path": "/learning/learning-plans/makefile-nextjs/module-4",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/module-5",
+              "path": "/learning/learning-plans/makefile-nextjs/module-5",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/module-6",
+              "path": "/learning/learning-plans/makefile-nextjs/module-6",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/module-7",
+              "path": "/learning/learning-plans/makefile-nextjs/module-7",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/nextjs-rendering-strategies",
+              "path": "/learning/learning-plans/makefile-nextjs/nextjs-rendering-strategies"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/setup",
+              "path": "/learning/learning-plans/makefile-nextjs/setup",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/makefile-nextjs/troubleshooting",
+              "path": "/learning/learning-plans/makefile-nextjs/troubleshooting",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-1-threat-intelligence",
+              "path": "/learning/learning-plans/plan-1-threat-intelligence",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-2-static-analysis",
+              "path": "/learning/learning-plans/plan-2-static-analysis",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-3-api-security",
+              "path": "/learning/learning-plans/plan-3-api-security",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-4-aws-cdk-typescript",
+              "path": "/learning/learning-plans/plan-4-aws-cdk-typescript",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-5-makefile-nextjs",
+              "path": "/learning/learning-plans/plan-5-makefile-nextjs",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-6-go-tui-charm",
+              "path": "/learning/learning-plans/plan-6-go-tui-charm",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-7-cve-database",
+              "path": "/learning/learning-plans/plan-7-cve-database",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "learning-plans/plan-8-gpt2-anomaly-detection",
+              "path": "/learning/learning-plans/plan-8-gpt2-anomaly-detection",
               "sidebar": "courseSidebar"
             },
             {
@@ -188,6 +392,21 @@
               "id": "resources/security-note",
               "path": "/learning/resources/security-note",
               "sidebar": "courseSidebar"
+            },
+            {
+              "id": "security/docker-first-production-security",
+              "path": "/learning/security/docker-first-production-security",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "security/github-graphql-security",
+              "path": "/learning/security/github-graphql-security",
+              "sidebar": "courseSidebar"
+            },
+            {
+              "id": "security/user-agents-and-stealth",
+              "path": "/learning/security/user-agents-and-stealth",
+              "sidebar": "courseSidebar"
             }
           ],
           "draftIds": [],
@@ -195,7 +414,7 @@
             "courseSidebar": {
               "link": {
                 "path": "/learning/",
-                "label": "🏠 Course Overview"
+                "label": "intro"
               }
             }
           }
