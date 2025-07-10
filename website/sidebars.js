@@ -153,7 +153,7 @@ const sidebars = {
         'learning-plans/index',
         {
           type: 'category',
-          label: '📋 Security Learning Paths',
+          label: '🔒 Security Learning Paths',
           items: [
             'learning-plans/plan-1-threat-intelligence',
             'learning-plans/plan-2-static-analysis',
@@ -167,7 +167,7 @@ const sidebars = {
           items: [
             {
               type: 'category',
-              label: 'Plan 4: CDK TypeScript',
+              label: 'AWS CDK with TypeScript',
               collapsed: true,
               link: {
                 type: 'doc',
@@ -188,7 +188,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Plan 5: Makefile & Next.js',
+              label: 'Makefile & Next.js Mastery',
               collapsed: true,
               link: {
                 type: 'doc',
@@ -209,7 +209,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Plan 6: Go TUI with Charm',
+              label: 'Go TUI with Charm Libraries',
               collapsed: true,
               link: {
                 type: 'doc',

@@ -4,8 +4,8 @@ const darkCodeTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Development Skills Laboratory',
-  tagline: 'Master software development through hands-on practice and systematic debugging',
+  title: 'Personal Wiki',
+  tagline: 'Development knowledge base with hands-on practice and systematic debugging',
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
@@ -50,27 +50,18 @@ const config = {
       // Social card
       image: 'img/social-card.jpg',
       navbar: {
-        title: 'Skills Lab',
+        title: 'Personal Wiki',
         logo: {
-          alt: 'Development Skills Laboratory Logo',
+          alt: 'Personal Development Wiki Logo',
           src: 'img/logo.svg',
           width: 32,
           height: 32,
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'courseSidebar',
+            type: 'search',
             position: 'left',
-            label: '📚 Course',
           },
-          // TODO: Add reference sidebar when content is ready
-          // {
-          //   type: 'docSidebar',
-          //   sidebarId: 'referenceSidebar',
-          //   position: 'left',
-          //   label: '📖 Reference',
-          // },
           {
             href: 'https://github.com/cybsecgit/learning',
             label: 'GitHub',
@@ -82,42 +73,36 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Course',
+            title: 'Quick Start',
             items: [
               {
                 label: '🚀 Getting Started',
-                to: '/intro',
+                to: '/getting-started',
               },
               {
-                label: '🐛 Debugging Journey',
-                to: '/debugging-journey',
+                label: '📚 Core Concepts',
+                to: '/core-concepts',
               },
-              // TODO: Add when content exists
-              // {
-              //   label: '🧪 Exercises',
-              //   to: '/exercises',
-              // },
+              {
+                label: '🛠️ Hands-on Practice',
+                to: '/hands-on-practice',
+              },
             ],
           },
           {
             title: 'Resources',
             items: [
-              // TODO: Add when content exists
-              // {
-              //   label: '⚙️ Setup Guide',
-              //   to: '/setup',
-              // },
-              // {
-              //   label: '🧪 Testing Guide',
-              //   to: '/testing',
-              // },
-              // {
-              //   label: '🏗️ Project Structure',
-              //   to: '/project-structure',
-              // },
               {
-                label: '🐳 Containerization',
-                to: '/chapters/chapter-00-containerization',
+                label: '🔧 Development Tools',
+                to: '/development-tools',
+              },
+              {
+                label: '🎯 Learning Paths',
+                to: '/learning-paths',
+              },
+              {
+                label: '📖 Reference',
+                to: '/reference',
               },
             ],
           },
