@@ -17,7 +17,7 @@ const sidebars = {
     // Quick Start Section (always visible)
     {
       type: 'category',
-      label: '🚀 Getting Started',
+      label: 'Getting Started',
       collapsed: false,
       className: 'sidebar-category-primary',
       items: [
@@ -30,14 +30,14 @@ const sidebars = {
     // Core Learning Foundation
     {
       type: 'category', 
-      label: '📚 Core Concepts',
+      label: 'Core Concepts',
       collapsed: false,
       className: 'sidebar-category-primary',
       items: [
         // Fundamental Development Practices
         {
           type: 'category',
-          label: '🎯 Development Fundamentals',
+          label: 'Development Fundamentals',
           className: 'sidebar-subcategory',
           items: [
             'core-concepts/failure-driven-development',
@@ -49,7 +49,7 @@ const sidebars = {
         // Programming Languages
         {
           type: 'category',
-          label: '📝 Programming Languages',
+          label: 'Programming Languages',
           className: 'sidebar-subcategory',
           items: [
             'concepts/python-concepts',
@@ -64,14 +64,14 @@ const sidebars = {
     // Development Tools & Workflow
     {
       type: 'category',
-      label: '🔧 Development Tools',
+      label: 'Development Tools',
       collapsed: true,
       className: 'sidebar-category-secondary',
       items: [
         // AI-Assisted Development
         {
           type: 'category',
-          label: '🤖 AI Development Tools',
+          label: 'AI Development Tools',
           className: 'development-tools-section',
           items: [
             'development-tools/mastering-claude-code',
@@ -84,7 +84,7 @@ const sidebars = {
         // Testing & Quality Tools
         {
           type: 'category',
-          label: '🧪 Testing & Quality',
+          label: 'Testing & Quality',
           className: 'development-tools-section',
           items: [
             'development-tools/playwright-mcp-mastery',
@@ -97,14 +97,14 @@ const sidebars = {
     // Technical Domain Knowledge
     {
       type: 'category',
-      label: '🏗️ Technical Domains', 
+      label: 'Technical Domains', 
       collapsed: true,
       className: 'sidebar-category-secondary',
       items: [
         // Backend Development
         {
           type: 'category',
-          label: '⚙️ Backend Development',
+          label: 'Backend Development',
           className: 'technical-domain-section',
           items: [
             'backend/database-architecture',
@@ -117,7 +117,7 @@ const sidebars = {
         // Frontend Development
         {
           type: 'category', 
-          label: '🎨 Frontend Development',
+          label: 'Frontend Development',
           className: 'technical-domain-section',
           items: [
             'frontend/gui-implementation-patterns',
@@ -129,7 +129,7 @@ const sidebars = {
         // Security
         {
           type: 'category',
-          label: '🔒 Security & Production',
+          label: 'Security & Production',
           className: 'technical-domain-section',
           items: [
             'security/modern-web-scraping',
@@ -145,14 +145,14 @@ const sidebars = {
     // Structured Learning Paths
     {
       type: 'category',
-      label: '🎯 Learning Paths',
+      label: 'Learning Paths',
       collapsed: true,
       className: 'sidebar-category-secondary',
       items: [
         'learning-plans/index',
         {
           type: 'category',
-          label: '🔒 Security Learning Paths',
+          label: 'Security Learning Paths',
           items: [
             'learning-plans/plan-1-threat-intelligence',
             'learning-plans/plan-2-static-analysis',
@@ -162,7 +162,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: '🚀 Development Learning Paths',
+          label: 'Development Learning Paths',
           items: [
             {
               type: 'category',
@@ -225,7 +225,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: '🧠 AI/ML Learning Paths',
+          label: 'AI/ML Learning Paths',
           items: [
             'learning-plans/plan-8-gpt2-anomaly-detection',
           ]
@@ -236,14 +236,14 @@ const sidebars = {
     // Hands-on Practice & Tutorials
     {
       type: 'category',
-      label: '🛠️ Hands-on Practice',
+      label: 'Hands-on Practice',
       collapsed: true,
       className: 'sidebar-category-secondary',
       items: [
         // Tutorial-style Content
         {
           type: 'category',
-          label: '📝 Step-by-Step Tutorials',
+          label: 'Step-by-Step Tutorials',
           items: [
             'hands-on-practice/web-scraping-tutorial',
             'hands-on-practice/user-agents-stealth-tutorial',
@@ -255,7 +255,7 @@ const sidebars = {
         // Exercises & Challenges
         {
           type: 'category',
-          label: '🏋️ Exercises & Challenges',
+          label: 'Exercises & Challenges',
           items: [
             'exercises/claude-code-exercises',
             'exercises/github-graphql-security-exercises',
@@ -266,7 +266,7 @@ const sidebars = {
         // Debugging & Troubleshooting
         {
           type: 'category',
-          label: '🐛 Debugging & Troubleshooting',
+          label: 'Debugging & Troubleshooting',
           items: [
             'hands-on-practice/debugging-journey',
           ]
@@ -277,7 +277,7 @@ const sidebars = {
     // Quick Reference & Resources
     {
       type: 'category',
-      label: '📖 Reference',
+      label: 'Reference',
       collapsed: true,
       className: 'sidebar-category-secondary',
       items: [
