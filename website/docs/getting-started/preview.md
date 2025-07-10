@@ -1,4 +1,4 @@
-# Chapter 2: Modern Web Scraping with rnet
+# Modern Web Scraping with rnet
 ## *The Art of Polite Digital Trespassing*
 
 *Coming Soon...*

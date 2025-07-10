@@ -1,4 +1,4 @@
-# Chapter 3: Failure-Driven Development
+# Failure-Driven Development
 ## *Or: How to Embrace the Chaos and Learn from Every Crash*
 
 > "I have not failed. I've just found 10,000 ways that won't work." - Thomas Edison

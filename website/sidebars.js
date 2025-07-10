@@ -24,7 +24,6 @@ const sidebars = {
         'intro',
         'getting-started/setup',
         'getting-started/preview',
-        'reference/docker-quick-start',
       ],
     },
 

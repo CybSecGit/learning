@@ -1,4 +1,4 @@
-# Chapter 1: Project Setup
+# Project Setup
 ## *The "Hello World" of Existential Dread*
 
 Welcome to the first chapter of our journey into the exciting world of... project setup. Yes, we're starting with the part everyone skips in tutorials. You're welcome.

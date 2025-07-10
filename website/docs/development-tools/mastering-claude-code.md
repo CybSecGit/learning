@@ -1,4 +1,4 @@
-# Chapter 6: Mastering Claude Code
+# Mastering Claude Code
 ## *Or: How to Turn an AI Assistant Into Your Best Coding Buddy*
 
 > "The best tool is the one you know how to use properly." - Ancient Developer Proverb (probably)

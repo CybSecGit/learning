@@ -1,4 +1,4 @@
-# Chapter 10: Playwright MCP Mastery - The Ultimate Frontend Testing Companion
+# Playwright MCP Mastery - The Ultimate Frontend Testing Companion
 ## *Or: How to Make Claude Code Test Everything You Build (And Things You Haven't Built Yet)*
 
 > "Manual testing is like flossing - everyone knows they should do it, but nobody actually does." - Every QA Engineer Ever

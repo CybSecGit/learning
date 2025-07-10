@@ -1,4 +1,4 @@
-# Chapter 12: GitHub GraphQL API Security Mastery
+# GitHub GraphQL API Security Mastery
 ## *Or: How to Query, Scan, and Secure Your Codebase at Scale*
 
 > "The API is the window to your data. Make sure it's bulletproof glass, not tissue paper." - Security Engineer's Mantra

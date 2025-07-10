@@ -1,4 +1,4 @@
-# Chapter 2: Modern Web Scraping with rnet
+# Modern Web Scraping with rnet
 ## *The Art of Polite Digital Conversation*
 
 Welcome to the heart of our project - building a web scraper that doesn't get you banned from the internet. We'll use Test-Driven Development (TDD) because writing tests first prevents us from building broken scrapers (and there are enough of those already).
