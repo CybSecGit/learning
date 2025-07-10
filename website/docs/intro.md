@@ -33,7 +33,7 @@ Personal knowledge base for software development, testing, and modern engineerin
 - [Pre-commit Hooks](concepts/pre-commit-hooks-claude-code) - Automated code quality
 
 ### 🏗️ **Technical Domains**
-- [Modern Web Scraping](backend/modern-web-scraping) - Ethical data extraction
+- [Modern Web Scraping](security/modern-web-scraping) - Ethical data extraction
 - [Database Architecture](backend/database-architecture) - Data modeling and persistence
 - [Privacy-First LLM Architecture](backend/privacy-first-llm-architecture) - AI integration patterns
 - [GUI Implementation Patterns](frontend/gui-implementation-patterns) - User interface design

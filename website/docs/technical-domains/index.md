@@ -19,7 +19,7 @@ This section covers specialized knowledge areas where depth matters as much as b
 
 The backend is where the real work happens - user interfaces are just pretty faces on complex systems.
 
-#### [Modern Web Scraping](./backend/modern-web-scraping.md)
+#### [Modern Web Scraping](../security/modern-web-scraping.md)
 <div class="skills-progress-indicator intermediate">🟡 Data Collection</div>
 
 **Simple Explanation:** Extract data from websites without getting banned, blocked, or sued.

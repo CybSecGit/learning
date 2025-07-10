@@ -107,7 +107,6 @@ const sidebars = {
           label: '⚙️ Backend Development',
           className: 'technical-domain-section',
           items: [
-            'backend/modern-web-scraping',
             'backend/database-architecture',
             'concepts/postgres-sqlalchemy-alembic-trinity',
             'backend/privacy-first-llm-architecture',
@@ -133,6 +132,7 @@ const sidebars = {
           label: '🔒 Security & Production',
           className: 'technical-domain-section',
           items: [
+            'security/modern-web-scraping',
             'security/docker-first-production-security',
             'security/github-graphql-security',
             'security/user-agents-and-stealth',
@@ -282,7 +282,6 @@ const sidebars = {
       className: 'sidebar-category-secondary',
       items: [
         'design-showcase',
-        'resources/contributing',
       ],
     },
   ],

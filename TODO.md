@@ -45,7 +45,7 @@ Transform scattered excellent content into a cohesive, discoverable personal wik
   - [ ] `course/chapters/chapter-11-mastering-gemini-cli.md` → `website/docs/development-tools/mastering-gemini-cli.md`
 
 - [ ] **Migrate to Technical Domains**:
-  - [ ] `course/chapters/chapter-02-web-scraping.md` → `website/docs/technical-domains/backend/modern-web-scraping.md`
+  - [x] `course/chapters/chapter-02-web-scraping.md` → `website/docs/security/modern-web-scraping.md`
   - [ ] `course/chapters/chapter-05-user-agents-and-stealth.md` → `website/docs/technical-domains/security/user-agents-and-stealth.md`
   - [ ] `course/chapters/chapter-07-database-architecture.md` → `website/docs/technical-domains/backend/database-architecture.md`
   - [ ] `course/chapters/chapter-08-gui-implementation-patterns.md` → `website/docs/technical-domains/frontend/gui-implementation-patterns.md`
