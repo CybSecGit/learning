@@ -245,7 +245,6 @@ const sidebars = {
           type: 'category',
           label: 'Step-by-Step Tutorials',
           items: [
-            'hands-on-practice/web-scraping-tutorial',
             'hands-on-practice/user-agents-stealth-tutorial',
             'hands-on-practice/database-architecture-tutorial',
             'hands-on-practice/gui-patterns-tutorial',

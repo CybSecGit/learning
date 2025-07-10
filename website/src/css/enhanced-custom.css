@@ -180,8 +180,20 @@
 }
 
 .menu__link--active {
-  background: var(--ifm-color-primary);
-  color: white;
+  background: var(--ifm-color-primary) !important;
+  color: white !important;
+}
+
+/* Ensure active state works for category items */
+.menu__list-item--active > .menu__link {
+  background: var(--ifm-color-primary) !important;
+  color: white !important;
+}
+
+/* Active state for collapsible menu items */
+.menu__list-item-collapsible--active > .menu__link {
+  background: var(--ifm-color-primary) !important;
+  color: white !important;
 }
 
 /* ===== CONTENT ENHANCEMENTS ===== */
