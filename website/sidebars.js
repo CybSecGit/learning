@@ -159,6 +159,7 @@ const sidebars = {
             'learning-plans/plan-3-api-security',
             'learning-plans/plan-7-cve-database',
             'learning-plans/plan-9-xss-mastery',
+            'learning-plans/plan-10-codeql-semgrep-mastery',
           ]
         },
         {
