@@ -32,6 +32,3 @@ This laboratory covers:
 - GUI implementation patterns
 - AI/LLM integration
 
-## Origin
-
-This wiki was originally developed as educational content within the https://github.com/YOUR_USERNAME/changelogger project and has been split into its own repository for better organization and reusability.
