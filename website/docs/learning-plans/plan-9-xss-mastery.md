@@ -1,12 +1,12 @@
 ---
 id: plan-9-xss-mastery
-title: "Plan 9: Beyond XSS - The Complete Web Security Toolkit"
-sidebar_label: "🎯 Plan 9: XSS Mastery"
+title: "XSS Mastery - The Complete Web Security Toolkit"
+sidebar_label: "🎯 XSS Mastery"
 description: "Master Cross-Site Scripting by building a comprehensive security testing toolkit that detects, exploits, and prevents XSS vulnerabilities"
 keywords: [xss, web security, dom manipulation, csp bypass, bug bounty, web application security, javascript security]
 ---
 
-# Plan 9: Beyond XSS - The Complete Web Security Toolkit
+# XSS Mastery - The Complete Web Security Toolkit
 ### *Building the Ultimate XSS Hunter's Arsenal (The Ethical Way)*
 
 > "Give a person a fish, they eat for a day. Teach them to find XSS vulnerabilities automatically, and they'll never go hungry on bug bounty platforms again." - Ancient Bug Hunter Wisdom

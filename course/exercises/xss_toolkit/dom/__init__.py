@@ -1,0 +1,1 @@
+"""Module 2: DOM XSS analysis components."""
