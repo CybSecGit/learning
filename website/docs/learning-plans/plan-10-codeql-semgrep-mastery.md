@@ -422,7 +422,7 @@ if __name__ == "__main__":
     
     print("🎯 High-Value Vulnerability Patterns for Bug Bounty:")
     for pattern in high_value[:3]:  # Show top 3
-        print(f"  • {pattern.name} ({pattern.typical_bounty_range})")
+        print(f"  • \{pattern.name\} (\{pattern.typical_bounty_range\})")
     
     print(f"\n⚡ Total Automatable Patterns: {len(automatable)}")
     print(f"📊 Research Summary exported to vulnerability_research.md")
@@ -6359,8 +6359,8 @@ class PythonDjangoAnalyzer:
                 risk_level="high",
                 mitigation="Use proper HTML escaping and validate input",
                 examples=[
-                    "{{ user_input|safe }}",
-                    "{{ comment.body|safe }}"
+                    "\{\{ user_input|safe \}\}",
+                    "\{\{ comment.body|safe \}\}"
                 ]
             ),
             DjangoSecurityPattern(
@@ -7561,14 +7561,14 @@ if __name__ == "__main__":
     metrics = sec_ops.track_security_metrics()
     print(f"📊 Security Metrics:")
     print(f"  Total workflows: {metrics['workflow_metrics']['total_workflows']}")
-    print(f"  Completion rate: {metrics['workflow_metrics']['completion_rate']:.1f}%")
+    print(f"  Completion rate: \{metrics['workflow_metrics']['completion_rate']:.1f\}%")
     
     # Generate dashboard
     dashboard = sec_ops.generate_security_dashboard()
     print(f"\n🎯 Security Dashboard:")
     print(f"  Active workflows: {dashboard['overview']['total_active_workflows']}")
     print(f"  Overdue workflows: {dashboard['overview']['overdue_workflows']}")
-    print(f"  SLA compliance: {dashboard['performance_indicators']['sla_compliance']:.1f}%")
+    print(f"  SLA compliance: \{dashboard['performance_indicators']['sla_compliance']:.1f\}%")
     
     # Show recommendations
     if dashboard['recommendations']:
@@ -7878,7 +7878,7 @@ class VulnerabilityChainer:
     def _matches_chain_pattern(self, vuln_by_type: Dict[VulnType, List[VulnerabilityNode]], 
                              known_chain: ExploitChain) -> bool:
         """Check if discovered vulnerabilities match a known chain pattern"""
-        required_types = {vuln.vuln_type for vuln in known_chain.vulnerabilities}
+        required_types = \{vuln.vuln_type for vuln in known_chain.vulnerabilities\}
         available_types = set(vuln_by_type.keys())
         
         return required_types.issubset(available_types)
@@ -7952,7 +7952,7 @@ class VulnerabilityChainer:
         attack_path.append(f"{len(attack_path)+1}. Achieve final objective through chained exploitation")
         
         return ExploitChain(
-            chain_id=f"novel_chain_{'_'.join(v.vuln_type.value for v in vulnerabilities)}",
+            chain_id=f"novel_chain_\{'_'.join(v.vuln_type.value for v in vulnerabilities)\}",
             vulnerabilities=vulnerabilities,
             attack_path=attack_path,
             final_impact=impact,
@@ -8088,7 +8088,7 @@ if __name__ == "__main__":
     
     print(f"🎯 Found {len(chains)} potential exploit chains")
     for chain in chains:
-        print(f"  • {chain.chain_id}: ${chain.estimated_bounty:,} ({chain.final_impact.value})")
+        print(f"  • \{chain.chain_id\}: $\{chain.estimated_bounty:,\} (\{chain.final_impact.value\})")
     
     # Generate detailed guide for top chain
     if chains:
@@ -12659,7 +12659,7 @@ class DependencyConfusionHunter:
                         vulnerability_type="dependency-confusion",
                         confidence=0.95,
                         potential_bounty=25000,  # Based on real payouts
-                        file_path=f"package.json (references {package_name})",
+                        file_path=f"package.json (references \{package_name\})",
                         evidence=f"Internal package {package_name} available in public registry",
                         exploitation_notes=f"Upload malicious package to {registry} with higher version"
                     )
