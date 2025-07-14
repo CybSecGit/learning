@@ -338,8 +338,8 @@ def recommend_analysis_strategy(languages: Dict[str, int], target_patterns: List
     }
     
     # Language-specific recommendations
-    codeql_strong_languages = {'Java', 'JavaScript', 'TypeScript', 'Python', 'Go', 'C++', 'C', 'C#'}
-    semgrep_strong_languages = {'Python', 'JavaScript', 'TypeScript', 'Java', 'Go', 'Ruby', 'PHP'}
+    codeql_strong_languages = \{'Java', 'JavaScript', 'TypeScript', 'Python', 'Go', 'C++', 'C', 'C#'\}
+    semgrep_strong_languages = \{'Python', 'JavaScript', 'TypeScript', 'Java', 'Go', 'Ruby', 'PHP'\}
     
     primary_language = max(languages.keys(), key=languages.get) if languages else 'Unknown'
     
@@ -1053,7 +1053,7 @@ class MRVAHunter:
     
     def search_repositories(self, query: str, language: str = None, max_repos: int = 100) -> List[Dict]:
         """Search GitHub for repositories matching criteria"""
-        headers = {"Authorization": f"token {self.github_token}"}
+        headers = \{"Authorization": f"token \{self.github_token\}"\}
         
         search_query = query
         if language:
@@ -1464,7 +1464,7 @@ cursor.execute("SELECT * FROM users WHERE id = " + user_id)
 $OBJ.$METHOD($QUERY + $INPUT)
 $OBJ.$METHOD($QUERY % $INPUT)  
 $OBJ.$METHOD($QUERY.format($INPUT))
-$OBJ.$METHOD(f"...{$INPUT}...")
+$OBJ.$METHOD(f"...\{$INPUT\}...")
 ```
 
 This mindset shift from instance-based to pattern-based thinking is what separates novice from expert Semgrep users.
@@ -1680,7 +1680,7 @@ rules:
   # Python-specific: f-string injection (newer Python versions)
   - id: python-fstring-injection
     patterns:
-      - pattern: f"...{$USER_INPUT}..."
+      - pattern: f"...\{$USER_INPUT\}..."
       - pattern-inside: |
           def $FUNC(..., $PARAM, ...):
             ...
@@ -1825,7 +1825,7 @@ rules:
       🔥 Java-Specific Exploitation:
       • JSF applications particularly vulnerable
       • Spring framework EL contexts
-      • Payload: #{''.getClass().forName('java.lang.Runtime').getRuntime().exec('id')}
+      • Payload: #\{''.getClass().forName('java.lang.Runtime').getRuntime().exec('id')\}
       
       💡 Java Expert Insight:
       • Common in JSF #{} expressions
@@ -2053,8 +2053,8 @@ if __name__ == "__main__":
     sql_injection_rule = {
         "id": "expert-sql-injection-detection",
         "patterns": [
-            {"pattern": "cursor.execute($QUERY + $INPUT)"},
-            {"pattern-not": "cursor.execute($QUERY, $PARAMS)"}
+            \{"pattern": "cursor.execute($QUERY + $INPUT)"\},
+            \{"pattern-not": "cursor.execute($QUERY, $PARAMS)"\}
         ],
         "message": "SQL injection vulnerability detected",
         "languages": ["python"],
@@ -2364,7 +2364,7 @@ jobs:
         # Custom environment for advanced features
       env:
         SEMGREP_RULES_PATH: "./custom-rules"
-        SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        SEMGREP_APP_TOKEN: $\{\{ secrets.SEMGREP_APP_TOKEN \}\}
         
     - name: Upload Semgrep Results to Security Tab
       uses: github/codeql-action/upload-sarif@v2
@@ -2388,9 +2388,9 @@ jobs:
       uses: 8398a7/action-slack@v3
       with:
         status: failure
-        text: "🚨 High-value security vulnerabilities detected in ${{ github.repository }}"
+        text: "🚨 High-value security vulnerabilities detected in $\{\{ github.repository \}\}"
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_URL: $\{\{ secrets.SLACK_WEBHOOK_URL \}\}
 ```
 
 This enhanced Module 3 now provides a comprehensive foundation for Semgrep mastery, covering the philosophical foundations, advanced techniques, language-specific expertise, community engagement, and rapid iteration workflows that separate expert users from beginners. The content is designed to be immediately actionable while building the deep understanding necessary for advanced security research.
@@ -2449,7 +2449,7 @@ rules:
       💰 Bounty Value: $500 - $15,000
       🎯 Impact: Data exfiltration, privilege escalation, potential RCE
       
-      Details: User input flows from ${{SOURCE}} to SQL execution at ${{SINK}} without proper parameterization.
+      Details: User input flows from $\{\{SOURCE\}\} to SQL execution at $\{\{SINK\}\} without proper parameterization.
       
       🛡️ Secure Fix:
       - Use parameterized queries/prepared statements
@@ -2778,7 +2778,7 @@ rules:
       💰 High-Value Multi-Step Attack Opportunity
       🎯 Tainted data flows through multiple functions before reaching dangerous sink
       
-      Attack Chain: ${{SOURCE}} → ... → ${{SINK}}
+      Attack Chain: $\{\{SOURCE\}\} → ... → $\{\{SINK\}\}
       
       💡 Why This Matters:
       • Multi-step chains often bypass simple security checks
@@ -7568,7 +7568,7 @@ class VulnerabilityChainer:
     
     def _build_vuln_relationships(self) -> Dict[VulnType, List[VulnType]]:
         """Build relationships between vulnerability types for chaining"""
-        return {
+        return \{
             VulnType.SSRF: [VulnType.XXE, VulnType.FILE_UPLOAD],  # SSRF can lead to XXE, file operations
             VulnType.XSS_STORED: [VulnType.CSRF, VulnType.AUTH_BYPASS],  # XSS enables CSRF, session hijacking  
             VulnType.XSS_REFLECTED: [VulnType.CSRF],  # Reflected XSS can bypass CSRF protection
@@ -7577,14 +7577,14 @@ class VulnerabilityChainer:
             VulnType.SQLI: [VulnType.FILE_UPLOAD, VulnType.AUTH_BYPASS],  # SQL injection can lead to file write, auth bypass
             VulnType.XXE: [VulnType.SSRF, VulnType.PATH_TRAVERSAL],  # XXE enables SSRF and file access
             VulnType.SUBDOMAIN_TAKEOVER: [VulnType.XSS_STORED, VulnType.CSRF],  # Subdomain takeover enables session attacks
-        }
+        \}
     
     def analyze_potential_chains(self, vulnerabilities: List[VulnerabilityNode]) -> List[ExploitChain]:
         """Analyze a list of vulnerabilities for potential exploit chains"""
         chains = []
         
         # Group vulnerabilities by type for easier analysis
-        vuln_by_type = {}
+        vuln_by_type = \{\}
         for vuln in vulnerabilities:
             if vuln.vuln_type not in vuln_by_type:
                 vuln_by_type[vuln.vuln_type] = []
@@ -10537,22 +10537,22 @@ rules:
       🚨 CONTEXT-AWARE XSS VULNERABILITY
       
       💰 Bounty Range: $500 - $25,000
-      📍 Location: ${{ SOURCE_LOCATION }}
+      📍 Location: $\{\{ SOURCE_LOCATION \}\}
       
       🔍 VULNERABILITY ANALYSIS:
-      • Input Source: ${{ SOURCE_TYPE }}
-      • Output Context: ${{ SINK_CONTEXT }}
-      • Sanitization Applied: ${{ SANITIZERS }}
-      • Confidence: ${{ CONFIDENCE }}%
+      • Input Source: $\{\{ SOURCE_TYPE \}\}
+      • Output Context: $\{\{ SINK_CONTEXT \}\}
+      • Sanitization Applied: $\{\{ SANITIZERS \}\}
+      • Confidence: $\{\{ CONFIDENCE \}\}%
       
       🎯 ATTACK VECTORS:
-      ${{ ATTACK_VECTORS }}
+      $\{\{ ATTACK_VECTORS \}\}
       
       🛡️ REMEDIATION:
-      ${{ REMEDIATION_ADVICE }}
+      $\{\{ REMEDIATION_ADVICE \}\}
       
       📊 SIMILAR VULNERABILITIES:
-      Found in ${{ SIMILAR_PATTERNS }} other locations
+      Found in $\{\{ SIMILAR_PATTERNS \}\} other locations
     
     # Rich metadata for tooling integration
     metadata:
@@ -10742,13 +10742,13 @@ rules:
       🎯 Vector: User input in SQL query without parameterization
       
       🔍 DETECTION DETAILS:
-      • Query: ${{ QUERY_PATTERN }}
-      • Input: ${{ INPUT_SOURCE }}
-      • Parameterized: ${{ IS_PARAMETERIZED }}
+      • Query: $\{\{ QUERY_PATTERN \}\}
+      • Input: $\{\{ INPUT_SOURCE \}\}
+      • Parameterized: $\{\{ IS_PARAMETERIZED \}\}
       
       🛡️ SECURE ALTERNATIVES:
       # BAD
-      cursor.execute(f"SELECT * FROM users WHERE id = {user_id}")
+      cursor.execute(f"SELECT * FROM users WHERE id = \{user_id\}")
       
       # GOOD  
       cursor.execute("SELECT * FROM users WHERE id = %s", [user_id])
