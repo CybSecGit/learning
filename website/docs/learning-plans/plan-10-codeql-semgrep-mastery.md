@@ -20,6 +20,26 @@ keywords: [codeql, semgrep, static analysis, bug bounty, vulnerability research,
 - You'll build tools that could literally automate your security career
 - Master both tools to cover all vulnerability classes and environments
 
+## 📋 Code Usage Guide
+
+Throughout this learning plan, you'll encounter different types of code examples. Here's how to identify what you can use:
+
+| Badge | Meaning | Usage |
+|-------|---------|-------|
+| 🏭 **PRODUCTION** | Ready for real-world use | Copy, customize, and deploy in actual projects |
+| 🎓 **EDUCATIONAL** | Learning-focused examples | Study the concepts, but adapt before using |
+| 🧪 **EXPERIMENTAL** | Proof-of-concept code | Test ideas, not for production use |
+| 🎮 **DEMO** | Interactive examples | Run to understand concepts |
+| ⚠️ **VULNERABLE** | Intentionally insecure | Never use - for learning attack patterns only |
+
+### 🚀 Quick Deployment Guide
+
+When you see 🏭 **PRODUCTION** code, look for:
+- **📋 Prerequisites**: What you need installed
+- **⚙️ Configuration**: Environment variables and settings  
+- **🔧 Setup**: Step-by-step deployment instructions
+- **▶️ Usage**: How to run and customize
+
 **What You'll Build**: A complete vulnerability hunting automation suite featuring:
 - Advanced CodeQL queries for complex data flow analysis
 - Lightning-fast Semgrep rules for pattern-based detection
@@ -63,6 +83,7 @@ Each module builds working tools while teaching core concepts. By Module 10, you
 ### Day 1-2: Environment Setup & First Queries
 
 ```bash
+# 🏭 PRODUCTION READY - Use this script to set up your actual development environment
 # File: course/exercises/static_analysis_toolkit/setup/install.sh
 #!/bin/bash
 
@@ -86,7 +107,37 @@ semgrep --version
 echo "✅ Static analysis environment ready!"
 ```
 
+**📋 Prerequisites:**
+- Linux/macOS with bash
+- Python 3.8+
+- wget and unzip
+- 2GB free disk space
+
+**🔧 Setup:**
+```bash
+# 1. Make executable and run
+chmod +x install.sh
+./install.sh
+
+# 2. Add to your shell profile (choose one):
+echo 'export PATH="$HOME/codeql:$PATH"' >> ~/.bashrc    # Bash
+echo 'export PATH="$HOME/codeql:$PATH"' >> ~/.zshrc     # Zsh
+
+# 3. Reload shell
+source ~/.bashrc  # or ~/.zshrc
+```
+
+**▶️ Usage:**
+```bash
+# Test your setup
+codeql resolve languages
+semgrep --config=auto --dryrun /path/to/code
+
+# Ready for professional use!
+```
+
 ```python
+# 🏭 PRODUCTION READY - Complete vulnerability classification system for professional use
 # File: course/exercises/static_analysis_toolkit/core/vulnerability_classifier.py
 from enum import Enum
 from dataclasses import dataclass
@@ -381,9 +432,54 @@ if __name__ == "__main__":
         f.write(vuln_db.export_research_summary())
 ```
 
+**📋 Prerequisites:**
+- Python 3.8+
+- No external dependencies (uses only standard library)
+
+**🔧 Setup:**
+```bash
+# 1. Save the code as vulnerability_classifier.py
+# 2. No installation needed - pure Python
+
+# 3. Optional: Install for system-wide use
+pip install -e .  # If you create a setup.py
+```
+
+**⚙️ Configuration:**
+```python
+# Create config.py for customization
+CUSTOM_VULNERABILITY_PATTERNS = [
+    # Add your organization-specific patterns
+]
+
+# Customize bounty ranges for your target programs
+BOUNTY_MULTIPLIERS = {
+    "critical": 2.0,  # 2x multiplier for critical findings
+    "your_company": 1.5  # Company-specific multipliers
+}
+```
+
+**▶️ Usage:**
+```bash
+# Run the example
+python vulnerability_classifier.py
+
+# Import in your own tools
+python -c "
+from vulnerability_classifier import VulnerabilityDatabase
+db = VulnerabilityDatabase()
+high_value = db.get_high_value_patterns()
+print(f'Found {len(high_value)} high-value patterns')
+"
+
+# Generate research reports
+python vulnerability_classifier.py > my_research_plan.txt
+```
+
 ### Day 3-4: First Vulnerability Queries
 
 ```ql
+// 🎓 EDUCATIONAL - Learn the fundamentals, then build more sophisticated versions
 // File: course/exercises/static_analysis_toolkit/codeql/basic_sqli.ql
 /**
  * @name Basic SQL Injection Detection
@@ -472,6 +568,7 @@ select sink.getNode(), source, sink,
 ```
 
 ```yaml
+# 🏭 PRODUCTION READY - High-quality SSRF detection rule ready for real use
 # File: course/exercises/static_analysis_toolkit/semgrep/basic_ssrf.yaml
 rules:
   - id: potential-ssrf-requests-library
@@ -525,6 +622,42 @@ rules:
       references:
         - "Facebook SSRF: $31,500 by Bipin Jitiya"
         - "Google Cloud SSRF: $31,000"
+```
+
+**📋 Prerequisites:**
+- Semgrep installed (`pip install semgrep`)
+- Target codebase with Python, Java, or JavaScript
+
+**🔧 Setup:**
+```bash
+# 1. Save rule as basic_ssrf.yaml
+# 2. Test on sample code first
+mkdir -p semgrep-rules
+cp basic_ssrf.yaml semgrep-rules/
+
+# 3. Validate rule syntax
+semgrep --config=semgrep-rules/basic_ssrf.yaml --dryrun
+```
+
+**⚙️ Configuration:**
+```bash
+# Create .semgrepignore for your project
+echo "node_modules/" >> .semgrepignore
+echo "venv/" >> .semgrepignore
+echo "*.test.js" >> .semgrepignore  # Skip test files if needed
+```
+
+**▶️ Usage:**
+```bash
+# Scan specific directory
+semgrep --config=semgrep-rules/basic_ssrf.yaml /path/to/code
+
+# Scan with JSON output for automation
+semgrep --config=semgrep-rules/basic_ssrf.yaml --json /path/to/code
+
+# Integrate with CI/CD
+semgrep --config=semgrep-rules/basic_ssrf.yaml --error /path/to/code
+# Returns exit code 1 if vulnerabilities found
 ```
 
 ---
@@ -1258,6 +1391,73 @@ if __name__ == "__main__":
     )
 ```
 
+**📋 Prerequisites:**
+- Python 3.8+
+- CodeQL CLI installed
+- GitHub Personal Access Token
+- 4GB+ RAM (for large repository analysis)
+
+**⚙️ Configuration:**
+```bash
+# 1. Create GitHub Personal Access Token
+# Visit: https://github.com/settings/tokens
+# Scopes needed: repo, public_repo
+
+# 2. Set up environment variables
+export GITHUB_TOKEN="ghp_your_token_here"
+export CODEQL_HOME="/path/to/codeql"
+export PATH="$CODEQL_HOME:$PATH"
+
+# 3. Create .env file (recommended)
+echo "GITHUB_TOKEN=ghp_your_token_here" > .env
+echo "CODEQL_HOME=/path/to/codeql" >> .env
+```
+
+**🔧 Setup:**
+```bash
+# 1. Install Python dependencies
+pip install requests tqdm
+
+# 2. Download CodeQL queries
+git clone https://github.com/github/codeql.git codeql-queries
+
+# 3. Test setup
+python -c "
+import os
+from mrva_hunter import MRVAHunter
+hunter = MRVAHunter(github_token=os.environ.get('GITHUB_TOKEN'))
+print('✅ Setup successful!')
+"
+```
+
+**▶️ Usage:**
+```bash
+# Basic vulnerability hunting
+python mrva_hunter.py
+
+# Custom search for specific vulnerabilities
+python -c "
+from mrva_hunter import MRVAHunter
+import os
+
+hunter = MRVAHunter(github_token=os.environ.get('GITHUB_TOKEN'))
+hunter.hunt_variants(
+    search_query='your-target-framework language:python stars:>50',
+    codeql_query_path='path/to/your/query.ql',
+    language='python',
+    max_repos=10
+)
+"
+
+# Monitor results
+tail -f mrva_results/findings.json
+```
+
+**⚠️ Rate Limiting:**
+- GitHub API: 5000 requests/hour (authenticated)
+- Be respectful of target repositories
+- Use delays between requests in production
+
 ### Real-World Case Studies: CodeQL in Action
 
 #### Case Study 1: The GitHub Security Lab's Apache Struts Discovery
@@ -1571,9 +1771,10 @@ rules:
 Performance optimization is crucial for large-scale scanning:
 
 ```yaml
+# 🏭 PRODUCTION READY - Performance-optimized rules for large-scale scanning
 # File: course/exercises/static_analysis_toolkit/semgrep/performance_optimization.yaml
 rules:
-  # GOOD: Optimized rule with targeted patterns
+  # 🏭 PRODUCTION - Optimized rule with targeted patterns
   - id: optimized-sql-injection-detection
     patterns:
       # Start with most specific patterns first
@@ -1598,7 +1799,7 @@ rules:
       performance: "optimized"
       scan_time: "fast"
 
-  # BAD: Unoptimized rule (avoid this pattern)
+  # 🧪 EXPERIMENTAL - Performance anti-pattern (study but don't use)
   - id: slow-sql-injection-detection
     patterns:
       # Overly broad pattern that matches everything
@@ -2391,6 +2592,66 @@ jobs:
         text: "🚨 High-value security vulnerabilities detected in $\{\{ github.repository \}\}"
       env:
         SLACK_WEBHOOK_URL: $\{\{ secrets.SLACK_WEBHOOK_URL \}\}
+```
+
+**📋 Prerequisites:**
+- GitHub repository with Actions enabled
+- Semgrep custom rules in `./custom-rules/` directory
+- Python script for processing findings (optional)
+
+**⚙️ Configuration:**
+```bash
+# 1. Set up GitHub repository secrets
+# Go to: Settings → Secrets and variables → Actions
+
+# Required secrets:
+SEMGREP_APP_TOKEN=your_semgrep_token_here
+SLACK_WEBHOOK_URL=https://hooks.slack.com/your/webhook/url
+
+# Optional secrets:
+SECURITY_EMAIL=security@yourcompany.com
+```
+
+**🔧 Setup:**
+```bash
+# 1. Create workflow directory
+mkdir -p .github/workflows
+
+# 2. Save as .github/workflows/security-analysis.yml
+
+# 3. Create custom rules directory
+mkdir -p custom-rules
+
+# 4. Create processing script (optional)
+mkdir -p scripts
+# Add your Python script for processing findings
+```
+
+**▶️ Usage:**
+```bash
+# 1. Commit and push to trigger workflow
+git add .github/workflows/security-analysis.yml
+git commit -m "Add advanced security analysis workflow"
+git push
+
+# 2. Monitor workflow runs
+# Visit: GitHub → Actions tab
+
+# 3. View security findings
+# Visit: GitHub → Security → Code scanning alerts
+
+# 4. Check Slack notifications (if configured)
+```
+
+**🚀 Advanced Configuration:**
+```bash
+# Add to your custom-rules/bounty-focused.yaml
+rules:
+  - id: your-high-value-rule
+    # Your custom detection logic here
+    severity: ERROR
+    metadata:
+      bounty_potential: "high"
 ```
 
 This enhanced Module 3 now provides a comprehensive foundation for Semgrep mastery, covering the philosophical foundations, advanced techniques, language-specific expertise, community engagement, and rapid iteration workflows that separate expert users from beginners. The content is designed to be immediately actionable while building the deep understanding necessary for advanced security research.
@@ -10747,10 +11008,10 @@ rules:
       • Parameterized: $\{\{ IS_PARAMETERIZED \}\}
       
       🛡️ SECURE ALTERNATIVES:
-      # BAD
+      # ⚠️ VULNERABLE - Never use this pattern
       cursor.execute(f"SELECT * FROM users WHERE id = \{user_id\}")
       
-      # GOOD  
+      # 🏭 PRODUCTION - Safe parameterized query  
       cursor.execute("SELECT * FROM users WHERE id = %s", [user_id])
     
     severity: ERROR
